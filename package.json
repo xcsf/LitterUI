@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/xcsf/Vue-UI/issues"
   },
-  "homepage": "https://github.com/xcsf/Vue-UI#readme"
+  "homepage": "https://github.com/xcsf/Vue-UI#readme",
+  "dependencies": {
+    "vue": "^2.5.22"
+  }
 }
