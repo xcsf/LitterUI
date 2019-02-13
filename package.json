@@ -1,8 +1,8 @@
 {
   "name": "xcsf-vue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a UI\u001b[D\u001b[D\u001b[VUE\u001b[2~ \u001b[2~UI",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "./node_modules/.bin/parcel --no-cache index.html",
     "dev-test": "parcel watch test/* --no-cache & karma start",
