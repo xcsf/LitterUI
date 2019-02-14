@@ -4,13 +4,14 @@
   </svg>
 </template>
 <script>
-import './svg'
+import "./svg"
 export default {
-props: {
+  name: "GuluIcon",
+  props: {
     name: {
-        type: String
+      type: String
     }
-}
+  }
 };
 </script>
 <style lang="scss" scoped>
