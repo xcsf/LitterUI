@@ -1,6 +1,6 @@
 {
   "name": "xcsf-vue",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a UI\u001b[D\u001b[D\u001b[VUE\u001b[2~ \u001b[2~UI",
   "main": "dist/index.js",
   "scripts": {
@@ -30,6 +30,8 @@
     "@vue/component-compiler-utils": "^2.5.0",
     "chai": "^4.2.0",
     "chai-spies": "^1.0.0",
+    "eslint": "^5.13.0",
+    "eslint-config-defaults": "^9.0.0",
     "karma": "^4.0.0",
     "karma-chai": "^0.1.0",
     "karma-chai-spies": "^0.1.4",
