@@ -39,8 +39,8 @@
         <div style="margin: 20px 0;">
             <g-input value="阿斯顿"></g-input>
             <g-input value="梵蒂冈" disabled></g-input>
-            <g-input value="梵蒂冈" readonly></g-input>
-            <g-input value="梵蒂冈" error="亲人两行泪"></g-input>
+            <g-input value="梵蒂冈" readOnly></g-input>
+            <g-input value="梵蒂冈" error="亲人两行泪" @change="inputchange"></g-input>
         </div>
         <div>
             <g-button :loading="loading1" @click="loading1 = !loading1">按钮</g-button>
