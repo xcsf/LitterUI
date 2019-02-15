@@ -5,6 +5,7 @@ import Button from '../src/button'
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
+//karma》》 karmaj.conf.js 》》打开浏览器
 //BDD 行为驱动测试 Mocha》》describe、it
 //chai》》expect。。。。
 describe('Button', () => {

@@ -5,8 +5,11 @@ import Input from '../src/input'
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
+//karma》》 karmaj.conf.js 》》打开浏览器
 //BDD 行为驱动测试 Mocha》》describe、it
 //chai》》expect。。。。
+//sinon》》fake
+//sinon-chai》》calledWith
 describe('Input', () => {
     it('存在.', () => {
         expect(Input).to.be.ok
@@ -69,9 +72,17 @@ describe('Input', () => {
                 const callback = sinon.fake();
                 vm.$on(item, callback)
                 let event = new Event(item);
+                Object.defineProperty(
+                    event, 'target', {
+                        value: {
+                            value: 'hi'
+                        },
+                        enumerable: true
+                    }
+                )
                 let InputElement = vm.$el.querySelector('input')
                 InputElement.dispatchEvent(event);
-                expect(callback).to.have.been.calledWith(event)
+                expect(callback).to.have.been.calledWith('hi')
             })
         })
     })

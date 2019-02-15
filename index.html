@@ -37,7 +37,8 @@
 <body>
     <div id="app">
         <div style="margin: 20px 0;">
-            <g-input value="阿斯顿"></g-input>
+            <g-input value="阿斯顿" v-model="message"></g-input>
+            <p>{{message}}</p>
             <g-input value="梵蒂冈" disabled></g-input>
             <g-input value="梵蒂冈" readOnly></g-input>
             <g-input value="梵蒂冈" error="亲人两行泪" @change="inputchange"></g-input>

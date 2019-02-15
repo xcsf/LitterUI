@@ -10,7 +10,8 @@ new Vue({
     data: {
         loading1: false,
         loading2: true,
-        loading3: false
+        loading3: false,
+        message: "asd"
     },
     methods:{
         inputchange(e){
