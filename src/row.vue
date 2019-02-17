@@ -1,5 +1,5 @@
 <template>
-  <div class="row" :style="rowStyle">
+  <div :class="['row',rowClass]" :style="rowStyle">
     <slot></slot>
   </div>
 </template>
@@ -7,7 +7,13 @@
 export default {
   name: "GuluRow",
   props: {
-    gutter: [Number, String]
+    gutter: [Number, String],
+    align: {
+      type: String,
+      validator(value) {
+        return ["left", "right", "center"].includes(value);
+      }
+    }
   },
   created() {},
   computed: {
@@ -17,6 +23,10 @@ export default {
         marginLeft: -gutter / 2 + "px",
         marginRight: -gutter / 2 + "px"
       };
+    },
+    rowClass() {
+      let { align } = this;
+      return [align && `align-${align}`];
     }
   },
   mounted() {
@@ -29,5 +39,14 @@ export default {
 <style lang="scss" scoped>
 .row {
   display: flex;
+  &.align-right {
+    justify-content: flex-end;
+  }
+  &.align-left {
+    justify-content: flex-start;
+  }
+  &.align-center {
+    justify-content: center;
+  }
 }
 </style>
