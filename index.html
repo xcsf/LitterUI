@@ -36,15 +36,9 @@
 
 <body>
     <div id="app">
-        <g-row gutter="20" align="right">
-            <g-col span="2">1</g-col>
-            <g-col span="15">2</g-col>
-        </g-row>
-        <g-row>
-            <g-col>1</g-col>
-            <g-col>1</g-col>
-            <g-col>1</g-col>
-            <g-col>1</g-col>
+        <g-row gutter="20">
+            <g-col span="12" :phone="{span: 6}" :ipad="{span: 21}">1</g-col>
+            <g-col span="12" :phone="{span: 18}" :ipad="{span: 21}">2</g-col>
         </g-row>
         <div style="margin: 20px 0;">
             <g-input value="阿斯顿" v-model="message"></g-input>
