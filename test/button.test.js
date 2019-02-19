@@ -8,6 +8,7 @@ Vue.config.devtools = false
 //karma》》 karmaj.conf.js 》》打开浏览器
 //BDD 行为驱动测试 Mocha》》describe、it
 //chai》》expect。。。。
+//如果测css  需要挂载到页面中否则没有css （创建div 将组件mount）
 describe('Button', () => {
     it('存在.', () => {
         expect(Button).to.be.ok

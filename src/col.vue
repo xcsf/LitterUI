@@ -62,6 +62,12 @@ export default {
     return {
       gutter: [Number, String]
     };
+  },
+  mounted() {
+    // console.log("col mounted");
+  },
+  created() {
+    // console.log("col created");
   }
 };
 </script>

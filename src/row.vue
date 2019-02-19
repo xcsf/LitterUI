@@ -15,7 +15,9 @@ export default {
       }
     }
   },
-  created() {},
+  created() {
+    //   console.log("row create");
+  },
   computed: {
     rowStyle() {
       let { gutter } = this;
@@ -30,6 +32,7 @@ export default {
     }
   },
   mounted() {
+    //console.log("row mounted");
     this.$children.forEach(item => {
       item.gutter = this.gutter;
     });
