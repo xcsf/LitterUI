@@ -4,7 +4,15 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  name: "GuluSider",
+  mounted() {
+    // console.log("sider mounted");
+  },
+  created() {
+    // console.log("sider created");
+  }
+};
 </script>
 
 <style lang="scss" scoped>

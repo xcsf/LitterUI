@@ -36,17 +36,20 @@
 
 <body>
     <style>
-        .demo{
+        .demo {
             border: 1px solid red;
             min-height: 100px;
         }
     </style>
     <div id="app">
-        <g-layout>
-            <g-header class="demo"></g-header>
-            <g-content class="demo"></g-content>
-            <g-footer class="demo"></g-footer>
-        </g-layout> 
+        <g-layout style="height:100vh">
+            <g-sider class="demo">sider</g-sider>
+            <g-layout>
+                <g-header class="demo">header</g-header>
+                <g-content class="demo">content</g-content>
+                <g-footer class="demo">footer</g-footer>
+            </g-layout>
+        </g-layout>
 
         <!-- <g-row>
             <g-col span="12">1</g-col>
