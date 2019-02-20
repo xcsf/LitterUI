@@ -29,17 +29,29 @@
         }
 
         #app {
-            margin: 20px;
+            /* margin: 20px; */
         }
     </style>
 </head>
 
 <body>
+    <style>
+        .demo{
+            border: 1px solid red;
+            min-height: 100px;
+        }
+    </style>
     <div id="app">
-        <g-row>
+        <g-layout>
+            <g-header class="demo"></g-header>
+            <g-content class="demo"></g-content>
+            <g-footer class="demo"></g-footer>
+        </g-layout> 
+
+        <!-- <g-row>
             <g-col span="12">1</g-col>
             <g-col span="12">2</g-col>
-        </g-row>
+        </g-row> -->
         <div style="margin: 20px 0;">
             <g-input value="阿斯顿" v-model="message"></g-input>
             <p>{{message}}</p>
