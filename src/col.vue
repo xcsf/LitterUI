@@ -20,6 +20,7 @@ export default {
     offset: [Number, String],
     ipad: { type: Object, validator },
     narrowPc: { type: Object, validator },
+    pc: { type: Object, validator },
     widePc: { type: Object, validator }
   },
   methods: {

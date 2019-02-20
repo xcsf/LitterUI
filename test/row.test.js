@@ -30,7 +30,6 @@ describe('Row', () => {
             el: div
         })
         setTimeout(() => {
-            console.log(vm.$el.outerHTML)
             const cols = vm.$el.querySelectorAll('.col')
             const rows = vm.$el.querySelector('.row')
             expect(getComputedStyle(cols[0]).paddingLeft).to.eq('10px')
