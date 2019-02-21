@@ -11,6 +11,11 @@ import Header from './header'
 import Sider from './sider'
 import Content from './content'
 import Footer from './footer'
+
+import Toast from './toast'
+import Plugin from './plugin'
+import plugin from './plugin';
+
 Vue.component('g-button', Button);
 Vue.component('g-button-group', ButtonGroup);
 Vue.component('g-input', Input);
@@ -21,6 +26,8 @@ Vue.component('g-sider', Sider);
 Vue.component('g-content', Content);
 Vue.component('g-footer', Footer);
 Vue.component('g-layout', Layout);
+Vue.component('g-toast', Toast);
+Vue.use(plugin)
 new Vue({
     el: '#app',
     data: {
@@ -30,8 +37,11 @@ new Vue({
         message: "asd"
     },
     methods: {
-        inputchange(e) {
-            console.log(e);
+        inputchange() {},
+        showToast() {
+            this.$toast('hello world!');
         }
+    },
+    created() {
     }
 })
