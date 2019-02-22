@@ -14,7 +14,6 @@ import Footer from './footer'
 
 import Toast from './toast'
 import Plugin from './plugin'
-import plugin from './plugin';
 
 Vue.component('g-button', Button);
 Vue.component('g-button-group', ButtonGroup);
@@ -27,7 +26,7 @@ Vue.component('g-content', Content);
 Vue.component('g-footer', Footer);
 Vue.component('g-layout', Layout);
 Vue.component('g-toast', Toast);
-Vue.use(plugin)
+Vue.use(Plugin)
 new Vue({
     el: '#app',
     data: {
@@ -39,9 +38,16 @@ new Vue({
     methods: {
         inputchange() {},
         showToast() {
-            this.$toast('hello world!');
+            this.$toast('<p>html标签<a target="_blank" href="https://www.baidu.com">百度一下</a></p><p>html标签<a target="_blank" href="https://www.baidu.com">百度一下</a></p>', {
+                closeButton: {
+                    text: '点击关闭',
+                    callback() {
+                        console.log('点击关闭回调');
+                    }
+                },
+                enableHtml:false
+            });
         }
     },
-    created() {
-    }
+    created() {}
 })
