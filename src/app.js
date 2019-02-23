@@ -38,7 +38,7 @@ new Vue({
     methods: {
         inputchange() {},
         showToast() {
-            this.$toast('<p>html标签<a target="_blank" href="https://www.baidu.com">百度一下</a></p><p>html标签<a target="_blank" href="https://www.baidu.com">百度一下</a></p>', {
+            this.$toast('<p>html标签<a target="_blank" href="https://www.baidu.com">百度一</a></p><p>html标签<a target="_blank" href="https://www.baidu.com">百度一下</a></p>', {
                 position: 'middle',
                 closeButton: {
                     text: '点击关闭',
@@ -53,6 +53,5 @@ new Vue({
         }
     },
     created() {
-        this.showToast();
     }
 })
