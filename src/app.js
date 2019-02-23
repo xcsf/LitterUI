@@ -39,15 +39,20 @@ new Vue({
         inputchange() {},
         showToast() {
             this.$toast('<p>html标签<a target="_blank" href="https://www.baidu.com">百度一下</a></p><p>html标签<a target="_blank" href="https://www.baidu.com">百度一下</a></p>', {
+                position: 'middle',
                 closeButton: {
                     text: '点击关闭',
                     callback() {
                         console.log('点击关闭回调');
                     }
                 },
-                enableHtml:false
+                enableHtml: false,
+                autoClose: false,
+                closeDelay: 3
             });
         }
     },
-    created() {}
+    created() {
+        this.showToast();
+    }
 })

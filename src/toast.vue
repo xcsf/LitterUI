@@ -1,11 +1,11 @@
 <template>
-  <div class="toast" ref="wrapper">
+  <div class="toast" ref="wrapper" :class="toastClasses">
     <div class="message">
       <slot v-if="!enableHtml"></slot>
       <div v-else v-html="$slots.default[0]"></div>
     </div>
     <div class="line" ref="line"></div>
-    <span class="close" v-if="autoClose" @click="onClickClose()">{{ closeButton.text }}</span>
+    <span class="close" v-if="!autoClose" @click="onClickClose()">{{ closeButton.text }}</span>
   </div>
 </template>
 <script>
@@ -13,14 +13,21 @@ export default {
   name: "GuluToast",
   props: {
     autoClose: { type: Boolean, default: true },
-    closeDelay: { type: Number, default: 1100 },
+    closeDelay: { type: Number, default: 5 },
     closeButton: {
       type: Object,
       default() {
         return { text: "关闭", callback: undefined };
       }
     },
-    enableHtml: { type: Boolean, default: false }
+    enableHtml: { type: Boolean, default: false },
+    position: {
+      type: String,
+      default: "top",
+      validator(value) {
+        return ["top", "bottom", "middle"].indexOf(value) >= 0;
+      }
+    }
   },
   data() {
     return {};
@@ -54,6 +61,11 @@ export default {
         this.closeButton.callback();
       }
     }
+  },
+  computed: {
+    toastClasses() {
+      return { [`position-${this.position}`]: true };
+    }
   }
 };
 </script>
@@ -61,34 +73,27 @@ export default {
 $font-size: 14px;
 $toast-min-height: 40px;
 $toast-color: rgba(0, 0, 0, 0.75);
-.toast {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  background-color: $toast-color;
-  font-size: $font-size;
-  min-height: $toast-min-height;
-  line-height: 1.8;
-  color: white;
-  transform: translateX(-50%);
-  border-radius: 4px;
+.toast { position: fixed; left: 50%; display: flex; align-items: center;
+  background-color: $toast-color; font-size: $font-size; min-height: $toast-min-height;
+  line-height: 1.8; color: white; transform: translateX(-50%); border-radius: 4px;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
-  & .message {
-    padding: 8px 16px;
-  }
-  & .close {
-    padding: 0 16px;
-    flex-shrink: 0;
-    &:hover {
-      cursor: pointer;
-    }
+  & .message { padding: 8px 16px; }
+  & .close { padding: 0 16px; flex-shrink: 0;
+    &:hover { cursor: pointer; }
   }
   & .line {
     border-left: 1px solid #666;
-    // margin-left: 16px;
-    height: 100%;
+    // margin-left: 16px; height: 100%;
+  }
+  &.position-top {
+    top: 0;
+  }
+  &.position-middle {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &.position-bottom {
+    bottom: 0;
   }
 }
 </style>
