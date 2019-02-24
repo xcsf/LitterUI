@@ -56,8 +56,7 @@ new Vue({
                     }
                 },
                 enableHtml: false,
-                autoClose: false,
-                closeDelay: 3
+                autoClose: 1,
             });
         }
     },
