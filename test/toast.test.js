@@ -29,7 +29,7 @@ describe('Toast', () => {
                 done()
             })
         })
-        it('接受 closeButton', () => {
+        it('接受 closeButton', (done) => {
             const Constuctor = Vue.extend(Toast)
             const callback = sinon.fake();
             const vm = new Constuctor({
@@ -42,8 +42,14 @@ describe('Toast', () => {
             }).$mount()
             const closeButton = vm.$el.querySelector('.close')
             expect(closeButton.textContent.trim()).to.eq('close')
-            closeButton.click();
-            expect(callback).to.have.been.called
+            //防止toast组件下nextTick方法在读取$refs.line前click关闭
+            //导致$refs.line为undefined
+            //添加200ms时间延长执行
+            setTimeout(() => {
+                closeButton.click();
+                expect(callback).to.have.been.called
+                done()
+            }, 200)
         })
         it('接受 closeButton', () => {
             const Constuctor = Vue.extend(Toast)
