@@ -59,14 +59,35 @@
             <g-layout>
                 <g-header>header</g-header>
                 <g-content>
-                    <g-button @click="showToast1">Show Toast</g-button>
-                    <g-button @click="showToast2">Show Toast</g-button>
-                    <g-button @click="showToast3">Show Toast</g-button>
+                    <div>
+                        <g-button @click="showToast1">Show Toast</g-button>
+                        <g-button @click="showToast2">Show Toast</g-button>
+                        <g-button @click="showToast3">Show Toast</g-button>
+                    </div>
+                    <div>
+                        <g-tabs :selected.sync="selectTab" >
+                            <g-tabs-head>
+                                <template slot="actions">
+                                    设置
+                                </template>
+                                <g-tabs-item name="woman">
+                                    <g-icon name="settings"></g-icon>妹子
+                                </g-tabs-item>
+                                <g-tabs-item name="finance">錢</g-tabs-item>
+                                <g-tabs-item name="sports">体育</g-tabs-item>
+                            </g-tabs-head>
+                            <g-tabs-body>
+                                <g-tabs-pane name="woman"></g-tabs-pane>
+                                <g-tabs-pane name="finance"></g-tabs-pane>
+                                <g-tabs-pane name="sports"></g-tabs-pane>
+                            </g-tabs-body>
+                        </g-tabs>
+                    </div>
                 </g-content>
                 <g-footer>footer</g-footer>
             </g-layout>
         </g-layout>
-
+        
         <!-- <g-row>
             <g-col span="12">1</g-col>
             <g-col span="12">2</g-col>
