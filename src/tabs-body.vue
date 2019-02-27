@@ -1,11 +1,13 @@
 <template>
   <div class="tabs-body">
-      <slot></slot>
+    <slot></slot>
   </div>
 </template>
 <script>
 export default {
-    name:'GuluTabsBody'
+  name: "GuluTabsBody",
+  inject: ["eventBus"],
+  created() {}
 };
 </script>
 <style lang="scss" scoped>
