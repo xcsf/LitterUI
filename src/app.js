@@ -47,7 +47,7 @@ new Vue({
         loading2: true,
         loading3: false,
         message: "asd",
-        selectedTab: 'sports'
+        selectedTab: 'woman'
     },
     methods: {
         inputchange() {},
