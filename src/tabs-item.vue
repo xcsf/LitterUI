@@ -36,14 +36,14 @@ export default {
   },
   methods: {
     xxx() {
-      this.eventBus.$emit("update:selected", this.name);
+      this.eventBus.$emit("update:selected", this.name, this);
     }
   }
 };
 </script>
 <style lang="scss" scoped>
+$blur: blue;
 .tabs-item {
-  border: 1px solid greenyellow;
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -51,7 +51,8 @@ export default {
   cursor: pointer;
   height: 100%;
   &.active {
-    background-color: red;
+    color: $blur;
+    font-weight: bolder;
   }
 }
 </style>

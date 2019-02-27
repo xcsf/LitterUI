@@ -1,6 +1,7 @@
 <template>
   <div class="tabs-head">
     <slot></slot>
+    <div class="line" ref="line"></div>
     <div class="actions-wrapper">
       <slot name="actions"></slot>
     </div>
@@ -10,19 +11,38 @@
 export default {
   name: "GuluTabsHead",
   inject: ["eventBus"],
-  created() {}
+  created() {
+    this.eventBus.$on("update:selected", (item, vm) => {
+      let {width, height, top, left} = vm.$el.getBoundingClientRect()
+      console.log(width, height, top, left)
+      this.$refs.line.style.width = `${width}px`
+      this.$refs.line.style.transform = `translateX(${left}px)`
+    });
+  }
 };
 </script>
 <style lang="scss" scoped>
 $tabs-height: 40px;
+$blue: blue;
+$border-color: #ddd;
 .tabs-head {
-  border: 1px solid red;
+  border-bottom: 1px solid $border-color;
   display: flex;
   height: $tabs-height;
   justify-content: flex-start;
+  position: relative;
+  & .line {
+    position: absolute;
+    bottom: 0;
+    border-bottom: 1px solid $blue;
+    transition: all 350ms;
+  }
   & .actions-wrapper {
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1em;
   }
 }
-
 </style>
