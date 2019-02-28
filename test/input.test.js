@@ -10,6 +10,7 @@ Vue.config.devtools = false
 //chai》》expect。。。。
 //sinon》》fake
 //sinon-chai》》calledWith
+//只能先将div先挂载到document中才能能执行vm.$mounted(el)
 describe('Input', () => {
     it('存在.', () => {
         expect(Input).to.be.ok

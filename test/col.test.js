@@ -11,6 +11,7 @@ Vue.config.devtools = false
 //chai》》expect。。。。
 //sinon》》fake
 //sinon-chai》》calledWith
+//只能先将div先挂载到document中才能能执行vm.$mounted(el)
 describe('Col', () => {
     it('存在.', () => {
         expect(Col).to.be.ok
@@ -48,7 +49,10 @@ describe('Col', () => {
         const Constructor = Vue.extend(Col)
         const vm = new Constructor({
             propsData: {
-                pc: {span:1,offset:2}
+                pc: {
+                    span: 1,
+                    offset: 2
+                }
             }
         }).$mount(div)
         expect(vm.$el.classList.contains('col-pc-1')).to.equal(true)
@@ -62,7 +66,10 @@ describe('Col', () => {
         const Constructor = Vue.extend(Col)
         const vm = new Constructor({
             propsData: {
-                narrowPc: {span:1,offset:2}
+                narrowPc: {
+                    span: 1,
+                    offset: 2
+                }
             }
         }).$mount(div)
         expect(vm.$el.classList.contains('col-narrow-pc-1')).to.equal(true)
@@ -76,7 +83,10 @@ describe('Col', () => {
         const Constructor = Vue.extend(Col)
         const vm = new Constructor({
             propsData: {
-                widePc: {span:1,offset:2}
+                widePc: {
+                    span: 1,
+                    offset: 2
+                }
             }
         }).$mount(div)
         expect(vm.$el.classList.contains('col-wide-pc-1')).to.equal(true)
@@ -90,7 +100,10 @@ describe('Col', () => {
         const Constructor = Vue.extend(Col)
         const vm = new Constructor({
             propsData: {
-                ipad: {span:1,offset:2}
+                ipad: {
+                    span: 1,
+                    offset: 2
+                }
             }
         }).$mount(div)
         expect(vm.$el.classList.contains('col-ipad-1')).to.equal(true)

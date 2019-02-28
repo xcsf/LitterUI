@@ -31,6 +31,9 @@ export default {
     };
   },
   mounted() {
+    if (this.$children.length === 0) {
+      console && console.warn && console.warn("Tabs 没有子组件");
+    }
     this.$children.forEach(vm => {
       if (vm.$options.name === "GuluTabsHead") {
         vm.$children.forEach(childVm => {

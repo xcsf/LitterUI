@@ -9,6 +9,7 @@ Vue.config.devtools = false
 //BDD 行为驱动测试 Mocha》》describe、it
 //chai》》expect。。。。
 //如果测css  需要挂载到页面中否则没有css （创建div 将组件mount）
+//只能先将div先挂载到document中才能能执行vm.$mounted(el)
 describe('Button', () => {
     it('存在.', () => {
         expect(Button).to.be.ok
@@ -21,7 +22,8 @@ describe('Button', () => {
             }
         }).$mount()
         const useElement = vm.$el.querySelector('use')
-        expect(useElement.getAttribute('xlink:href') ).to.equal('#i-settings')
+        expect(useElement.getAttribute('xlink:href')).to.equal('#i-settings')
+        vm.$el.remove()
         vm.$destroy()
     })
     it('可以设置loading.', () => {
@@ -35,6 +37,7 @@ describe('Button', () => {
         const useElements = vm.$el.querySelectorAll('use')
         expect(useElements.length).to.equal(1)
         expect(useElements[0].getAttribute('xlink:href')).to.equal('#i-loading')
+        vm.$el.remove()
         vm.$destroy()
     })
     it('icon 默认的 order 是 1', () => {
