@@ -40,15 +40,18 @@
             border: 1px solid red;
             min-height: 100px;
         }
-        .sider{
+
+        .sider {
             border: 1px solid #333;
             width: 100px;
         }
-        .header{
+
+        .header {
             border: 1px solid #999;
             height: 100px;
         }
-        .footer{
+
+        .footer {
             border: 1px solid #ccc;
             height: 50px;
         }
@@ -83,11 +86,25 @@
                             </g-tabs-body>
                         </g-tabs>
                     </div>
+                    <div style="padding: 50px 100px">
+                        <g-popover>
+                            <template slot="content">
+                                <div>popover内容asdasdasd</div>
+                            </template>
+                            <g-button>Popover</g-button>
+                        </g-popover>
+                        <g-popover>
+                            <template slot="content">
+                                <div>afsdfsdf</div>
+                            </template>
+                            <g-button>Popover</g-button>
+                        </g-popover>
+                    </div>
                 </g-content>
                 <g-footer>footer</g-footer>
             </g-layout>
         </g-layout>
-        
+
         <!-- <g-row>
             <g-col span="12">1</g-col>
             <g-col span="12">2</g-col>
