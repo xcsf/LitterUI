@@ -34,19 +34,36 @@ export default {
       document.body.appendChild(contentWrapper);
       let { height: contentHeight } = contentWrapper.getBoundingClientRect();
       let { width, height, top, left } = this.$el.getBoundingClientRect();
-      if (this.position === "bottom") {
-        contentWrapper.style.left = left + window.scrollX + "px";
-        contentWrapper.style.top = top + height + window.scrollY + "px";
-      } else if (this.position === "left") {
-        contentWrapper.style.left = left + window.scrollX + "px";
-        contentWrapper.style.top = top - (contentHeight - height) / 2 + window.scrollY + "px";
-      } else if (this.position === "right") {
-        contentWrapper.style.left = left + width + window.scrollX + "px";
-        contentWrapper.style.top = top - (contentHeight - height) / 2 + window.scrollY + "px";
-      } else {
-        contentWrapper.style.left = left + window.scrollX + "px";
-        contentWrapper.style.top = top + window.scrollY + "px";
-      }
+      // if (this.position === "bottom") {
+      //   contentWrapper.style.left = left + window.scrollX + "px";
+      //   contentWrapper.style.top = top + height + window.scrollY + "px";
+      // } else if (this.position === "left") {
+      //   contentWrapper.style.left = left + window.scrollX + "px";
+      //   contentWrapper.style.top = top - (contentHeight - height) / 2 + window.scrollY + "px";
+      // } else if (this.position === "right") {
+      //   contentWrapper.style.left = left + width + window.scrollX + "px";
+      //   contentWrapper.style.top = top - (contentHeight - height) / 2 + window.scrollY + "px";
+      // } else {
+      //   contentWrapper.style.left = left + window.scrollX + "px";
+      //   contentWrapper.style.top = top + window.scrollY + "px";
+      // }
+      let positions = {
+        top: { top: top + window.scrollY, left: left + window.scrollX },
+        bottom: {
+          top: top + height + window.scrollY,
+          left: left + window.scrollX
+        },
+        left: {
+          top: top + window.scrollY + (height - contentHeight) / 2,
+          left: left + window.scrollX
+        },
+        right: {
+          top: top + window.scrollY + (height - contentHeight) / 2,
+          left: left + window.scrollX + width
+        }
+      };
+      contentWrapper.style.left = positions[this.position].left + "px";
+      contentWrapper.style.top = positions[this.position].top + "px";
     },
     onClickDoc(e) {
       //防止点popover内容以及trigger冒泡到document触发的click
