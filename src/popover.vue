@@ -156,10 +156,12 @@ $border-radius: 4px;
     transform: translateY(-100%);
     &::before {
       border-top-color: black;
+      border-bottom: none;
       top: 100%;
     }
     &::after {
       border-top-color: white;
+      border-bottom: none;
       top: calc(100% - 1px);
     }
   }
@@ -167,10 +169,12 @@ $border-radius: 4px;
     margin-top: 10px;
     left: 10px;
     &::before {
+      border-top: none;
       border-bottom-color: black;
       bottom: 100%;
     }
     &::after {
+      border-top: none;
       border-bottom-color: white;
       bottom: calc(100% - 1px);
     }
@@ -180,6 +184,7 @@ $border-radius: 4px;
     transform: translateX(-100%);
     &::before,
     &::after {
+      border-right: none;
       transform: translateY(-50%);
       top: 50%;
     }
@@ -196,6 +201,7 @@ $border-radius: 4px;
     margin-left: 10px;
     &::before,
     &::after {
+      border-left: none;
       transform: translateY(-50%);
       top: 50%;
     }
