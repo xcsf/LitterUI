@@ -6,7 +6,7 @@
       ref="contentWrapper"
       v-if="visible"
     >
-      <slot name="content"></slot>
+      <slot name="content" :close="Close"></slot>
     </div>
     <div ref="triggerWrapper">
       <slot></slot>
@@ -33,13 +33,54 @@ export default {
     }
   },
   data() {
-    return { visible: false };
+    return { visible: false, t: null };
   },
 
   methods: {
+    onClickDoc(event) {
+      //防止点popover内容以及trigger冒泡到document触发的click
+      if (
+        !this.$refs.popover.contains(event.target) &&
+        !this.$refs.contentWrapper.contains(event.target)
+      ) {
+        this.Close();
+      }
+    },
+    removeTimeout() {
+      clearTimeout(this.t);
+    },
+    addListener() {
+      this.$nextTick(() => {
+        this.$refs.contentWrapper.addEventListener(
+          "mouseenter",
+          this.removeTimeout
+        );
+        this.$refs.contentWrapper.addEventListener("mouseleave", this.Close);
+      });
+    },
+    Open(event) {
+      this.visible = true;
+      this.$nextTick(() => {
+        this.positionContent();
+        document.addEventListener("click", this.onClickDoc);
+      });
+    },
+    Close(event) {
+      this.visible = false;
+      document.removeEventListener("click", this.onClickDoc);
+    },
+    onClick(event) {
+      //点trigger
+      if (this.$refs.triggerWrapper.contains(event.target)) {
+        if (this.visible === true) {
+          this.Close();
+        } else {
+          this.Open();
+        }
+      }
+    },
     positionContent() {
       const { contentWrapper } = this.$refs;
-      console.log(contentWrapper);
       document.body.appendChild(contentWrapper);
       let { height: contentHeight } = contentWrapper.getBoundingClientRect();
       let { width, height, top, left } = this.$el.getBoundingClientRect();
@@ -74,51 +115,30 @@ export default {
       contentWrapper.style.left = positions[this.position].left + "px";
       contentWrapper.style.top = positions[this.position].top + "px";
     },
-    onClickDoc(e) {
-      //防止点popover内容以及trigger冒泡到document触发的click
-      if (
-        !this.$refs.popover.contains(e.target) &&
-        !this.$refs.contentWrapper.contains(e.target)
-      ) {
+    hoverOpen() {
+      this.Open();
+      this.addListener();
+    },
+    hoverClose() {
+      this.t = setTimeout(() => {
         this.Close();
-      }
-    },
-    Open() {
-      this.visible = true;
-      this.$nextTick(() => {
-        this.positionContent();
-        document.addEventListener("click", this.onClickDoc);
-      });
-    },
-    Close() {
-      this.visible = false;
-      document.removeEventListener("click", this.onClickDoc);
-    },
-    onClick(event) {
-      //点trigger
-      if (this.$refs.triggerWrapper.contains(event.target)) {
-        if (this.visible === true) {
-          this.Close();
-        } else {
-          this.Open();
-        }
-      }
+      }, 200);
     }
   },
   mounted() {
     if (this.trigger === "click") {
       this.$refs.popover.addEventListener("click", this.onClick);
     } else {
-      this.$refs.popover.addEventListener("mouseenter", this.Open);
-      this.$refs.popover.addEventListener("mouseleave", this.Close);
+      this.$refs.popover.addEventListener("mouseenter", this.hoverOpen);
+      this.$refs.popover.addEventListener("mouseleave",this.hoverClose);
     }
   },
   destroyed() {
     if (this.trigger === "click") {
       this.$refs.popover.removeEventListener("click", this.onClick);
     } else {
-      this.$refs.popover.removeEventListener("mouseenter", this.Open);
-      this.$refs.popover.removeEventListener("mouseleave", this.Close);
+      this.$refs.popover.removeEventListener("mouseenter", this.hoverOpen);
+      this.$refs.popover.removeEventListener("mouseleave", this.hoverClose);
     }
   }
 };
