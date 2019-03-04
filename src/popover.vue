@@ -1,5 +1,5 @@
 <template>
-  <div class="popover" @click="onClick" ref="popover">
+  <div class="popover" ref="popover">
     <div
       class="content-wrapper"
       :class="{[`position-${position}`]:true}"
@@ -23,14 +23,23 @@ export default {
       validator(value) {
         return ["top", "bottom", "left", "right"].indexOf(value) >= 0;
       }
+    },
+    trigger: {
+      type: String,
+      default: "click",
+      validator(value) {
+        return ["click", "hover"].indexOf(value) >= 0;
+      }
     }
   },
   data() {
     return { visible: false };
   },
+
   methods: {
     positionContent() {
       const { contentWrapper } = this.$refs;
+      console.log(contentWrapper);
       document.body.appendChild(contentWrapper);
       let { height: contentHeight } = contentWrapper.getBoundingClientRect();
       let { width, height, top, left } = this.$el.getBoundingClientRect();
@@ -94,6 +103,22 @@ export default {
           this.Open();
         }
       }
+    }
+  },
+  mounted() {
+    if (this.trigger === "click") {
+      this.$refs.popover.addEventListener("click", this.onClick);
+    } else {
+      this.$refs.popover.addEventListener("mouseenter", this.Open);
+      this.$refs.popover.addEventListener("mouseleave", this.Close);
+    }
+  },
+  destroyed() {
+    if (this.trigger === "click") {
+      this.$refs.popover.removeEventListener("click", this.onClick);
+    } else {
+      this.$refs.popover.removeEventListener("mouseenter", this.Open);
+      this.$refs.popover.removeEventListener("mouseleave", this.Close);
     }
   }
 };
