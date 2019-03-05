@@ -42,4 +42,31 @@ describe('Popover', () => {
         // vm.$el.remove()
         // vm.$destroy()
     })
+    //不会了
+    xit('可以设置 trigger.', (done) => {
+        Vue.component('g-popover', Popover)
+        const div = document.createElement('div')
+        document.body.appendChild(div);
+        div.innerHTML = `
+            <g-popover trigger="hover">
+                <template slot="content">
+                    <div>内容</div>
+                </template>
+                <button>摸我</button>
+            </g-popover>
+        `
+        const vm = new Vue({
+            el: div
+        })
+        let event = new Event('mouseenter')
+        vm.$el.dispatchEvent(event)
+        console.log(document.body)
+        vm.$nextTick(() => {
+            console.log(document.body)
+            done()
+        })
+        // vm.$el.remove()
+        // vm.$destroy()
+    })
+
 })
