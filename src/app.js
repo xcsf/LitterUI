@@ -53,7 +53,7 @@ new Vue({
         loading2: true,
         loading3: false,
         message: "asd",
-        selectedTab: 'woman'
+        selectedTab: '2'
     },
     methods: {
         inputchange() {},
