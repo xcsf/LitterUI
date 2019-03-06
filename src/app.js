@@ -53,7 +53,8 @@ new Vue({
         loading2: true,
         loading3: false,
         message: "asd",
-        selectedTab: '2'
+        selectedTab: 'finance',
+        selectedcoll: ['2','3']
     },
     methods: {
         inputchange() {},

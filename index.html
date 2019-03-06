@@ -59,12 +59,12 @@
     <div id="app">
         <g-layout style="height:100vh">
             <g-sider>
-                <g-collapse :selected.sync="selectedTab" style="margin: 40px">
+                <g-collapse single :selected.sync="selectedcoll" style="margin: 40px">
                     <g-collapse-item title="标题1" name="1">内容1</g-collapse-item>
                     <g-collapse-item title="标题2" name="2">内容2</g-collapse-item>
                     <g-collapse-item title="标题3" name="3">内容3</g-collapse-item>
                 </g-collapse>
-                {{selectedTab}}
+                {{selectedcoll}}
             </g-sider>
             <g-layout>
                 <g-header>header</g-header>

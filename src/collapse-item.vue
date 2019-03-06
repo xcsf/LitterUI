@@ -22,32 +22,25 @@ export default {
   },
   data() {
     return {
-      open: false
+      open: false,
     };
   },
   mounted() {
-    this.eventBus &&
-      this.eventBus.$on("update:selected", name => {
-        if (name !== this.name) {
-          this.close();
-        } else {
-          this.show();
-        }
-      });
+    this.eventBus.$on("update:selected", names => {
+      if (names.indexOf(this.name) >= 0) {
+        this.open = true;
+      } else {
+        this.open = false;
+      }
+    });
   },
   methods: {
     toggle() {
       if (this.open) {
-        this.close();
+        this.eventBus.$emit("update:removeselected", this.name);
       } else {
-        this.eventBus && this.eventBus.$emit("update:selected", this.name);
+        this.eventBus.$emit("update:addselected", this.name);
       }
-    },
-    close() {
-      this.open = false;
-    },
-    show() {
-      this.open = true;
     }
   }
 };
