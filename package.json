@@ -29,7 +29,6 @@
     "vue-hot-reload-api": "^2.3.1"
   },
   "devDependencies": {
-    "webpack-dev-middleware": "3.6.0",
     "vue-server-renderer": "2.5.16",
     "@vue/component-compiler-utils": "^2.5.0",
     "chai": "^4.2.0",
@@ -50,7 +49,10 @@
     "sinon": "^7.2.3",
     "sinon-chai": "^3.3.0",
     "vuepress": "^0.14.4",
-    "vue-template-compiler": "^2.5.22"
+    "vue-template-compiler": "2.5.16"
+  },
+  "resolutions": {
+    "webpack-dev-middleware": "3.6.0"
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.common.js"
