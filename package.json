@@ -43,6 +43,8 @@
     "mocha": "^5.2.0",
     "parcel-bundler": "^1.11.0",
     "sass": "^1.16.1",
+    "sass-loader": "^7.1.0",
+    "node-sass": "^4.9.2",
     "sinon": "^7.2.3",
     "sinon-chai": "^3.3.0",
     "vuepress": "^0.14.4",

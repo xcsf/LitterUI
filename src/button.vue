@@ -2,7 +2,7 @@
   <button class="g-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
     <g-icon v-if="icon && !loading" class="icon" :name="icon"></g-icon>
     <g-icon v-if="loading" class="loading icon" name="loading"></g-icon>
-    <div class="content">
+    <div class="text">
       <slot></slot>
     </div>
   </button>
@@ -74,7 +74,7 @@ $border-color-hover: #666;
     margin-right: 0.3em;
     order: 1;
   }
-  > .content {
+  > .text {
     order: 2;
   }
   &.icon-right {
@@ -83,7 +83,7 @@ $border-color-hover: #666;
       margin-right: 0;
       margin-left: 0.3em;
     }
-    > .content {
+    > .text {
       order: 1;
     }
   }
