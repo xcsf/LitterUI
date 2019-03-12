@@ -1,7 +1,7 @@
 module.exports = {
   base: '/LitterUI',
   title: 'Litter UI',
-  description: '一个没什么用UI框架',
+  description: '一个没什么用的UI框架',
   themeConfig: {
     nav: [{
         text: '主页',

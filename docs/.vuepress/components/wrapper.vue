@@ -44,8 +44,10 @@ article.a-post:target {
     padding: 1em;
     border-radius: 5px;
     margin-bottom: 20px;
+    transition: box-shadow 0.3s linear;
     &:hover {
-      box-shadow: 0 0 3px 0;
+      transition: box-shadow 0.3s linear;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
     }
     & .component {
       margin-bottom: 1em;
