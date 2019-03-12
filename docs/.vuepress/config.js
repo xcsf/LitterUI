@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/LitterUI/',
+  base: '/LitterUI',
   title: 'Litter UI',
   description: '一个没什么用UI框架',
   themeConfig: {
