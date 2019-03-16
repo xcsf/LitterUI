@@ -48,16 +48,14 @@
 
         .header {
             border: 1px solid #999;
-            height: 100px;
         }
 
         .footer {
             border: 1px solid #ccc;
-            height: 50px;
         }
     </style>
     <div id="app">
-        <g-layout style="height:100vh">
+        <g-layout >
             <g-sider>
                 <g-collapse single :selected.sync="selectedcoll" style="margin: 40px">
                     <g-collapse-item title="标题1" name="1">内容1</g-collapse-item>
@@ -93,7 +91,7 @@
                             </g-tabs-body>
                         </g-tabs>
                     </div>
-                    <div style="padding: 50px 100px;overflow: hidden; border: 1px solid greenyellow;">
+                    <div style="padding: 20px 100px;overflow: hidden; border: 1px solid greenyellow;">
                         <g-popover>
                             <template slot="content" slot-scope="{close}">
                                 <div><g-button @click="close">点我</g-button>popover内容dpopover内容dpopover内容dpopover内容dpopover内容dpopover内容dpopover内容d</div>
@@ -119,7 +117,7 @@
                             <g-button>点我</g-button>
                         </g-popover>
                     </div>
-                    <div style="padding: 50px 100px;overflow: hidden; border: 1px solid greenyellow;">
+                    <div style="padding: 20px 100px;overflow: hidden; border: 1px solid greenyellow;">
                         <g-popover trigger="hover">
                             <template slot="content">
                                 <div>popover内容dpopover内容dpopover内容dpopover内容dpopover内容dpopover内容dpopover内容d</div>
@@ -144,6 +142,9 @@
                             </template>
                             <g-button>点我</g-button>
                         </g-popover>
+                    </div>
+                    <div>
+                        <g-cascader :source="source"></g-cascader>
                     </div>
                 </g-content>
                 <g-footer>footer</g-footer>
