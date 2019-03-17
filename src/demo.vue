@@ -88,6 +88,9 @@
               <g-button>点我</g-button>
             </g-popover>
           </div>
+          <div style="height:200px">
+            <g-cascader :source="source" popover-height="height:200px"></g-cascader>
+          </div>
         </g-content>
         <g-footer>footer</g-footer>
       </g-layout>
@@ -122,9 +125,163 @@
   </div>
 </template>
 <script>
-
+import Button from "./button";
+import ButtonGroup from "./button-group";
+import Cascader from "./cascader";
+import Col from "./col";
+import Collapse from "./collapse";
+import CollapseItem from "./collapse-item";
+import Content from "./content";
+import Footer from "./footer";
+import Header from "./header";
+import Icon from "./icon";
+import Input from "./input";
+import Layout from "./layout";
+import Plugin from "./plugin";
+import Popover from "./popover";
+import Row from "./row";
+import Sider from "./sider";
+import Tabs from "./tabs";
+import TabsBody from "./tabs-body";
+import TabsHead from "./tabs-head";
+import TabsItem from "./tabs-item";
+import TabsPane from "./tabs-pane";
+import Toast from "./toast";
+import Vue from 'vue'
+Vue.use(Plugin)
 export default {
-  name: "Demo"
+  name: "Demo",
+  data() {
+    return {
+      loading1: false,
+      loading2: true,
+      loading3: false,
+      message: "asd",
+      selectedTab: "finance",
+      selectedcoll: ["2", "3"],
+      source: [
+        {
+          name: "浙江",
+          children: [
+            {
+              name: "杭州",
+              children: [
+                {
+                  name: "上城"
+                },
+                {
+                  name: "下城"
+                },
+                {
+                  name: "江干"
+                }
+              ]
+            },
+            {
+              name: "嘉兴",
+              children: [
+                {
+                  name: "南湖"
+                },
+                {
+                  name: "秀洲"
+                },
+                {
+                  name: "嘉善"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: "福建",
+          children: [
+            {
+              name: "福州",
+              children: [
+                {
+                  name: "鼓楼"
+                },
+                {
+                  name: "台江"
+                },
+                {
+                  name: "仓山"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: "安徽",
+          children: [
+            {
+              name: "合肥",
+              children: [
+                {
+                  name: "瑶海"
+                },
+                {
+                  name: "庐阳"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+  },
+  components: {
+    "g-button": Button,
+    "g-icon": Icon,
+    "g-button-group": ButtonGroup,
+    "g-cascader": Cascader,
+    "g-col": Col,
+    "g-layout": Layout,
+    "g-sider": Sider,
+    "g-input": Input,
+    "g-footer": Footer,
+    "g-popover": Popover,
+    "g-tabs": Tabs,
+    "g-tabs-pane": TabsPane,
+    "g-tabs-item": TabsItem,
+    "g-tabs-head": TabsHead,
+    "g-tabs-body": TabsBody,
+    "g-collapse": Collapse,
+    "g-collapse-item": CollapseItem,
+    "g-header": Header,
+    "g-content": Content,
+
+  },
+  methods: {
+    inputchange() {},
+    showToast1() {
+      this.showToast("top");
+    },
+    showToast2() {
+      this.showToast("middle");
+    },
+    showToast3() {
+      this.showToast("bottom");
+    },
+    showToast(position) {
+      this.$toast(
+        '<p>html标签<a target="_blank" href="https://www.baidu.com">百度一</a></p><p>html标签<a target="_blank" href="https://www.baidu.com">百度一下</a></p>',
+        {
+          position,
+          closeButton: {
+            text: "点击关闭",
+            callback() {
+              console.log("点击关闭回调");
+            }
+          },
+          enableHtml: false,
+          autoClose: 1
+        }
+      );
+    }
+  },
+  created() {}
 };
 </script>
 <style lang="scss" scoped>

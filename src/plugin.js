@@ -4,7 +4,7 @@ export default {
     install(Vue, option) {
         Vue.prototype.$toast = function (message, propsData) {
             if (oToast) {
-                console.log(oToast)
+                // console.log(oToast)
                 oToast.Close()
             }
             oToast = createToast({
