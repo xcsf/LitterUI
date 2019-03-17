@@ -147,8 +147,8 @@ import TabsHead from "./tabs-head";
 import TabsItem from "./tabs-item";
 import TabsPane from "./tabs-pane";
 import Toast from "./toast";
-import Vue from 'vue'
-Vue.use(Plugin)
+import Vue from "vue";
+Vue.use(Plugin);
 export default {
   name: "Demo",
   data() {
@@ -250,8 +250,7 @@ export default {
     "g-collapse": Collapse,
     "g-collapse-item": CollapseItem,
     "g-header": Header,
-    "g-content": Content,
-
+    "g-content": Content
   },
   methods: {
     inputchange() {},
@@ -284,5 +283,25 @@ export default {
   created() {}
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  --button-height: 32px;
+  --font-size: 14px;
+  --button-bg: white;
+  --button-active-bg: #eee;
+  --border-radius: 4px;
+  --color: #333;
+  --border-color: #999;
+  --border-color-hover: #666;
+}
+
+body {
+  font-size: var(--font-size);
+}
 </style>
