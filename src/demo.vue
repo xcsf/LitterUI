@@ -142,8 +142,14 @@ import TabsHead from "./tabs-head";
 import TabsItem from "./tabs-item";
 import TabsPane from "./tabs-pane";
 import Toast from "./toast";
+import db from "./db";
 import Vue from "vue";
 Vue.use(Plugin);
+function ajax(pareateId = 0) {
+  return db.filter((item)=>{
+    return item.parent_id == pareateId;
+  });
+}
 export default {
   name: "Demo",
   data() {
@@ -154,76 +160,7 @@ export default {
       message: "asd",
       selectedTab: "finance",
       selectedcoll: ["2", "3"],
-      source: [
-        {
-          name: "浙江",
-          children: [
-            {
-              name: "杭州",
-              children: [
-                {
-                  name: "上城"
-                },
-                {
-                  name: "下城"
-                },
-                {
-                  name: "江干"
-                }
-              ]
-            },
-            {
-              name: "嘉兴",
-              children: [
-                {
-                  name: "南湖"
-                },
-                {
-                  name: "秀洲"
-                },
-                {
-                  name: "嘉善"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          name: "福建",
-          children: [
-            {
-              name: "福州",
-              children: [
-                {
-                  name: "鼓楼"
-                },
-                {
-                  name: "台江"
-                },
-                {
-                  name: "仓山"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          name: "安徽",
-          children: [
-            {
-              name: "合肥",
-              children: [
-                {
-                  name: "瑶海"
-                },
-                {
-                  name: "庐阳"
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      source: ajax()
     };
   },
   components: {

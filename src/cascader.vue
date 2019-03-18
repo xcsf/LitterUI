@@ -13,8 +13,7 @@
       <cascader-items
         :items="source"
         :height="popoverHeight"
-        :selected="selected"
-        @update:selected="selected = $event"
+        :selected.sync="selected"
       ></cascader-items>
     </div>
   </div>
@@ -64,6 +63,7 @@ export default {
     border-radius: $border-radius;
   }
   .popover-wapper {
+    overflow: auto;
     @extend .box-shadow;
     position: absolute;
     background-color: white;

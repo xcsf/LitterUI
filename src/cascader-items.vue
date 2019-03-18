@@ -81,6 +81,9 @@ export default {
   .left {
     height: 100%;
     padding-top: 0.3em;
+    :hover{
+      background-color: gainsboro;
+    }
     .lable {
       padding: 0.3em 1em;
       .icon {
