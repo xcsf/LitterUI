@@ -8,7 +8,7 @@
         <cascader-item :sourceitem="item"></cascader-item>
       </div>
     </div>-->
-    <div class="trigger" @click="popoverVisible = !popoverVisible"></div>
+    <div class="trigger" @click="popoverVisible = !popoverVisible">{{reuslt}}</div>
     <div class="popover-wapper" v-if="popoverVisible">
       <cascader-items
         :items="source"
@@ -26,6 +26,12 @@ export default {
   components: {
     "cascader-items": CascaderItems
   },
+  data() {
+    return {
+      popoverVisible: false,
+      selected: []
+    };
+  },
   props: {
     source: {
       type: Array
@@ -34,11 +40,12 @@ export default {
       type: String
     }
   },
-  data() {
-    return {
-      popoverVisible: false,
-      selected: []
-    };
+  computed: {
+    reuslt() {
+      return this.selected.map((item)=>{
+        return item.name
+      }).join('/');
+    }
   },
   methods: {}
 };
@@ -48,14 +55,19 @@ export default {
 .cascader {
   position: relative;
   .trigger {
-    height: 32px;
+    height: $input-height;
     width: 100px;
-    background-color: gray;
+    line-height: $input-height;
+    padding: 0 1em;
+    min-width: 10em;
+    border:1px solid $border-color;
+    border-radius: $border-radius;
   }
   .popover-wapper {
     @extend .box-shadow;
     position: absolute;
     background-color: white;
+    margin-top: 8px;
   }
 }
 </style>
