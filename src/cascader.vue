@@ -10,7 +10,12 @@
     </div>-->
     <div class="trigger" @click="popoverVisible = !popoverVisible"></div>
     <div class="popover-wapper" v-if="popoverVisible">
-      <cascader-items :items="source" :height="popoverHeight"></cascader-items>
+      <cascader-items
+        :items="source"
+        :height="popoverHeight"
+        :selected="selected"
+        @update:selected="selected = $event"
+      ></cascader-items>
     </div>
   </div>
 </template>
@@ -21,11 +26,6 @@ export default {
   components: {
     "cascader-items": CascaderItems
   },
-  data() {
-    return {
-      popoverVisible: false
-    };
-  },
   props: {
     source: {
       type: Array
@@ -33,7 +33,14 @@ export default {
     popoverHeight: {
       type: String
     }
-  }
+  },
+  data() {
+    return {
+      popoverVisible: false,
+      selected: []
+    };
+  },
+  methods: {}
 };
 </script>
 <style lang="scss" scoped>

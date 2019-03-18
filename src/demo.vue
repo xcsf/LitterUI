@@ -95,11 +95,6 @@
         <g-footer>footer</g-footer>
       </g-layout>
     </g-layout>
-
-    <!-- <g-row>
-            <g-col span="12">1</g-col>
-            <g-col span="12">2</g-col>
-    </g-row>-->
     <div style="margin: 20px 0;">
       <g-input value="阿斯顿" v-model="message"></g-input>
       <p>{{message}}</p>
