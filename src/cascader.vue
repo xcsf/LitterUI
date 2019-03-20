@@ -1,5 +1,5 @@
 <template>
-  <div class="cascader" ref="cascader">
+  <div class="cascader" ref="cascader" v-click-outside="close">
     <!-- <div>
       <slot></slot>
     </div>
@@ -9,7 +9,7 @@
       </div>
     </div>-->
     <div class="trigger" @click="toggle">{{reuslt}}</div>
-    <div  class="popover-wapper" v-if="popoverVisible">
+    <div class="popover-wapper" v-if="popoverVisible">
       <cascader-items
         :items="source"
         :height="popoverHeight"
@@ -21,9 +21,10 @@
 </template>
 <script>
 import CascaderItems from "./cascader-items";
-import { close } from "fs";
+import ClickOutside from "./click-outside";
 export default {
   name: "GuluCascader",
+  directives: {ClickOutside},
   components: {
     "cascader-items": CascaderItems
   },
@@ -54,20 +55,21 @@ export default {
     }
   },
   methods: {
-    onClickDoc(e){
-      let {cascader} = this.$refs
-      if(e.target === cascader || cascader.contains(e.target)){
-        return 
-      }
-      this.close()
-    },
+    //注释的为方法1   此处使用指令的方法
+    // onClickDoc(e) {
+    //   let { cascader } = this.$refs;
+    //   if (e.target === cascader || cascader.contains(e.target)) {
+    //     return;
+    //   }
+    //   this.close();
+    // },
     open() {
       this.popoverVisible = true;
-      document.addEventListener('click',this.onClickDoc)
+      // document.addEventListener("click", this.onClickDoc);
     },
     close() {
       this.popoverVisible = false;
-      document.removeEventListener('click',this.onClickDoc)
+      // document.removeEventListener("click", this.onClickDoc);
     },
     toggle() {
       if (this.popoverVisible) {

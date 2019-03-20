@@ -145,8 +145,7 @@ import TabsPane from "./tabs-pane";
 import Toast from "./toast";
 import db from "./db";
 import Vue from "vue";
-import { promises } from "fs";
-import { Promise } from "q";
+import {removeListener} from "./click-outside"
 Vue.use(Plugin);
 function ajax(pareateId = 0, success, faile) {
   let id = setTimeout(() => {
@@ -290,6 +289,7 @@ export default {
     ajax2(0).then(result => {
       this.source = result;
     });
+    // removeListener();
   },
   methods: {
     loadData(newSelected, callback) {
