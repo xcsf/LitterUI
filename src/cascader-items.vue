@@ -3,7 +3,7 @@
     <div class="left">
       <div class="lable" v-for="(item,index) in items" :key="index" @click="onClickLabel(item)">
         <span class="name">{{item.name}}</span>
-        <g-icon class="icon" v-if="!item.isLeaf" name="right"></g-icon>
+        <g-icon class="icon" v-if="item.children||item.isLeaf===false" name="right"></g-icon>
       </div>
     </div>
     <div class="right" v-if="rightItems">
@@ -84,6 +84,7 @@ export default {
     height: 100%;
     padding-top: 0.5em;
     overflow: auto;
+    background-color: #fff;
     .lable {
       padding: 0.5em 1em;
       display: flex;

@@ -79,7 +79,7 @@ export default {
         reuslt.length > 0 && this.$set(toUpdate, "children", reuslt);
       };
       //don't loadData if click item is leaf
-      !lastSelected.isLeaf && this.loadData(lastSelected, updateSource);
+      this.loadData && !lastSelected.isLeaf && this.loadData(lastSelected, updateSource);
     }
   }
 };

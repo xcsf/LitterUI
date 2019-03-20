@@ -90,6 +90,7 @@
           </div>
           <div style="height:200px">
             <g-cascader :source="source" popover-height="height:200px" :load-data="loadData"></g-cascader>
+            <g-cascader :source="sourceStatic" popover-height="height:200px"></g-cascader>
           </div>
         </g-content>
         <g-footer>footer</g-footer>
@@ -163,7 +164,7 @@ function ajax2(pareateId = 0) {
         return item.parent_id == pareateId;
       });
       result.map(node => {
-        console.log(node)
+        // console.log(node);
         if (
           db.filter(item => {
             return item.parent_id === node.id;
@@ -188,7 +189,77 @@ export default {
       message: "asd",
       selectedTab: "finance",
       selectedcoll: ["2", "3"],
-      source: []
+      source: [],
+      sourceStatic: [
+        {
+          name: "浙江",
+          children: [
+            {
+              name: "杭州",
+              children: [
+                {
+                  name: "上城"
+                },
+                {
+                  name: "下城"
+                },
+                {
+                  name: "江干"
+                }
+              ]
+            },
+            {
+              name: "嘉兴",
+              children: [
+                {
+                  name: "南湖"
+                },
+                {
+                  name: "秀洲"
+                },
+                {
+                  name: "嘉善"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: "福建",
+          children: [
+            {
+              name: "福州",
+              children: [
+                {
+                  name: "鼓楼"
+                },
+                {
+                  name: "台江"
+                },
+                {
+                  name: "仓山"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: "安徽",
+          children: [
+            {
+              name: "合肥",
+              children: [
+                {
+                  name: "瑶海"
+                },
+                {
+                  name: "庐阳"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     };
   },
   components: {
