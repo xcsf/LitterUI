@@ -36,7 +36,7 @@
           </div>
           <div style="padding: 50px 100px;overflow: hidden; border: 1px solid greenyellow;">
             <g-popover>
-              <template slot="content" slot-scope="{close}">
+              <template v-slot:content="{close}">
                 <div>
                   <g-button @click="close">点我</g-button>popover内容dpopover内容dpopover内容dpopover内容dpopover内容dpopover内容dpopover内容d
                 </div>
@@ -88,7 +88,7 @@
               <g-button>点我</g-button>
             </g-popover>
           </div>
-          <div style="height:200px">
+          <div style="height:200px;display:flex;">
             <g-cascader :source="source" popover-height="height:200px" :load-data="loadData"></g-cascader>
             <g-cascader :source="sourceStatic" popover-height="height:200px"></g-cascader>
           </div>

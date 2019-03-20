@@ -84,11 +84,11 @@ export default {
     height: 100%;
     padding-top: 0.5em;
     overflow: auto;
-    background-color: #fff;
     .lable {
       padding: 0.5em 1em;
       display: flex;
       align-items: center;
+      white-space: nowrap;
       cursor: pointer;
       &:hover {
         background-color: $grey;
