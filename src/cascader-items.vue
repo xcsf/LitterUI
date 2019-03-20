@@ -62,11 +62,21 @@ export default {
   },
   computed: {
     rightItems() {
-      let currentSelected = this.selected[this.level];
-      if (currentSelected && currentSelected.children) {
-        return currentSelected.children;
-      } else {
-        return null;
+      //当level 与 selected 都不更新时 无法更新ui
+      // let currentSelected = this.selected[this.level];
+      // if (currentSelected && currentSelected.children) {
+      //   return currentSelected.children;
+      // } else {
+      //   return null;
+      // }
+      //改为依赖 source 更新ui
+      if (this.selected[this.level]) {
+        let currentSelected = this.items.filter(
+          item => item.name === this.selected[this.level].name
+        );
+        if (currentSelected[0] && currentSelected[0].children) {
+          return currentSelected[0].children;
+        }
       }
     }
   }
@@ -81,7 +91,8 @@ export default {
   .left {
     height: 100%;
     padding-top: 0.3em;
-    :hover{
+    overflow: auto;
+    :hover {
       background-color: gainsboro;
     }
     .lable {

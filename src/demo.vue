@@ -89,7 +89,7 @@
             </g-popover>
           </div>
           <div style="height:200px">
-            <g-cascader :source="source" popover-height="height:200px"></g-cascader>
+            <g-cascader :source="source" popover-height="height:200px" :load-data="loadData"></g-cascader>
           </div>
         </g-content>
         <g-footer>footer</g-footer>
@@ -144,10 +144,26 @@ import TabsPane from "./tabs-pane";
 import Toast from "./toast";
 import db from "./db";
 import Vue from "vue";
+import { promises } from "fs";
+import { Promise } from "q";
 Vue.use(Plugin);
-function ajax(pareateId = 0) {
-  return db.filter((item)=>{
-    return item.parent_id == pareateId;
+function ajax(pareateId = 0, success, faile) {
+  let id = setTimeout(() => {
+    let result = db.filter(item => {
+      return item.parent_id == pareateId;
+    });
+    success(result)
+  }, 3000);
+  return id;
+}
+function ajax2(pareateId = 0) {
+  return new Promise((reslove, reject) => {
+    setTimeout(() => {
+      let result = db.filter(item => {
+        return item.parent_id == pareateId;
+      });
+      reslove(result);
+    }, 500);
   });
 }
 export default {
@@ -160,7 +176,7 @@ export default {
       message: "asd",
       selectedTab: "finance",
       selectedcoll: ["2", "3"],
-      source: ajax()
+      source: []
     };
   },
   components: {
@@ -184,7 +200,21 @@ export default {
     "g-header": Header,
     "g-content": Content
   },
+  created() {
+    // ajax(0, result => {
+    //   this.source = result;
+    // });
+    ajax2(0).then(result => {
+      this.source = result;
+    });
+  },
   methods: {
+    loadData(newSelected,callback) {
+      let { id } = newSelected;
+      ajax2(id).then((result)=>{
+        callback(result)
+      })
+    },
     inputchange() {},
     showToast1() {
       this.showToast("top");
@@ -211,8 +241,7 @@ export default {
         }
       );
     }
-  },
-  created() {}
+  }
 };
 </script>
 <style lang="scss">
