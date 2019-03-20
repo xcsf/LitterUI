@@ -78,7 +78,8 @@ export default {
         let toUpdate = this.foundItem(this.source, lastSelected.id);
         reuslt.length > 0 && this.$set(toUpdate, "children", reuslt);
       };
-      this.loadData(lastSelected, updateSource);
+      //don't loadData if click item is leaf
+      !lastSelected.isLeaf && this.loadData(lastSelected, updateSource);
     }
   }
 };

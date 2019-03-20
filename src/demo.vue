@@ -152,7 +152,7 @@ function ajax(pareateId = 0, success, faile) {
     let result = db.filter(item => {
       return item.parent_id == pareateId;
     });
-    success(result)
+    success(result);
   }, 3000);
   return id;
 }
@@ -162,8 +162,20 @@ function ajax2(pareateId = 0) {
       let result = db.filter(item => {
         return item.parent_id == pareateId;
       });
+      result.map(node => {
+        console.log(node)
+        if (
+          db.filter(item => {
+            return item.parent_id === node.id;
+          }).length > 0
+        ) {
+          node.isLeaf = false;
+        } else {
+          node.isLeaf = true;
+        }
+      });
       reslove(result);
-    }, 500);
+    }, 300);
   });
 }
 export default {
@@ -209,11 +221,11 @@ export default {
     });
   },
   methods: {
-    loadData(newSelected,callback) {
+    loadData(newSelected, callback) {
       let { id } = newSelected;
-      ajax2(id).then((result)=>{
-        callback(result)
-      })
+      ajax2(id).then(result => {
+        callback(result);
+      });
     },
     inputchange() {},
     showToast1() {

@@ -1,17 +1,9 @@
 <template>
   <div class="cascader-item" :style="height">
-    <!-- {{sourceitem.name}}
-    <template v-if="sourceitem.children">
-      <gulu-cascader-item
-        v-for="(item,index) in sourceitem.children"
-        :key="index"
-        :sourceitem="item"
-      ></gulu-cascader-item>
-    </template>-->
     <div class="left">
       <div class="lable" v-for="(item,index) in items" :key="index" @click="onClickLabel(item)">
-        {{item.name}}
-        <g-icon class="icon" v-if="item.children" name="right"></g-icon>
+        <span class="name">{{item.name}}</span>
+        <g-icon class="icon" v-if="!item.isLeaf" name="right"></g-icon>
       </div>
     </div>
     <div class="right" v-if="rightItems">
@@ -90,15 +82,22 @@ export default {
   align-items: flex-start;
   .left {
     height: 100%;
-    padding-top: 0.3em;
+    padding-top: 0.5em;
     overflow: auto;
-    :hover {
-      background-color: gainsboro;
-    }
     .lable {
-      padding: 0.3em 1em;
+      padding: 0.5em 1em;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      &:hover {
+        background-color: $grey;
+      }
+      .name {
+        margin-right: 1em;
+        user-select: none;
+      }
       .icon {
-        margin-left: 1em;
+        margin-left: auto;
         transform: scale(0.8);
       }
     }
