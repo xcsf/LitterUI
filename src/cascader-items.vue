@@ -3,7 +3,14 @@
     <div class="left">
       <div class="lable" v-for="(item,index) in items" :key="index" @click="onClickLabel(item)">
         <span class="name">{{item.name}}</span>
-        <g-icon class="icon" v-if="item.children||item.isLeaf===false" name="right"></g-icon>
+        <div class="icons">
+          <template v-if="selectedItem.name===item.name">
+            <g-icon class="icon loading" v-if="item.children||item.isLeaf===false" name="loading"></g-icon>
+          </template>
+          <template v-else>
+            <g-icon class="icon" v-if="item.children||item.isLeaf===false" name="right"></g-icon>
+          </template>
+        </div>
       </div>
     </div>
     <div class="right" v-if="rightItems">
@@ -11,6 +18,7 @@
         :level="level+1"
         :selected="selected"
         @update:selected="onUpdateSelected"
+        :selectedItem="selectedItem"
         :items="rightItems"
         :height="height"
       ></gulu-cascader-item>
@@ -38,6 +46,10 @@ export default {
     level: {
       type: Number,
       default: 0
+    },
+    selectedItem: {
+      type: Object,
+      default: () => ({})
     }
   },
   methods: {
@@ -76,16 +88,17 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "var";
+
 .cascader-item {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   .left {
     height: 100%;
-    padding-top: 0.5em;
+    padding-top: 0.4em;
     overflow: auto;
     .lable {
-      padding: 0.5em 1em;
+      padding: 0.4em 1em;
       display: flex;
       align-items: center;
       white-space: nowrap;
@@ -97,9 +110,12 @@ export default {
         margin-right: 1em;
         user-select: none;
       }
-      .icon {
+      .icons {
         margin-left: auto;
         transform: scale(0.8);
+        & .loading {
+          animation: spin 1s infinite linear;
+        }
       }
     }
   }

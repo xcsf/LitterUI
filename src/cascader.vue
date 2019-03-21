@@ -14,6 +14,7 @@
         :items="source"
         :height="popoverHeight"
         :selected.sync="selected"
+        :selectedItem="selectedItem"
         @update:selected="onUpdateSource"
       ></cascader-items>
     </div>
@@ -24,14 +25,15 @@ import CascaderItems from "./cascader-items";
 import ClickOutside from "./click-outside";
 export default {
   name: "GuluCascader",
-  directives: {ClickOutside},
+  directives: { ClickOutside },
   components: {
     "cascader-items": CascaderItems
   },
   data() {
     return {
       popoverVisible: false,
-      selected: []
+      selected: [],
+      selectedItem: {}
     };
   },
   props: {
@@ -102,11 +104,13 @@ export default {
         let copy = JSON.parse(JSON.stringify(this.source));
         let toUpdate = this.foundItem(this.source, lastSelected.id);
         reuslt.length > 0 && this.$set(toUpdate, "children", reuslt);
+        this.selectedItem = {}
       };
       //don't loadData if click item is leaf
-      this.loadData &&
-        !lastSelected.isLeaf &&
-        this.loadData(lastSelected, updateSource);
+      if (this.loadData) {
+        !lastSelected.isLeaf && this.loadData(lastSelected, updateSource);
+        this.selectedItem = lastSelected
+      }
     }
   }
 };
@@ -123,10 +127,12 @@ export default {
     min-width: 10em;
     border: 1px solid $border-color;
     border-radius: $border-radius;
+    background-color: $button-bg;
   }
   .popover-wapper {
     @extend .box-shadow;
     position: absolute;
+    z-index: 1;
     background-color: white;
     margin-top: 8px;
   }

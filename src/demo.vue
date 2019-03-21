@@ -89,7 +89,9 @@
             </g-popover>
           </div>
           <div style="height:200px;display:flex;">
+            <span>动态数据</span>
             <g-cascader :source="source" popover-height="height:200px" :load-data="loadData"></g-cascader>
+            <span>静态数据</span>
             <g-cascader :source="sourceStatic" popover-height="height:200px"></g-cascader>
           </div>
         </g-content>
@@ -145,7 +147,7 @@ import TabsPane from "./tabs-pane";
 import Toast from "./toast";
 import db from "./db";
 import Vue from "vue";
-import {removeListener} from "./click-outside"
+import { removeListener } from "./click-outside";
 Vue.use(Plugin);
 function ajax(pareateId = 0, success, faile) {
   let id = setTimeout(() => {
@@ -175,7 +177,7 @@ function ajax2(pareateId = 0) {
         }
       });
       reslove(result);
-    }, 300);
+    }, 500);
   });
 }
 export default {
