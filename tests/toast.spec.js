@@ -1,4 +1,5 @@
-const expect = chai.expect;
+import chai, { expect } from 'chai'
+import { shallowMount, mount } from '@vue/test-utils'
 import Vue from 'vue'
 import Toast from '../src/toast'
 

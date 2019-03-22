@@ -7,14 +7,14 @@
 let validator = value => {
   let valid = true;
   Object.keys(value).forEach(item => {
-    if (!["span", "offset"].indexOf(item) >= 0) {
+    if (["span", "offset"].indexOf(item) < 0) {
       valid = false;
     }
   });
   return valid;
 };
 export default {
-  name: "Gulu-Col",
+  name: "GuluCol",
   props: {
     span: [Number, String],
     offset: [Number, String],

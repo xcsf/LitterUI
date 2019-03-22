@@ -1,6 +1,9 @@
-const expect = chai.expect;
+import chai, { expect } from 'chai'
+import { shallowMount, mount } from '@vue/test-utils'
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
 import Vue from 'vue'
-import Input from '../src/input'
+import Input from '@/input'
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
@@ -58,7 +61,7 @@ describe('Input', () => {
             const useElement = vm.$el.querySelector('use')
             expect(useElement.getAttribute('xlink:href')).to.equal('#i-error')
             const errorMessage = vm.$el.querySelector('.errormessage')
-            expect(errorMessage.innerText).to.equal('1234')
+            expect(errorMessage.innerHTML).to.equal('1234')
         })
     })
     describe('事件', () => {

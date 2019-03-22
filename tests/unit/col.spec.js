@@ -1,7 +1,8 @@
-const expect = chai.expect;
+import chai, { expect } from 'chai'
+import { shallowMount, mount } from '@vue/test-utils'
 import Vue from 'vue'
-import Row from '../src/row'
-import Col from '../src/col'
+import Row from '@/row'
+import Col from '@/col'
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
@@ -14,7 +15,7 @@ Vue.config.devtools = false
 //只能先将div先挂载到document中才能能执行vm.$mounted(el)
 describe('Col', () => {
     it('存在.', () => {
-        expect(Col).to.be.ok
+        expect(Col).to.exist
     })
     it('接受span属性', () => {
         const div = document.createElement('div')
