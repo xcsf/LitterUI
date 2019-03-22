@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/parcel --no-cache index.html",
     "serve": "vue-cli-service serve",
-    "test": "parcel build test/* --no-cache --no-minify && karma start --single-run",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "docs:dev": "vuepress dev docs",
@@ -42,9 +40,6 @@
   },
   "resolutions": {
     "webpack-dev-middleware": "3.6.0"
-  },
-  "alias": {
-    "vue": "./node_modules/vue/dist/vue.common.js"
   },
   "browserslist": [
     "> 1%",
