@@ -46,9 +46,11 @@ export default {
   methods: {
     updateStyles() {
       this.$nextTick(() => {
-        this.$refs.line.style.height = `${
-          this.$refs.toast.getBoundingClientRect().height
-        }px`;
+        if (this.$refs.line) {
+          this.$refs.line.style.height = `${
+            this.$refs.toast.getBoundingClientRect().height
+          }px`;
+        }
       });
     },
     execAutoClose() {
@@ -78,24 +80,88 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-$font-size: 14px; $toast-min-height: 40px; $toast-color: rgba(0, 0, 0, 0.75); $animation-duration: 300ms;
-@keyframes slide-up { 0% { opacity: 0; transform: translateY(100%); } 100% { opacity: 1; transform: translateY(0%); } }
-@keyframes slide-down { 0% { opacity: 0; transform: translateY(-100%); } 100% { opacity: 1; transform: translateY(0%); } }
-@keyframes slide-center { 0% { opacity: 0; } 100% { opacity: 1; } }
-.wrapper { position: fixed; left: 50%; transform: translateX(-50%);
-  &.position-top { top: 0;
-    .toast { border-top-left-radius: 0; border-top-right-radius: 0; animation: slide-down $animation-duration; }
+$font-size: 14px;
+$toast-min-height: 40px;
+$toast-color: rgba(0, 0, 0, 0.75);
+$animation-duration: 300ms;
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
   }
-  &.position-middle { top: 50%; transform: translate(-50%, -50%);
-    .toast { animation: slide-center $animation-duration; }
-  }
-  &.position-bottom { bottom: 0;
-    .toast { border-bottom-left-radius: 0; border-bottom-right-radius: 0; animation: slide-up $animation-duration; }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
   }
 }
-.toast { display: flex; align-items: center; background-color: $toast-color; font-size: $font-size; min-height: $toast-min-height; line-height: 1.8; color: white; border-radius: 4px; box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
-  & .message { padding: 8px 16px; }
-  & .close { padding: 0 16px; flex-shrink: 0; &:hover { cursor: pointer; } }
-  & .line { border-left: 1px solid #666; }
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes slide-center {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.wrapper {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  &.position-top {
+    top: 0;
+    .toast {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      animation: slide-down $animation-duration;
+    }
+  }
+  &.position-middle {
+    top: 50%;
+    transform: translate(-50%, -50%);
+    .toast {
+      animation: slide-center $animation-duration;
+    }
+  }
+  &.position-bottom {
+    bottom: 0;
+    .toast {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      animation: slide-up $animation-duration;
+    }
+  }
+}
+.toast {
+  display: flex;
+  align-items: center;
+  background-color: $toast-color;
+  font-size: $font-size;
+  min-height: $toast-min-height;
+  line-height: 1.8;
+  color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
+  & .message {
+    padding: 8px 16px;
+  }
+  & .close {
+    padding: 0 16px;
+    flex-shrink: 0;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  & .line {
+    border-left: 1px solid #666;
+  }
 }
 </style>

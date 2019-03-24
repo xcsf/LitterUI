@@ -144,7 +144,6 @@ import TabsBody from "./tabs-body";
 import TabsHead from "./tabs-head";
 import TabsItem from "./tabs-item";
 import TabsPane from "./tabs-pane";
-import Toast from "./toast";
 import db from "./db";
 import Vue from "vue";
 import { removeListener } from "./click-outside";
@@ -322,7 +321,7 @@ export default {
             }
           },
           enableHtml: false,
-          autoClose: 1
+          autoClose: 5
         }
       );
     }
