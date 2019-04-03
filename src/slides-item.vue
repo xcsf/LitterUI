@@ -40,16 +40,16 @@ export default {
   transition: all 1s;
 }
 .slide-enter {
-  transform: translateX(100%) scale(0.5);
+  transform: translateX(100%);
 }
 .slide-leave-to {
-  transform: translateX(-100%) scale(0.5);
+  transform: translateX(-100%);
 }
 .slide-enter.reverse {
-  transform: translateX(-100%) scale(0.5);
+  transform: translateX(-100%);
 }
 .slide-leave-to.reverse {
-  transform: translateX(100%) scale(0.5);
+  transform: translateX(100%);
 }
 .slidesitem {
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="slides">
+  <div class="slides" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
     <div class="slides-window">
       <div class="slides-wapper">
         <slot></slot>
@@ -7,8 +7,8 @@
     </div>
     <div class="slides-dots">
       <span
-        :class="{active:selectedIndex === index}"
         v-for="(child, index) in $children"
+        :class="{active:selectedIndex === index}"
         :key="index"
         @click="selectItem(index)"
       >{{index}}</span>
@@ -29,12 +29,13 @@ export default {
   },
   data() {
     return {
-      lastSelectedIndex: undefined
+      lastSelectedIndex: undefined,
+      timeId: undefined
     };
   },
   computed: {
     selectedIndex() {
-      return this.names.indexOf(this.selected) || 0;
+      return this.names.indexOf(this.selected);
     },
     names() {
       return this.$children.map(vm => {
@@ -63,22 +64,24 @@ export default {
       //   this.$emit("update:selected", name[index + 1]);
       //   index++;
       // }, 2000);
+      if (this.timeId) {
+        return;
+      }
       let run = () => {
         let index = this.selectedIndex;
-        let newIndex = index - 1;
+        let newIndex = index + 1;
         if (newIndex === -1) {
           newIndex = this.names.length - 1;
         }
-        if (index === this.names.length) {
+        if (newIndex === this.names.length) {
           newIndex = 0;
         }
         this.selectItem(newIndex);
-        console.log("index", index);
-        setTimeout(() => {
+        this.timeId = setTimeout(() => {
           run();
         }, 2000);
       };
-      setTimeout(() => {
+      this.timeId = setTimeout(() => {
         run();
       }, 2000);
 
@@ -89,13 +92,41 @@ export default {
       //     []
       //   );
     },
+    pause() {
+      clearTimeout(this.timeId);
+      this.timeId = undefined;
+    },
+    onMouseEnter() {
+      this.pause();
+    },
+    onMouseLeave() {
+      this.playAutomatically();
+    },
     getSelected() {
       return this.selected || this.$children[0].name;
     },
     updateChildren() {
       let selected = this.getSelected();
       this.$children.forEach(vm => {
-        vm.reverse = this.selectedIndex > this.lastSelectedIndex ? false : true;
+        let reverse =
+          this.selectedIndex > this.lastSelectedIndex ? false : true;
+        if (this.timeId) {
+          //left->right
+          if (
+            this.lastSelectedIndex === this.$children.length - 1 &&
+            this.selectedIndex === 0
+          ) {
+            reverse = false;
+          }
+          //right->left
+          if (
+            this.lastSelectedIndex === 0 &&
+            this.selectedIndex === this.$children.length - 1
+          ) {
+            reverse = true;
+          }
+        }
+        vm.reverse = reverse;
         //这里子组件 不会立即更新reverse类  所以nexttick 更新selected
         this.$nextTick(() => {
           vm.selected = selected;
@@ -114,8 +145,30 @@ export default {
     }
   }
   &-dots {
-    & .active {
-      background-color: red;
+    padding: 8px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > span {
+      height: 20px;
+      width: 20px;
+      display: inline-flex;
+      background-color: #ddd;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      margin: 0 8px;
+      font-size: 12px;
+      &:hover {
+        cursor: pointer;
+      }
+      &.active {
+        background-color: black;
+        color: white;
+        &:hover{
+          cursor: default;
+        }
+      }
     }
   }
 }

@@ -163,6 +163,7 @@ import db from "./db";
 import Vue from "vue";
 import { removeListener } from "./click-outside";
 import { setInterval } from "timers";
+import { unwatchFile } from 'fs';
 Vue.use(Plugin);
 function ajax(pareateId = 0, success, faile) {
   let id = setTimeout(() => {
@@ -205,7 +206,7 @@ export default {
       message: "asd",
       selectedTab: "finance",
       selectedcoll: ["2", "3"],
-      selectedSlides: "second",
+      selectedSlides: undefined,
       source: [],
       sourceStatic: [
         {
