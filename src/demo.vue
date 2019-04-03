@@ -88,11 +88,24 @@
               <g-button>点我</g-button>
             </g-popover>
           </div>
-          <div style="height:200px;display:flex;">
+          <div style="display:flex;border: 1px solid greenyellow;">
             <span>动态数据</span>
             <g-cascader :source="source" popover-height="height:200px" :load-data="loadData"></g-cascader>
             <span>静态数据</span>
             <g-cascader :source="sourceStatic" popover-height="height:200px"></g-cascader>
+          </div>
+          <div style="border: 1px solid greenyellow;">
+            <g-slides :selected.sync="selectedSlides">
+              <g-slides-item name="first">
+                <div style="height:200px;width:100%;border:1px solid red;box-size:border-box;">0</div>
+              </g-slides-item>
+              <g-slides-item name="second">
+                <div style="height:200px;width:100%;border:1px solid red;box-size:border-box;">1</div>
+              </g-slides-item>
+              <g-slides-item name="third">
+                <div style="height:200px;width:100%;border:1px solid red;box-size:border-box;">2</div>
+              </g-slides-item>
+            </g-slides>
           </div>
         </g-content>
         <g-footer>footer</g-footer>
@@ -123,6 +136,8 @@
   </div>
 </template>
 <script>
+import Slides from "./slides";
+import SlidesItem from "./slides-item";
 import Button from "./button";
 import ButtonGroup from "./button-group";
 import Cascader from "./cascader";
@@ -147,6 +162,7 @@ import TabsPane from "./tabs-pane";
 import db from "./db";
 import Vue from "vue";
 import { removeListener } from "./click-outside";
+import { setInterval } from "timers";
 Vue.use(Plugin);
 function ajax(pareateId = 0, success, faile) {
   let id = setTimeout(() => {
@@ -189,6 +205,7 @@ export default {
       message: "asd",
       selectedTab: "finance",
       selectedcoll: ["2", "3"],
+      selectedSlides: "second",
       source: [],
       sourceStatic: [
         {
@@ -263,6 +280,8 @@ export default {
     };
   },
   components: {
+    "g-slides-item": SlidesItem,
+    "g-slides": Slides,
     "g-button": Button,
     "g-icon": Icon,
     "g-button-group": ButtonGroup,
