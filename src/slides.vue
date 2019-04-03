@@ -55,7 +55,6 @@ export default {
       this.$emit("update:selected", this.names[index]);
     },
     playAutomatically() {
-      let index = this.selectedIndex;
       // 使用setTimeout代替setInterval
       // setInterval(() => {
       //   if (index === names.length) {
@@ -65,6 +64,7 @@ export default {
       //   index++;
       // }, 2000);
       let run = () => {
+        let index = this.selectedIndex;
         let newIndex = index - 1;
         if (newIndex === -1) {
           newIndex = this.names.length - 1;
@@ -78,9 +78,9 @@ export default {
           run();
         }, 2000);
       };
-      // setTimeout(() => {
-      //   run();
-      // }, 2000);
+      setTimeout(() => {
+        run();
+      }, 2000);
 
       // merge = a =>
       //   a.reduce(
@@ -96,9 +96,10 @@ export default {
       let selected = this.getSelected();
       this.$children.forEach(vm => {
         vm.reverse = this.selectedIndex > this.lastSelectedIndex ? false : true;
-        this.$nextTick(()=>{
+        //这里子组件 不会立即更新reverse类  所以nexttick 更新selected
+        this.$nextTick(() => {
           vm.selected = selected;
-        })
+        });
       });
     }
   }

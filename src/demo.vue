@@ -97,13 +97,13 @@
           <div style="border: 1px solid greenyellow;">
             <g-slides :selected.sync="selectedSlides">
               <g-slides-item name="first">
-                <div style="height:200px;width:100%;border:1px solid red;box-size:border-box;">0</div>
+                <div class="box">0</div>
               </g-slides-item>
               <g-slides-item name="second">
-                <div style="height:200px;width:100%;border:1px solid red;box-size:border-box;">1</div>
+                <div class="box">1</div>
               </g-slides-item>
               <g-slides-item name="third">
-                <div style="height:200px;width:100%;border:1px solid red;box-size:border-box;">2</div>
+                <div class="box">2</div>
               </g-slides-item>
             </g-slides>
           </div>
@@ -367,5 +367,15 @@ html {
 
 body {
   font-size: var(--font-size);
+}
+.box {
+  height: 200px;
+  width: 100%;
+  box-size: border-box;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
 }
 </style>
