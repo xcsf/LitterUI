@@ -372,7 +372,6 @@ body {
 .box {
   height: 200px;
   width: 100%;
-  box-size: border-box;
   background-color: #ccc;
   display: flex;
   justify-content: center;
