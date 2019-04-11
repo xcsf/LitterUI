@@ -20,6 +20,7 @@
         v-for="(child, index) in childrenLength"
         :class="{active:selectedIndex === index}"
         :key="index"
+        :data-index="index"
         @click="selectItem(index)"
       >{{index}}</span>
       <span @click="selectItem(selectedIndex+1)">
@@ -42,6 +43,10 @@ export default {
     autoPlay: {
       type: Boolean,
       default: true
+    },
+    autoPlayDelay: {
+      type: Number,
+      default: 3000
     }
   },
   data() {
@@ -68,7 +73,9 @@ export default {
   },
   mounted() {
     this.updateChildren();
-    this.playAutomatically();
+    if (this.autoPlay) {
+      this.playAutomatically();
+    }
     this.childrenLength = this.items.length;
   },
   updated() {
@@ -132,11 +139,11 @@ export default {
         this.selectItem(newIndex);
         this.timeId = setTimeout(() => {
           run();
-        }, 2000);
-      };
+        }, this.autoPlayDelay);
+      }; 
       this.timeId = setTimeout(() => {
         run();
-      }, 2000);
+      }, this.autoPlayDelay);
 
       // merge = a =>
       //   a.reduce(
