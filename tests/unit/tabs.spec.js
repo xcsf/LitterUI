@@ -1,23 +1,18 @@
-import chai, {
-    expect
-} from 'chai'
-import {
-    shallowMount,
-    mount
-} from '@vue/test-utils'
-// import Vue from 'vue'
+import chai, { expect } from 'chai'
+import { shallowMount, mount } from '@vue/test-utils'
+import Vue from 'vue'
 import Tabs from '@/tabs'
 import TabsHead from '@/tabs-head'
 import TabsBody from '@/tabs-body'
 import TabsItem from '@/tabs-item'
 import TabsPane from '@/tabs-pane'
-// Vue.component('g-tabs', Tabs);
-// Vue.component('g-tabs-head', TabsHead);
-// Vue.component('g-tabs-body', TabsBody);
-// Vue.component('g-tabs-item', TabsItem);
-// Vue.component('g-tabs-pane', TabsPane);
-// Vue.config.productionTip = false
-// Vue.config.devtools = false
+Vue.component('g-tabs', Tabs);
+Vue.component('g-tabs-head', TabsHead);
+Vue.component('g-tabs-body', TabsBody);
+Vue.component('g-tabs-item', TabsItem);
+Vue.component('g-tabs-pane', TabsPane);
+Vue.config.productionTip = false
+Vue.config.devtools = false
 
 //karma》》 karmaj.conf.js 》》打开浏览器
 //BDD 行为驱动测试 Mocha》》describe、it
@@ -31,7 +26,7 @@ describe('Tabs', () => {
         expect(Tabs).to.be.ok
     })
     describe('props', () => {
-        xit('接受 selected prop', (done) => {
+        it('接受 selected prop', () => {
             //原始版本
             // const div = document.createElement('div')
             // document.body.appendChild(div)
@@ -57,6 +52,26 @@ describe('Tabs', () => {
             //     expect(e.classList.contains('active')).to.be.true
             //     done()
             // })
+            let wrapper = mount(Tabs, {
+                propsData: {
+                    selected:'finance'
+                },
+                slots: {
+                    default: `
+                        <g-tabs-head>
+                            <g-tabs-item name="woman"> 美女 </g-tabs-item>
+                            <g-tabs-item name="finance"> 财经 </g-tabs-item>
+                            <g-tabs-item name="sports"> 体育 </g-tabs-item>
+                        </g-tabs-head>
+                        <g-tabs-body>
+                            <g-tabs-pane name="woman"> 美女相关资讯 </g-tabs-pane>
+                            <g-tabs-pane name="finance"> 财经相关资讯 </g-tabs-pane>
+                            <g-tabs-pane name="sports"> 体育相关资讯 </g-tabs-pane>
+                        </g-tabs-body>
+                    `
+                }
+            })
+            expect(wrapper.find('.tabs-item[name="finance"]').classes('active')).to.be.true
         })
         xit('接受 direction', () => {
 

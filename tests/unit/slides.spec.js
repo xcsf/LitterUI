@@ -34,6 +34,7 @@ describe('Slides.vue', () => {
         })
         setTimeout(() => {
             expect(wrapper.find('.box1').exists()).to.be.true
+            wrapper.destroy()
             done()
         })
     })
@@ -61,6 +62,7 @@ describe('Slides.vue', () => {
         })
         setTimeout(() => {
             expect(wrapper.find('.box2').exists()).to.be.true
+            wrapper.destroy()
             done()
         })
     })
@@ -87,6 +89,7 @@ describe('Slides.vue', () => {
             listeners: {
                 'update:selected': (val) => {
                     expect(val).to.eq('second')
+                    wrapper.destroy()
                     done()
                 }
             }
@@ -123,6 +126,7 @@ describe('Slides.vue', () => {
         })
         setTimeout(() => {
             expect(callback).to.have.been.calledWith('second')
+            wrapper.destroy()
             done()
         }, 21)
     })
@@ -154,6 +158,7 @@ describe('Slides.vue', () => {
         wrapper.find('.slides-dots span:first-child').trigger('click')
         setTimeout(() => {
             expect(callback).to.have.been.calledWith('third')
+            wrapper.destroy()
             done()
         }, 21)
     })
@@ -184,6 +189,7 @@ describe('Slides.vue', () => {
         wrapper.find('.slides-dots span:last-child').trigger('click')
         setTimeout(() => {
             expect(callback).to.have.been.calledWith('second')
+            wrapper.destroy()
             done()
         }, 21)
     })

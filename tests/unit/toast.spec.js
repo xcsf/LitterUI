@@ -1,10 +1,5 @@
-import chai, {
-    expect
-} from 'chai'
-import {
-    shallowMount,
-    mount
-} from '@vue/test-utils'
+import chai, { expect } from 'chai'
+import { shallowMount, mount } from '@vue/test-utils'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 import Toast from '@/toast'
@@ -20,7 +15,7 @@ describe('Toast', () => {
         expect(Toast).to.be.ok
     })
     describe('props', function () {
-        xit('接受autoClose', (done) => {
+        it('接受autoClose', (done) => {
             //原始版
             // const div = document.createElement('div')
             // document.body.appendChild(div)
@@ -37,14 +32,18 @@ describe('Toast', () => {
 
             const wrapper = mount(Toast, {
                 propsData: {
-                    autoClose: 1
+                    autoClose: 0.01
                 }
             })
-            console.log(wrapper.html())
+            const callback = sinon.fake()
             wrapper.vm.$on('close', () => {
-                expect().to.eq(undefined)
-                done()
+                callback()
             })
+            setTimeout(() => {
+                expect(callback).to.have.been.called;
+                wrapper.destroy()
+                done()
+            }, 11)
         })
         it('接受 closeButton', () => {
             // const Constuctor = Vue.extend(Toast)
@@ -83,7 +82,7 @@ describe('Toast', () => {
             expect(callback).to.have.been.called
             wrapper.destroy()
         })
-        xit('接受 closeButton', () => {
+        xit('接受 enableHtml', () => {
             // const Constuctor = Vue.extend(Toast)
             // const vm = new Constuctor({
             //     propsData: {
@@ -96,21 +95,23 @@ describe('Toast', () => {
             // const strong = vm.$el.querySelector('#test')
             // expect(strong).to.exist
 
-            
+
             const wrapper = mount(Toast, {
                 propsData: {
                     enableHtml: true
                 },
                 slots: {
-                    default: '<strong id="test">test</strong>'
+                    default: [`<strong id="test">hi</strong>`],
                 }
             })
-            console.log('hihihi')
-            console.log(wrapper.html())
-            expect(wrapper.find('strong')).to.exist
+            console.log('插件不会测')
+            console.log(wrapper.vm.$slots.default)
+            let strong = wrapper.vm.$el.querySelector('#test')
+            expect(strong).to.exist
+            // expect(wrapper.find('strong')).to.exist
             wrapper.destroy()
         })
-        it('接受 position', () => {
+        it('接受 position bottom', () => {
             // const div = document.createElement('div')
             // document.body.appendChild(div)
             // const Constuctor = Vue.extend(Toast)
@@ -129,7 +130,7 @@ describe('Toast', () => {
             expect(wrapper.contains('.position-bottom')).to.eq(true)
             wrapper.destroy()
         })
-        it('接受 position', () => {
+        it('接受 position top', () => {
             // const div = document.createElement('div')
             // document.body.appendChild(div)
             // const Constuctor = Vue.extend(Toast)
@@ -148,7 +149,7 @@ describe('Toast', () => {
             expect(wrapper.contains('.position-top')).to.eq(true)
             wrapper.destroy()
         })
-        it('接受 middle', () => {
+        it('接受 position middle', () => {
             // const div = document.createElement('div')
             // document.body.appendChild(div)
             // const Constuctor = Vue.extend(Toast)

@@ -83,29 +83,20 @@ export default {
   },
   methods: {
     onTouchStart(e) {
-      console.log("touchstart");
       this.touchStart = e.touches[0];
-      console.log(e.touches[0]);
       this.pause();
     },
     onTouchMove() {
-      console.log("touchmove");
     },
     onTouchEnd(e) {
-      console.log("touchend");
       let { clientX: x1, clientY: y1 } = this.touchStart;
       let { clientX: x2, clientY: y2 } = e.changedTouches[0];
-      console.log(x1, y1);
-      console.log(x2, y2);
       let dx = Math.abs(x1 - x2);
       let dy = Math.abs(y1 - y2);
       if (dx > dy) {
-        console.log("小于45");
         if (x1 < x2) {
-          console.log("right");
           this.selectItem(this.selectedIndex - 1);
         } else {
-          console.log("left");
           this.selectItem(this.selectedIndex + 1);
         }
       }

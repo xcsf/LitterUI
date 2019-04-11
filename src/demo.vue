@@ -13,7 +13,7 @@
         <g-header>header</g-header>
         <g-content>
           <div>
-            <g-button @click="showToast1">Show Toast</g-button>
+            <g-button @click="showToast1" :enableHtml="true">Show Toast</g-button>
             <g-button @click="showToast2">Show Toast</g-button>
             <g-button @click="showToast3">Show Toast</g-button>
           </div>
