@@ -51,11 +51,5 @@ export default {
 </script>
 <style lang="scss" scoped>
 .box {
-  & .wapper {
-    border: 1px solid gainsboro;
-    padding: 1em;
-    border-radius: 5px;
-    margin-bottom: 20px;
-  }
 }
 </style>

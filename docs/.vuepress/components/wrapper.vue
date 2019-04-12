@@ -81,6 +81,9 @@ article.a-post:target {
 .s-wrapper {
   & h3 {
   }
+  & .s-instruction{
+    color: #5e6d82;
+  }
   & .s-content {
     border: 1px solid gainsboro;
     padding: 1em;
