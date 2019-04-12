@@ -133,7 +133,8 @@ export default {
       this.$refs.popover.addEventListener("mouseleave",this.hoverClose);
     }
   },
-  destroyed() {
+  beforeDestroy() {
+    debugger
     if (this.trigger === "click") {
       this.$refs.popover.removeEventListener("click", this.onClick);
     } else {
