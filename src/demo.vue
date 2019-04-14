@@ -105,6 +105,9 @@
               <g-slides-item name="third">
                 <div class="box">2</div>
               </g-slides-item>
+              <g-slides-item name="four">
+                <div class="box">3</div>
+              </g-slides-item>
             </g-slides>
           </div>
         </g-content>
@@ -163,7 +166,7 @@ import db from "./db";
 import Vue from "vue";
 import { removeListener } from "./click-outside";
 import { setInterval } from "timers";
-import { unwatchFile } from 'fs';
+import { unwatchFile } from "fs";
 Vue.use(Plugin);
 function ajax(pareateId = 0, success, faile) {
   let id = setTimeout(() => {
@@ -206,7 +209,7 @@ export default {
       message: "asd",
       selectedTab: "finance",
       selectedcoll: ["2", "3"],
-      selectedSlides: undefined,
+      selectedSlides: "second",
       source: [],
       sourceStatic: [
         {

@@ -42,7 +42,7 @@ export default {
     },
     autoPlay: {
       type: Boolean,
-      default: true
+      default: false
     },
     autoPlayDelay: {
       type: Number,
@@ -86,8 +86,7 @@ export default {
       this.touchStart = e.touches[0];
       this.pause();
     },
-    onTouchMove() {
-    },
+    onTouchMove() {},
     onTouchEnd(e) {
       let { clientX: x1, clientY: y1 } = this.touchStart;
       let { clientX: x2, clientY: y2 } = e.changedTouches[0];
@@ -100,7 +99,9 @@ export default {
           this.selectItem(this.selectedIndex + 1);
         }
       }
-      this.playAutomatically();
+      if (this.autoPlay) {
+        this.playAutomatically();
+      }
     },
     selectItem(newIndex) {
       this.lastSelectedIndex = this.selectedIndex;
@@ -131,7 +132,7 @@ export default {
         this.timeId = setTimeout(() => {
           run();
         }, this.autoPlayDelay);
-      }; 
+      };
       this.timeId = setTimeout(() => {
         run();
       }, this.autoPlayDelay);
@@ -151,14 +152,24 @@ export default {
       this.pause();
     },
     onMouseLeave() {
-      this.playAutomatically();
+      if (this.autoPlay) {
+        this.playAutomatically();
+      }
     },
     getSelected() {
       return this.selected || this.items[0].name;
     },
+    getNextandPrev(nowIndex, length) {
+      let next = nowIndex + 1 < length ? nowIndex + 1 : 0;
+      let prev = nowIndex - 1 >= 0 ? nowIndex - 1 : length - 1;
+      return {
+        next: this.items[next].name,
+        prev: this.items[prev].name
+      };
+    },
     updateChildren() {
       let selected = this.getSelected();
-      this.items.forEach(vm => {
+      this.items.forEach((vm, index) => {
         let reverse =
           this.selectedIndex > this.lastSelectedIndex ? false : true;
         if (this.timeId) {
@@ -181,6 +192,8 @@ export default {
         //这里子组件 不会立即更新reverse类  所以nexttick 更新selected
         this.$nextTick(() => {
           vm.selected = selected;
+          vm.prev = this.getNextandPrev(index, this.childrenLength).prev;
+          vm.next = this.getNextandPrev(index, this.childrenLength).next;
         });
       });
     }
@@ -193,6 +206,9 @@ export default {
     overflow: hidden;
     & .slides-wapper {
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
   &-dots {
