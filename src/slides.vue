@@ -77,6 +77,10 @@ export default {
       this.playAutomatically();
     }
     this.childrenLength = this.items.length;
+    this.items.forEach((vm, index) => {
+      vm.prev = this.getNextandPrev(index, this.childrenLength).prev;
+      vm.next = this.getNextandPrev(index, this.childrenLength).next;
+    });
   },
   updated() {
     this.updateChildren();
@@ -169,7 +173,7 @@ export default {
     },
     updateChildren() {
       let selected = this.getSelected();
-      this.items.forEach((vm, index) => {
+      this.items.forEach((vm) => {
         let reverse =
           this.selectedIndex > this.lastSelectedIndex ? false : true;
         if (this.timeId) {
@@ -192,8 +196,6 @@ export default {
         //这里子组件 不会立即更新reverse类  所以nexttick 更新selected
         this.$nextTick(() => {
           vm.selected = selected;
-          vm.prev = this.getNextandPrev(index, this.childrenLength).prev;
-          vm.next = this.getNextandPrev(index, this.childrenLength).next;
         });
       });
     }

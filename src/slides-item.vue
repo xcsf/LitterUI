@@ -66,6 +66,7 @@ export default {
   transition: all 1s;
   &.position-prev {
     position: absolute;
+    z-index: 1;
     transform: translateX(-80%) scale(0.83);
   }
   &.position-center {
@@ -73,7 +74,20 @@ export default {
   }
   &.position-next {
     position: absolute;
+    z-index: 1;
     transform: translateX(80%) scale(0.83);
+  }
+  &.slide-leave-to {
+    position: absolute;
+    z-index: 0;
+    opacity: 0;
+    transform: translateX(0) scale(0);
+  }
+  &.slide-enter {
+    position: absolute;
+    opacity: 0;
+    z-index: 0;
+    transform: translateX(0) scale(0);
   }
 }
 </style>
