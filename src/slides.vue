@@ -16,13 +16,15 @@
       <span @click="selectItem(selectedIndex-1)">
         <g-icon name="left"></g-icon>
       </span>
-      <span
-        v-for="(child, index) in childrenLength"
-        :class="{active:selectedIndex === index}"
-        :key="index"
-        :data-index="index"
-        @click="selectItem(index)"
-      >{{index}}</span>
+      <div class="slides-page">
+        <span
+          v-for="(child, index) in childrenLength"
+          :class="{active:selectedIndex === index}"
+          :key="index"
+          :data-index="index"
+          @click="selectItem(index)"
+        >{{index}}</span>
+      </div>
       <span @click="selectItem(selectedIndex+1)">
         <g-icon name="right"></g-icon>
       </span>
@@ -177,7 +179,7 @@ export default {
     },
     updateChildren() {
       let selected = this.getSelected();
-      this.items.forEach((vm) => {
+      this.items.forEach(vm => {
         let reverse =
           this.selectedIndex > this.lastSelectedIndex ? false : true;
         if (this.timeId) {
@@ -208,6 +210,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .slides {
+  position: relative;
   & .slides-window {
     overflow: hidden;
     & .slides-wapper {
@@ -218,30 +221,59 @@ export default {
     }
   }
   &-dots {
-    padding: 8px 0;
+    width: 100%;
+    height: 100%;
+    // padding: 8px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    > span {
-      height: 20px;
-      width: 20px;
-      display: inline-flex;
-      background-color: #ddd;
-      border-radius: 50%;
-      justify-content: center;
-      align-items: center;
-      margin: 0 8px;
-      font-size: 12px;
-      &:hover {
-        cursor: pointer;
-      }
-      &.active {
-        background-color: black;
-        color: white;
+    .slides-page {
+      align-self: flex-end;
+      z-index: 2;
+      > span {
+        height: 20px;
+        width: 20px;
+        display: inline-flex;
+        background-color: #ddd;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        margin: 0 8px;
+        font-size: 12px;
         &:hover {
-          cursor: default;
+          cursor: pointer;
+        }
+        &.active {
+          background-color: black;
+          color: white;
+          &:hover {
+            cursor: default;
+          }
         }
       }
+    }
+    > span {
+      z-index: 3;
+      display: block;
+      width: 8%;
+      height: 100%;
+      font-size: 40px;
+      fill: #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:hover{
+        fill: black
+      }
+    }
+    > span:first-child {
+      left: 0;
+    }
+    > span:last-child {
+      right: 0;
     }
   }
 }

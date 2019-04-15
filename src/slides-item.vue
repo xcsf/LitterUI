@@ -79,7 +79,7 @@ export default {
 .card {
   &.slidesitem {
     height: 100%;
-    width: 33%;
+    width: 40%;
     transition: all 1s;
     // &.slide-leave-active {
     //   position: absolute;
