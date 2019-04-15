@@ -74,7 +74,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .col {
-  border: 1px solid red;
   //col-n
   $class: col-;
   @for $n from 1 through 24 {

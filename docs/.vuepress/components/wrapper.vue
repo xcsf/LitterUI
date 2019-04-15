@@ -36,11 +36,12 @@ export default {
     instruction: {
       type: String,
       default: "asdasdsadsad"
-    },
-    codeVisable: {
-      type: Boolean,
-      default: false
     }
+  },
+  data() {
+    return {
+      codeVisable: false
+    };
   },
   components: {
     "g-icon": Icon
@@ -78,10 +79,15 @@ export default {
 article.a-post:target {
   padding-top: 44px;
 }
+.s-content {
+  .s-component {
+    width: 100%;
+  }
+}
 .s-wrapper {
   & h3 {
   }
-  & .s-instruction{
+  & .s-instruction {
     color: #5e6d82;
   }
   & .s-content {
@@ -123,8 +129,5 @@ article.a-post:target {
   }
 }
 </style>
-<style lang="scss">
-pre {
-}
-</style>
+
 

@@ -294,6 +294,7 @@ export default {
     "g-button-group": ButtonGroup,
     "g-cascader": Cascader,
     "g-col": Col,
+    "g-row": Row,
     "g-layout": Layout,
     "g-sider": Sider,
     "g-input": Input,
