@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: LitterUI/Litter.png
+heroImage: Litter.png
 actionText: 快速上手 →
 actionLink: /get-started/
 features:
