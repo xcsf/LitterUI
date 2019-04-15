@@ -186,7 +186,7 @@ describe('Slides.vue', () => {
                 'update:selected': callback
             }
         })
-        wrapper.find('.slides-dots span:last-child').trigger('click')
+        wrapper.find('.slides-dots >span:last-child').trigger('click')
         setTimeout(() => {
             expect(callback).to.have.been.calledWith('second')
             wrapper.destroy()
