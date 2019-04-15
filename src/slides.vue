@@ -47,6 +47,9 @@ export default {
     autoPlayDelay: {
       type: Number,
       default: 3000
+    },
+    card: {
+      type: Boolean
     }
   },
   data() {
@@ -80,6 +83,7 @@ export default {
     this.items.forEach((vm, index) => {
       vm.prev = this.getNextandPrev(index, this.childrenLength).prev;
       vm.next = this.getNextandPrev(index, this.childrenLength).next;
+      vm.card = this.card;
     });
   },
   updated() {

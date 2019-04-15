@@ -95,7 +95,7 @@
             <g-cascader :source="sourceStatic" popover-height="height:200px"></g-cascader>
           </div>
           <div style="border: 1px solid greenyellow;">
-            <g-slides :selected.sync="selectedSlides">
+            <g-slides :selected.sync="selectedSlides" card>
               <g-slides-item name="first">
                 <div class="box">0</div>
               </g-slides-item>
@@ -107,6 +107,9 @@
               </g-slides-item>
               <g-slides-item name="four">
                 <div class="box">3</div>
+              </g-slides-item>
+              <g-slides-item name="five">
+                <div class="box">4</div>
               </g-slides-item>
             </g-slides>
           </div>
