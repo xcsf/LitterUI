@@ -35,7 +35,7 @@ export default {
     },
     instruction: {
       type: String,
-      default: "asdasdsadsad"
+      default: ""
     }
   },
   data() {

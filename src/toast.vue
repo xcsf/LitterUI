@@ -114,6 +114,7 @@ $animation-duration: 300ms;
 }
 .wrapper {
   position: fixed;
+  z-index: 21;
   left: 50%;
   transform: translateX(-50%);
   &.position-top {
