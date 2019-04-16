@@ -2,7 +2,7 @@
   <transition name="slide">
     <div class="sider" v-if="show">
       <slot></slot>
-      <button @click="closeSider">close</button>
+      <!-- <button @click="closeSider">close</button> -->
     </div>
   </transition>
 </template>
@@ -15,9 +15,9 @@ export default {
     };
   },
   methods: {
-    closeSider() {
-      this.show = false;
-    }
+    // closeSider() {
+    //   this.show = false;
+    // }
   },
   mounted() {
     // console.log("sider mounted");
@@ -39,10 +39,10 @@ export default {
 }
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 0.5s;
+  transition: all 1s;
 }
 .slide-enter,
 .slide-leave-to {
-  margin-left: -100px;
+  margin-left: -100%;
 }
 </style>
