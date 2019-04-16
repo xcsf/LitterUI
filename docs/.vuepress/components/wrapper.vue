@@ -86,6 +86,10 @@ article.a-post:target {
 }
 .s-wrapper {
   & h3 {
+    position: relative;
+    z-index: 0;
+    margin-top: -4.6rem;
+    padding-top: 4.6rem;
   }
   & .s-instruction {
     color: #5e6d82;
@@ -97,6 +101,8 @@ article.a-post:target {
     border-radius: 5px;
     margin-bottom: 20px;
     transition: box-shadow 0.3s linear;
+    position: relative;
+    z-index: 1;
     &:hover {
       transition: box-shadow 0.3s linear;
       box-shadow: 0 0 8px #3eaf7c;

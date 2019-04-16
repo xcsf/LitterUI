@@ -2,10 +2,12 @@
 <template>
   <div>
     <s-wrapper title="简单按钮">
-      <g-button slot="component">默认按钮</g-button>
-      <g-button slot="component" icon="settings">默认按钮</g-button>
-      <g-button slot="component" :loading="true">默认按钮</g-button>
-      <g-button slot="component" disabled>默认按钮</g-button>
+      <template slot="component">
+        <g-button>默认按钮</g-button>
+        <g-button icon="settings">默认按钮</g-button>
+        <g-button :loading="true">默认按钮</g-button>
+        <g-button disabled>默认按钮</g-button>
+      </template>
       <pre slot="code"><code>{{code1}}</code></pre>
     </s-wrapper>
   </div>
