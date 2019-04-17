@@ -1,8 +1,8 @@
 import chai, { expect } from 'chai'
 import { shallowMount, mount } from '@vue/test-utils'
 import Vue from 'vue'
-import Row from '@/row'
-import Col from '@/col'
+import Row from '@/grid/row'
+import Col from '@/grid/col'
 
 Vue.config.productionTip = false
 Vue.config.devtools = false

@@ -118,8 +118,8 @@
   </div>
 </template>
 <script>
-import Row from "../../../src/Row";
-import Col from "../../../src/Col";
+import Row from "../../../src/grid/Row";
+import Col from "../../../src/grid/Col";
 import Wrapper from "./wrapper";
 export default {
   components: {
