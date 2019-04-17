@@ -21,8 +21,8 @@
   </div>
 </template>
 <script>
-import CascaderItems from "./cascader-items";
-import ClickOutside from "./click-outside";
+import CascaderItems from "./../cascader-items";
+import ClickOutside from "./../click-outside";
 export default {
   name: "GuluCascader",
   directives: { ClickOutside },
@@ -116,7 +116,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "var";
+@import "./../var";
 .cascader {
   display: inline-block;
   position: relative;
