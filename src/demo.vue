@@ -165,7 +165,7 @@ import TabsBody from "./tabs-body";
 import TabsHead from "./tabs-head";
 import TabsItem from "./tabs-item";
 import TabsPane from "./tabs-pane";
-import db from "./db";
+import db from "./../tests/fixture/db";
 import Vue from "vue";
 import { removeListener } from "./click-outside";
 import { setInterval } from "timers";
