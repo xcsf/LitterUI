@@ -155,7 +155,7 @@ import Footer from "./footer";
 import Header from "./header";
 import Icon from "./icon";
 import Input from "./input";
-import Layout from "./layout";
+import Layout from "./layout/layout";
 import Plugin from "./plugin";
 import Popover from "./popover";
 import Row from "./grid/row";

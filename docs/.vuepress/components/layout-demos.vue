@@ -39,7 +39,7 @@
   </div>
 </template>
 <script>
-import Layout from "../../../src/layout";
+import Layout from "../../../src/layout/layout";
 import Header from "../../../src/header";
 import Footer from "../../../src/footer";
 import Content from "../../../src/content";
