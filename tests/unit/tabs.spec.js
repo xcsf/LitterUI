@@ -1,11 +1,11 @@
 import chai, { expect } from 'chai'
 import { shallowMount, mount } from '@vue/test-utils'
 import Vue from 'vue'
-import Tabs from '@/tabs'
-import TabsHead from '@/tabs-head'
-import TabsBody from '@/tabs-body'
-import TabsItem from '@/tabs-item'
-import TabsPane from '@/tabs-pane'
+import Tabs from '@/tabs/tabs'
+import TabsHead from '@/tabs/tabs-head'
+import TabsBody from '@/tabs/tabs-body'
+import TabsItem from '@/tabs/tabs-item'
+import TabsPane from '@/tabs/tabs-pane'
 Vue.component('g-tabs', Tabs);
 Vue.component('g-tabs-head', TabsHead);
 Vue.component('g-tabs-body', TabsBody);
