@@ -142,8 +142,8 @@
   </div>
 </template>
 <script>
-import Slides from "./slides";
-import SlidesItem from "./slides-item";
+import Slides from "./slides/slides";
+import SlidesItem from "./slides/slides-item";
 import Button from "./button/button";
 import ButtonGroup from "./button/button-group";
 import Cascader from "./cascader/cascader";
