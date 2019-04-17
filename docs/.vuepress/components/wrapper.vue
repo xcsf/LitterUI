@@ -12,8 +12,10 @@
         <slot name="component"></slot>
       </div>
       <div class="s-code">
-        <div v-show="codeVisable" class="code-wrapper">
-          <slot name="code"></slot>
+        <div class="code-wrapper" :style="codeWrapperSty">
+          <div style="overflow:hidden;">
+            <slot name="code"></slot>
+          </div>
         </div>
         <div class="icon-wrapper" @click="codeVisable=!codeVisable">
           <div class="s-icon" :class="arrowClass">
@@ -46,6 +48,7 @@ export default {
   components: {
     "g-icon": Icon
   },
+  mounted() {},
   computed: {
     arrow() {
       return this.codeVisable ? "up" : "down";
@@ -55,6 +58,19 @@ export default {
         open: !this.codeVisable,
         close: this.codeVisable
       };
+    },
+    codeWrapperSty() {
+      if (this.codeVisable) {
+        return {
+          height:
+            this.$el.querySelector(".code-wrapper div").getBoundingClientRect()
+              .height + "px"
+        };
+      } else {
+        return {
+          height: "0px"
+        };
+      }
     }
   }
 };
@@ -114,7 +130,10 @@ article.a-post:target {
       border-top: 1px solid gainsboro;
 
       & .code-wrapper {
+        transition: all 0.5s;
         width: 100%;
+        overflow: hidden;
+        height: 0px;
       }
       & .icon-wrapper {
         height: 2em;
