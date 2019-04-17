@@ -13,7 +13,7 @@
   </div>
 </template>
 <script>
-import Button from "../../../src/button";
+import Button from "../../../src/button/button";
 import Wrapper from "./wrapper";
 export default {
   components: {

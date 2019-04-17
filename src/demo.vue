@@ -1,7 +1,7 @@
 <template>
   <div>
     <g-layout style="height:100vh">
-      <g-sider>
+      <g-sider style="border:1px solid black;">
         <g-collapse single :selected.sync="selectedcoll" style="margin: 40px">
           <g-collapse-item title="标题1" name="1">内容1</g-collapse-item>
           <g-collapse-item title="标题2" name="2">内容2</g-collapse-item>
@@ -10,8 +10,8 @@
         {{selectedcoll}}
       </g-sider>
       <g-layout>
-        <g-header>header</g-header>
-        <g-content>
+        <g-header style="border:1px solid black;">header</g-header>
+        <g-content style="border:1px solid black;">
           <div>
             <g-button @click="showToast1" :enableHtml="true">Show Toast</g-button>
             <g-button @click="showToast2">Show Toast</g-button>
@@ -114,7 +114,7 @@
             </g-slides>
           </div>
         </g-content>
-        <g-footer>footer</g-footer>
+        <g-footer style="border:1px solid black;">footer</g-footer>
       </g-layout>
     </g-layout>
     <div style="margin: 20px 0;">
@@ -144,8 +144,8 @@
 <script>
 import Slides from "./slides";
 import SlidesItem from "./slides-item";
-import Button from "./button";
-import ButtonGroup from "./button-group";
+import Button from "./button/button";
+import ButtonGroup from "./button/button-group";
 import Cascader from "./cascader";
 import Col from "./col";
 import Collapse from "./collapse";
