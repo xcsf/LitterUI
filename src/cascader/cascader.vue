@@ -21,7 +21,7 @@
   </div>
 </template>
 <script>
-import CascaderItems from "./../cascader-items";
+import CascaderItems from "./cascader-items";
 import ClickOutside from "./../click-outside";
 export default {
   name: "GuluCascader",
