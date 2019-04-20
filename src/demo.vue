@@ -19,7 +19,7 @@
           </div>
           <div>
             <g-tabs :selected.sync="selectedTab">
-              <g-tabs-head>
+              <g-tabs-head type="card">
                 <template slot="actions">设置</template>
                 <g-tabs-item name="woman">
                   <g-icon name="settings"></g-icon>妹子

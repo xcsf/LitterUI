@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-body">
+  <div class="tabs-body" :class="typeClass">
     <slot></slot>
   </div>
 </template>
@@ -7,6 +7,20 @@
 export default {
   name: "GuluTabsBody",
   inject: ["eventBus"],
+  data() {
+    return {
+      type: ""
+    };
+  },
+  computed: {
+    typeClass: function() {
+      return {
+        cardbody: this.type === "card",
+        bordercardbody: this.type === "border-card",
+        "": this.type
+      };
+    }
+  },
   created() {}
 };
 </script>

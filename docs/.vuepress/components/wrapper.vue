@@ -128,7 +128,6 @@ article.a-post:target {
     }
     & .s-code {
       border-top: 1px solid gainsboro;
-
       & .code-wrapper {
         transition: all 0.5s;
         width: 100%;

@@ -1,6 +1,8 @@
 <template>
-  <div class="tabs-head">
-    <slot></slot>
+  <div class="tabs-head" :class="typeClass">
+    <div class="items-wrapper">
+      <slot></slot>
+    </div>
     <div class="line" ref="line"></div>
     <div class="actions-wrapper">
       <slot name="actions"></slot>
@@ -11,12 +13,32 @@
 export default {
   name: "GuluTabsHead",
   inject: ["eventBus"],
+  data() {
+    return {
+      type: ""
+    };
+  },
+  computed: {
+    typeClass: function() {
+      return {
+        cardhead: this.type === "card",
+        bordercardhead: this.type === "border-card",
+        "": this.type
+      };
+    }
+  },
   created() {
     this.eventBus.$on("update:selected", (item, vm) => {
-      let {width, height, top, left} = vm.$el.getBoundingClientRect()
-      this.$refs.line.style.width = `${width}px`
-      this.$refs.line.style.transform = `translateX(${vm.$el.offsetLeft}px)`
+      vm.$nextTick(() => {
+        let { width, height, top, left } = vm.$el.getBoundingClientRect();
+        this.$refs.line.style.width = `${width}px`;
+        this.$refs.line.style.transform = `translateX(${vm.$el.offsetLeft}px)`;
+      });
     });
+  },
+  updated() {
+    console.log(this.type);
+    console.log(this.typeClass);
   }
 };
 </script>
@@ -25,11 +47,18 @@ $tabs-height: 40px;
 $blue: blue;
 $border-color: #ddd;
 .tabs-head {
-  border-bottom: 1px solid $border-color;
-  display: flex;
-  height: $tabs-height;
-  justify-content: flex-start;
   position: relative;
+  .items-wrapper {
+    border-bottom: 1px solid $border-color;
+    display: flex;
+    height: $tabs-height;
+    justify-content: flex-start;
+  }
+  &.cardhead {
+    & .line {
+      display: none;
+    }
+  }
   & .line {
     position: absolute;
     bottom: 0;
@@ -45,3 +74,26 @@ $border-color: #ddd;
   }
 }
 </style>
+<style lang="scss">
+.cardhead {
+  & .items-wrapper {
+    & .tabs-item {
+      border: 1px solid #ddd;
+      margin-top: -1px;
+      &.active {
+        border-bottom-color: white;
+      }
+    }
+    & .tabs-item:not(:first-child) {
+      margin-left: -1px;
+    }
+    & .tabs-item:last-child {
+      border-top-right-radius: 5px;
+    }
+    & .tabs-item:first-child {
+      border-top-left-radius: 5px;
+    }
+  }
+}
+</style>
+

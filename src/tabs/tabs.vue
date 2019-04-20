@@ -18,6 +18,12 @@ export default {
       validator(value) {
         return ["horizontal", "vertical"].indexOf(value) >= 0;
       }
+    },
+    type: {
+      type: String,
+      validator(value) {
+        return value == "card" || value == "border-card";
+      }
     }
   },
   data() {
@@ -51,9 +57,22 @@ export default {
       });
     }
   },
+  computed: {
+    items: function() {
+      return this.$children.filter(vm => {
+        return ["GuluTabsBody", "GuluTabsHead"].indexOf(vm.$options.name) >= 0;
+      });
+    }
+  },
   mounted() {
+    console.log(this.type);
     this.checkChildren();
     this.selectTab();
+    this.$nextTick(() => {
+      this.items.forEach(vm => {
+        vm.type = this.type;
+      });
+    });
   },
   created() {}
 };
