@@ -3,7 +3,7 @@
   <div>
     <s-wrapper title="简单按钮">
       <template slot="component">
-        <g-tabs :selected.sync="selectedTab" type="card">
+        <g-tabs :selected.sync="selectedTab" type="border-card">
           <g-tabs-head>
             <g-tabs-item name="title1">Title1</g-tabs-item>
             <g-tabs-item name="title2">Title2</g-tabs-item>

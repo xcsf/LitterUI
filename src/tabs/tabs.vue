@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs">
+  <div class="tabs" :class="typeClass">
     <slot></slot>
   </div>
 </template>
@@ -62,6 +62,13 @@ export default {
       return this.$children.filter(vm => {
         return ["GuluTabsBody", "GuluTabsHead"].indexOf(vm.$options.name) >= 0;
       });
+    },
+    typeClass: function() {
+      return {
+        tabscard: this.type === "card",
+        tabsbordercard: this.type === "border-card",
+        "": this.type
+      };
     }
   },
   mounted() {
@@ -78,4 +85,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.tabsbordercard {
+  box-shadow: 0 1px 5px #aaa;
+}
 </style>

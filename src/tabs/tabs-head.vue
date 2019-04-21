@@ -35,10 +35,6 @@ export default {
         this.$refs.line.style.transform = `translateX(${vm.$el.offsetLeft}px)`;
       });
     });
-  },
-  updated() {
-    console.log(this.type);
-    console.log(this.typeClass);
   }
 };
 </script>
@@ -55,6 +51,11 @@ $border-color: #ddd;
     justify-content: flex-start;
   }
   &.cardhead {
+    & .line {
+      display: none;
+    }
+  }
+  &.bordercardhead {
     & .line {
       display: none;
     }
@@ -92,6 +93,30 @@ $border-color: #ddd;
     }
     & .tabs-item:first-child {
       border-top-left-radius: 5px;
+    }
+  }
+}
+.bordercardhead {
+  & .items-wrapper {
+    background-color: #f5f7fa;
+    & .tabs-item {
+      &.active {
+        background-color: white;
+        border-bottom: 1px solid white;
+      }
+    }
+    & .tabs-item:not(:first-child) {
+      &.active {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+      }
+    }
+    & .tabs-item:last-child {
+    }
+    & .tabs-item:first-child {
+      &.active {
+        border-right: 1px solid #ddd;
+      }
     }
   }
 }
