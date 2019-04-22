@@ -130,11 +130,10 @@ export default {
       this.$refs.popover.addEventListener("click", this.onClick);
     } else {
       this.$refs.popover.addEventListener("mouseenter", this.hoverOpen);
-      this.$refs.popover.addEventListener("mouseleave",this.hoverClose);
+      this.$refs.popover.addEventListener("mouseleave", this.hoverClose);
     }
   },
   beforeDestroy() {
-    debugger
     if (this.trigger === "click") {
       this.$refs.popover.removeEventListener("click", this.onClick);
     } else {
