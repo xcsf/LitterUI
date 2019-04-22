@@ -72,7 +72,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.type);
     this.checkChildren();
     this.selectTab();
     this.$nextTick(() => {

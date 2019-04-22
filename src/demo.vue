@@ -113,6 +113,13 @@
               </g-slides-item>
             </g-slides>
           </div>
+          <div style="border: 1px solid greenyellow;">
+            <g-nav :selected.sync="selectednav">
+              <g-nav-item name="home">页面1</g-nav-item>
+              <g-nav-item name="about">页面2</g-nav-item>
+              <g-nav-item name="hire">页面3</g-nav-item>
+            </g-nav>
+          </div>
         </g-content>
         <g-footer style="border:1px solid black;">footer</g-footer>
       </g-layout>
@@ -142,8 +149,6 @@
   </div>
 </template>
 <script>
-import Slides from "./slides/slides";
-import SlidesItem from "./slides/slides-item";
 import Button from "./button/button";
 import ButtonGroup from "./button/button-group";
 import Cascader from "./cascader/cascader";
@@ -156,20 +161,26 @@ import Header from "./layout/header";
 import Icon from "./icon";
 import Input from "./input";
 import Layout from "./layout/layout";
+import Nav from "./nav/nav";
+import NavItem from "./nav/nav-item";
 import Plugin from "./plugin";
 import Popover from "./popover";
 import Row from "./grid/row";
 import Sider from "./layout/sider";
+import Slides from "./slides/slides";
+import SlidesItem from "./slides/slides-item";
+import SubNav from "./nav/sub-nav";
 import Tabs from "./tabs/tabs";
 import TabsBody from "./tabs/tabs-body";
 import TabsHead from "./tabs/tabs-head";
 import TabsItem from "./tabs/tabs-item";
 import TabsPane from "./tabs/tabs-pane";
-import db from "./../tests/fixture/db";
 import Vue from "vue";
+import db from "./../tests/fixture/db";
 import { removeListener } from "./click-outside";
 import { setInterval } from "timers";
 import { unwatchFile } from "fs";
+import navItemVue from "./nav/nav-item.vue";
 Vue.use(Plugin);
 function ajax(pareateId = 0, success, faile) {
   let id = setTimeout(() => {
@@ -212,6 +223,7 @@ export default {
       message: "asd",
       selectedTab: "finance",
       selectedcoll: ["2", "3"],
+      selectednav: ['home'],
       selectedSlides: "second",
       source: [],
       sourceStatic: [
@@ -308,7 +320,10 @@ export default {
     "g-collapse": Collapse,
     "g-collapse-item": CollapseItem,
     "g-header": Header,
-    "g-content": Content
+    "g-content": Content,
+    "g-nav": Nav,
+    "g-nav-item": NavItem,
+    "g-sub-nav": SubNav
   },
   created() {
     // ajax(0, result => {
