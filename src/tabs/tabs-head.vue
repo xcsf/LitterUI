@@ -49,6 +49,7 @@ $border-color: #ddd;
     display: flex;
     height: $tabs-height;
     justify-content: flex-start;
+    position: relative;
   }
   &.cardhead {
     & .line {
@@ -67,7 +68,10 @@ $border-color: #ddd;
     transition: all 350ms;
   }
   & .actions-wrapper {
-    margin-left: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: $tabs-height;
     display: flex;
     align-items: center;
     justify-content: center;

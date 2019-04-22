@@ -3,7 +3,7 @@
   <div>
     <s-wrapper title="简单按钮">
       <template slot="component">
-        <g-tabs :selected.sync="selectedTab" type="border-card">
+        <g-tabs :selected.sync="selectedTab">
           <g-tabs-head>
             <g-tabs-item name="title1">Title1</g-tabs-item>
             <g-tabs-item name="title2">Title2</g-tabs-item>
@@ -17,6 +17,58 @@
         </g-tabs>
       </template>
       <pre slot="code"><code>{{code1}}</code></pre>
+    </s-wrapper>
+    <s-wrapper title="选项卡样式">
+      <template slot="component">
+        <g-tabs :selected.sync="selectedTab" type="card">
+          <g-tabs-head>
+            <g-tabs-item name="title1">Title1</g-tabs-item>
+            <g-tabs-item name="title2">Title2</g-tabs-item>
+            <g-tabs-item name="title3">Title3</g-tabs-item>
+          </g-tabs-head>
+          <g-tabs-body>
+            <g-tabs-pane name="title1">Content1</g-tabs-pane>
+            <g-tabs-pane name="title2">Content2</g-tabs-pane>
+            <g-tabs-pane name="title3">Content3</g-tabs-pane>
+          </g-tabs-body>
+        </g-tabs>
+      </template>
+      <pre slot="code"><code>{{code2}}</code></pre>
+    </s-wrapper>
+    <s-wrapper title="卡片化">
+      <template slot="component">
+        <g-tabs :selected.sync="selectedTab" type="border-card">
+          <g-tabs-head>
+            <g-tabs-item name="title1">Title1</g-tabs-item>
+            <g-tabs-item name="title2">Title2</g-tabs-item>
+            <g-tabs-item name="title3">Title3</g-tabs-item>
+          </g-tabs-head>
+          <g-tabs-body>
+            <g-tabs-pane name="title1">Content1</g-tabs-pane>
+            <g-tabs-pane name="title2">Content2</g-tabs-pane>
+            <g-tabs-pane name="title3">Content3</g-tabs-pane>
+          </g-tabs-body>
+        </g-tabs>
+      </template>
+      <pre slot="code"><code>{{code3}}</code></pre>
+    </s-wrapper>
+    <s-wrapper title="按钮">
+      <template slot="component">
+        <g-tabs :selected.sync="selectedTab">
+          <g-tabs-head>
+            <template slot="actions">设置</template>
+            <g-tabs-item name="title1">Title1</g-tabs-item>
+            <g-tabs-item name="title2">Title2</g-tabs-item>
+            <g-tabs-item name="title3">Title3</g-tabs-item>
+          </g-tabs-head>
+          <g-tabs-body>
+            <g-tabs-pane name="title1">Content1</g-tabs-pane>
+            <g-tabs-pane name="title2">Content2</g-tabs-pane>
+            <g-tabs-pane name="title3">Content3</g-tabs-pane>
+          </g-tabs-body>
+        </g-tabs>
+      </template>
+      <pre slot="code"><code>{{code4}}</code></pre>
     </s-wrapper>
   </div>
 </template>
@@ -41,15 +93,55 @@ export default {
   data() {
     return {
       selectedTab: "title2",
-      code1: `<g-button>默认按钮</g-button>
-<g-button icon="settings">默认按钮</g-button>
-<g-button :loading="true">默认按钮</g-button>
-<g-button disabled>默认按钮</g-button>`,
-      code2: `<g-button-group>
-  <g-button icon="left">上一页</g-button>
-  <g-button>更多</g-button>
-  <g-button icon="right" icon-position="right">下一页</g-button>
-</g-button-group>`
+      code1: `<g-tabs :selected.sync="selectedTab">
+  <g-tabs-head>
+    <g-tabs-item name="title1">Title1</g-tabs-item>
+    <g-tabs-item name="title2">Title2</g-tabs-item>
+    <g-tabs-item name="title3">Title3</g-tabs-item>
+  </g-tabs-head>
+  <g-tabs-body>
+    <g-tabs-pane name="title1">Content1</g-tabs-pane>
+    <g-tabs-pane name="title2">Content2</g-tabs-pane>
+    <g-tabs-pane name="title3">Content3</g-tabs-pane>
+  </g-tabs-body>
+</g-tabs>`,
+      code2: `<g-tabs :selected.sync="selectedTab" type="card">
+  <g-tabs-head>
+    <g-tabs-item name="title1">Title1</g-tabs-item>
+    <g-tabs-item name="title2">Title2</g-tabs-item>
+    <g-tabs-item name="title3">Title3</g-tabs-item>
+  </g-tabs-head>
+  <g-tabs-body>
+    <g-tabs-pane name="title1">Content1</g-tabs-pane>
+    <g-tabs-pane name="title2">Content2</g-tabs-pane>
+    <g-tabs-pane name="title3">Content3</g-tabs-pane>
+  </g-tabs-body>
+</g-tabs> `,
+      code3: `<g-tabs :selected.sync="selectedTab" type="border-card">
+  <g-tabs-head>
+    <g-tabs-item name="title1">Title1</g-tabs-item>
+    <g-tabs-item name="title2">Title2</g-tabs-item>
+    <g-tabs-item name="title3">Title3</g-tabs-item>
+  </g-tabs-head>
+  <g-tabs-body>
+    <g-tabs-pane name="title1">Content1</g-tabs-pane>
+    <g-tabs-pane name="title2">Content2</g-tabs-pane>
+    <g-tabs-pane name="title3">Content3</g-tabs-pane>
+  </g-tabs-body>
+</g-tabs>`,
+      code4: `<g-tabs :selected.sync="selectedTab">
+  <g-tabs-head>
+    <template slot="actions">设置</template>
+    <g-tabs-item name="title1">Title1</g-tabs-item>
+    <g-tabs-item name="title2">Title2</g-tabs-item>
+    <g-tabs-item name="title3">Title3</g-tabs-item>
+  </g-tabs-head>
+  <g-tabs-body>
+    <g-tabs-pane name="title1">Content1</g-tabs-pane>
+    <g-tabs-pane name="title2">Content2</g-tabs-pane>
+    <g-tabs-pane name="title3">Content3</g-tabs-pane>
+  </g-tabs-body>
+</g-tabs>`
     };
   }
 };
