@@ -116,7 +116,12 @@
           <div style="border: 1px solid greenyellow;">
             <g-nav :selected.sync="selectednav">
               <g-nav-item name="home">页面1</g-nav-item>
-              <g-nav-item name="about">页面2</g-nav-item>
+              <g-sub-nav>
+                <template v-slot:title>关于</template>
+                <g-nav-item name="culture">企业文化</g-nav-item>
+                <g-nav-item name="developers">开发团队</g-nav-item>
+                <g-nav-item name="contacts">联系电话</g-nav-item>
+              </g-sub-nav>
               <g-nav-item name="hire">页面3</g-nav-item>
             </g-nav>
           </div>
@@ -223,7 +228,7 @@ export default {
       message: "asd",
       selectedTab: "finance",
       selectedcoll: ["2", "3"],
-      selectednav: ['home'],
+      selectednav: ["culture"],
       selectedSlides: "second",
       source: [],
       sourceStatic: [
