@@ -1,8 +1,8 @@
 ---
-title: Collapse--级联选择
+title: Collapse--折叠面板
 ---
 
-# 级联选择
+# 折叠面板
 
 <ClientOnly>
   <collapse-demos></collapse-demos>
