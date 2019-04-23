@@ -119,8 +119,18 @@
               <g-sub-nav>
                 <template v-slot:title>关于</template>
                 <g-nav-item name="culture">企业文化</g-nav-item>
-                <g-nav-item name="developers">开发团队</g-nav-item>
-                <g-nav-item name="contacts">联系电话</g-nav-item>
+                <g-nav-item name="developers">团队</g-nav-item>
+                <g-sub-nav>
+                  <template v-slot:title>联系电话</template>
+                  <g-nav-item name="wechat">微信</g-nav-item>
+                  <g-nav-item name="qq">QQ</g-nav-item>
+                  <g-sub-nav>
+                    <template slot="title">手机</template>
+                    <g-nav-item name="cm">移动</g-nav-item>
+                    <g-nav-item name="cu">联通</g-nav-item>
+                    <g-nav-item name="cn">电信</g-nav-item>
+                  </g-sub-nav>
+                </g-sub-nav>
               </g-sub-nav>
               <g-nav-item name="hire">页面3</g-nav-item>
             </g-nav>
