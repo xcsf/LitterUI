@@ -24,25 +24,31 @@ export default {
   },
   data() {
     return {
-      items: []
+      items: [],
+      namePath: []
     };
   },
   mounted() {
     this.updatedChildren();
     this.listenToChilderen();
   },
-  updated() {
-    this.updatedChildren();
+  watch: {
+    selected: function() {
+      this.updatedChildren();
+    }
   },
   computed: {},
   methods: {
     addItem(vm) {
-      this.items.push(vm)
+      this.items.push(vm);
     },
     updatedChildren() {
       this.items.forEach(vm => {
         if (this.selected.indexOf(vm.name) >= 0) {
           vm.selected = true;
+          this.namePath = [];
+          vm.$parent.updateNamePath && vm.$parent.updateNamePath();
+          vm.$parent.closeAll && vm.$parent.closeAll();
         } else {
           vm.selected = false;
         }

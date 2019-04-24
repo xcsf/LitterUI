@@ -34,11 +34,13 @@ export default {
   position: relative;
   padding: 12px;
   &.selected {
+    background-color: #eefbfa;
+    color: #409eff;
     &::after {
       content: "";
       position: absolute;
       bottom: 0;
-      border-bottom: 3px solid $blue;
+      border-bottom: 2px solid $blue;
       left: 0;
       width: 100%;
     }
@@ -47,6 +49,7 @@ export default {
 .g-sub-nav .g-nav-item {
   &.selected {
     color: $color;
+    background-color: $grey;
     &::after {
       display: none;
     }
