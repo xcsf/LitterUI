@@ -113,7 +113,7 @@
               </g-slides-item>
             </g-slides>
           </div>
-          <div style="border: 1px solid greenyellow;">
+          <div style="">
             <g-nav :selected.sync="selectednav">
               <g-nav-item name="home">页面1</g-nav-item>
               <g-sub-nav>

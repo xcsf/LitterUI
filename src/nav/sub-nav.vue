@@ -17,30 +17,38 @@ export default {
       open: false
     };
   },
-  methods:{
-    onClick(){
+  methods: {
+    onClick() {
       this.open = !this.open;
     }
   }
 };
 </script>
 <style lang="scss" scoped>
+@import "./../../styles/var";
 .g-sub-nav {
   position: relative;
-  >span{
+  > span {
     padding: 12px;
     display: block;
   }
   &-popover {
+    min-width: 6em;
+    font-size: $font-size;
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: gray;
+    color: $color-light;
+    margin-top: 1px;
+    background-color: white;
     white-space: nowrap;
+    box-shadow: 0 0 3px fade-out($color: black, $amount: 0.8);
+    border-radius: $border-radius;
   }
 }
 .g-sub-nav .g-sub-nav .g-sub-nav-popover {
   top: 0;
   left: 100%;
+  margin-left: 8px;
 }
 </style>

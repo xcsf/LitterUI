@@ -67,8 +67,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "./../../styles/var";
 .g-nav {
   display: flex;
-  border: 1px solid red;
+  border-bottom: 1px solid $grey;
+  cursor: default;
 }
 </style>

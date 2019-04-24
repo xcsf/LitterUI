@@ -29,10 +29,27 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "./../../styles/var";
 .g-nav-item {
+  position: relative;
   padding: 12px;
   &.selected {
-    background-color: red;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      border-bottom: 3px solid $blue;
+      left: 0;
+      width: 100%;
+    }
+  }
+}
+.g-sub-nav .g-nav-item {
+  &.selected {
+    color: $color;
+    &::after {
+      display: none;
+    }
   }
 }
 </style>

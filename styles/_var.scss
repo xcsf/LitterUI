@@ -7,17 +7,24 @@ $button-active-bg: #eee;
 $button-bg: white;
 $button-height: 32px;
 $font-size: 14px;
+$font-size-small: 12px;
+$color: #333;
+$color-light: #666;
 $input-height: 32px;
 $red: red;
+$blue: #4a90e2;
 $grey: #eee;
-.box-shadow{
-    box-shadow: 0 0 5px $box-shadow-color;
+
+.box-shadow {
+  box-shadow: 0 0 5px $box-shadow-color;
 }
+
 @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
   }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
