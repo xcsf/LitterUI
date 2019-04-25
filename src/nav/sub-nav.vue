@@ -107,8 +107,8 @@ export default {
     }
   }
   &.active {
-    background-color: #eefbfa;
-    color: #409eff;
+    background-color: $blue-bc;
+    color: $blue;
     &::after {
       content: "";
       position: absolute;
@@ -142,8 +142,8 @@ export default {
     }
   }
   &.active {
-    background-color: #eefbfa;
-    color: #409eff;
+    background-color: $blue-bc;
+    color: $blue;
     &::after {
       display: none;
     }

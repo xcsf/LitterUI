@@ -33,9 +33,12 @@ export default {
 .g-nav-item {
   position: relative;
   padding: 12px;
+  &:hover {
+    background-color: $blue-bc;
+  }
   &.selected {
-    background-color: #eefbfa;
-    color: #409eff;
+    background-color: $blue-bc;
+    color: $blue;
     &::after {
       content: "";
       position: absolute;
@@ -48,8 +51,8 @@ export default {
 }
 .g-sub-nav .g-nav-item {
   &.selected {
-    color: $color;
-    background-color: $grey;
+    color: $blue;
+    background-color: white;
     &::after {
       display: none;
     }
