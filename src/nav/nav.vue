@@ -20,6 +20,13 @@ export default {
     multiple: {
       type: Boolean,
       default: false
+    },
+    trigger: {
+      type: String,
+      default: "click",
+      validator(val) {
+        return ["click", "hover"].indexOf(val) >= 0;
+      }
     }
   },
   data() {
@@ -78,5 +85,6 @@ export default {
   display: flex;
   border-bottom: 1px solid $grey;
   cursor: default;
+  user-select: none;
 }
 </style>

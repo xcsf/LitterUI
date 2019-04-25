@@ -1,12 +1,12 @@
 <template>
-  <div class="g-sub-nav" :class="{active}" v-click-outside="close">
-    <span class="g-sub-nav-label" @click="open">
+  <div class="g-sub-nav" :class="{active}" v-click-outside="close" ref="subnav">
+    <span class="g-sub-nav-label" ref="subnavlabel">
       <slot name="title"></slot>
       <span class="g-sub-nav-icon" :class="[{activeicon:isOpen}]">
         <g-icon name="right"></g-icon>
       </span>
     </span>
-    <div class="g-sub-nav-popover" v-show="isOpen">
+    <div class="g-sub-nav-popover" v-show="isOpen" ref="subnavpopover">
       <slot></slot>
     </div>
   </div>
@@ -14,7 +14,6 @@
 <script>
 import ClickOutside from "../click-outside";
 import Icon from "../icon";
-import { close } from "fs";
 
 export default {
   name: "GuluSubNav",
@@ -31,7 +30,9 @@ export default {
   },
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+      trigger: "hover",
+      t: null
     };
   },
   computed: {
@@ -39,7 +40,34 @@ export default {
       return this.root.namePath.indexOf(this.name) >= 0 ? true : false;
     }
   },
+  mounted() {
+    if (this.trigger === "click") {
+      this.$refs.subnavlabel.addEventListener("click", this.onClickLable);
+    } else {
+      this.$refs.subnav.addEventListener("mouseenter", this.hoverOpen);
+      this.$refs.subnav.addEventListener("mouseleave", this.hoverClose);
+    }
+  },
   methods: {
+    onClickLable() {
+      if (this.isOpen) {
+        this.close();
+      } else {
+        this.open();
+      }
+    },
+    removeTimeout() {
+      clearTimeout(this.t);
+    },
+    hoverOpen() {
+      this.open();
+      this.removeTimeout();
+    },
+    hoverClose() {
+      this.t = setTimeout(() => {
+        this.close();
+      }, 200);
+    },
     close() {
       this.isOpen = false;
     },
@@ -109,6 +137,9 @@ export default {
     display: inline-flex;
     margin-left: 1em;
     transform: rotate(0);
+    &.activeicon {
+      transform: rotate(180deg);
+    }
   }
   &.active {
     background-color: #eefbfa;
