@@ -113,8 +113,8 @@
               </g-slides-item>
             </g-slides>
           </div>
-          <div style="">
-            <g-nav :selected.sync="selectednav">
+          <div style>
+            <g-nav :selected.sync="selectednav" >
               <g-nav-item name="home">页面1</g-nav-item>
               <g-sub-nav name="about">
                 <template v-slot:title>关于</template>

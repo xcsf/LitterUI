@@ -6,9 +6,18 @@
         <g-icon name="right"></g-icon>
       </span>
     </span>
-    <div class="g-sub-nav-popover" v-show="isOpen" ref="subnavpopover">
-      <slot></slot>
-    </div>
+    <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
+    >
+      <div class="g-sub-nav-popover" v-show="isOpen" ref="subnavpopover">
+        <slot></slot>
+      </div>
+    </transition>
   </div>
 </template>
 <script>
@@ -31,7 +40,7 @@ export default {
   data() {
     return {
       isOpen: false,
-      trigger: "hover",
+      trigger: "click",
       t: null
     };
   },
@@ -49,6 +58,31 @@ export default {
     }
   },
   methods: {
+    beforeEnter(el) {
+      el.style.overflow = "hidden";
+      el.style.transition = "all 0.3s";
+    },
+    enter(el) {
+      let { height } = el.getBoundingClientRect();
+      el.style.height = 0;
+      el.getBoundingClientRect();
+      el.style.height = `${height}px`;
+    },
+    afterEnter(el) {
+      el.style.overflow = "";
+    },
+    beforeLeave(el) {
+      el.style.overflow = "hidden";
+    },
+    leave(el) {
+      let { height } = el.getBoundingClientRect();
+      el.style.height = `${height}px`;
+      el.getBoundingClientRect();
+      el.style.height = 0;
+    },
+    afterLeave(el) {
+      el.style.height = "auto";
+    },
     onClickLable() {
       if (this.isOpen) {
         this.close();

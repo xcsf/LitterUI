@@ -1,5 +1,5 @@
 <template>
-  <div class="g-nav">
+  <div class="g-nav" :class="{vertical}">
     <slot></slot>
   </div>
 </template>
@@ -21,12 +21,16 @@ export default {
       type: Boolean,
       default: false
     },
-    trigger: {
-      type: String,
-      default: "click",
-      validator(val) {
-        return ["click", "hover"].indexOf(val) >= 0;
-      }
+    // trigger: {
+    //   type: String,
+    //   default: "click",
+    //   validator(val) {
+    //     return ["click", "hover"].indexOf(val) >= 0;
+    //   }
+    // }
+    vertical: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -86,5 +90,9 @@ export default {
   border-bottom: 1px solid $grey;
   cursor: default;
   user-select: none;
+  &.vertical {
+    flex-direction: column;
+    border-right: 1px solid $grey;
+  }
 }
 </style>
