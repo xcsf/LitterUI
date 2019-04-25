@@ -1,6 +1,6 @@
 <template>
-  <div class="g-sub-nav" :class="{active}" v-click-outside="close" ref="subnav">
-    <span class="g-sub-nav-label" ref="subnavlabel">
+  <div class="g-sub-nav" :class="[{vertical:root.vertical}]" v-click-outside="close" ref="subnav">
+    <span class="g-sub-nav-label" ref="subnavlabel" :class="[{active}]">
       <slot name="title"></slot>
       <span class="g-sub-nav-icon" :class="[{activeicon:isOpen}]">
         <g-icon name="right"></g-icon>
@@ -70,6 +70,7 @@ export default {
     },
     afterEnter(el) {
       el.style.overflow = "";
+      el.style.height = "auto";
     },
     beforeLeave(el) {
       el.style.overflow = "hidden";
@@ -127,6 +128,7 @@ export default {
 .g-sub-nav {
   position: relative;
   &-label {
+    position: relative;
     padding: 12px;
     display: flex;
     align-items: center;
@@ -140,7 +142,7 @@ export default {
       transform: rotate(-90deg);
     }
   }
-  &.active {
+  & .g-sub-nav-label.active {
     background-color: $blue-bc;
     color: $blue;
     &::after {
@@ -165,6 +167,11 @@ export default {
     box-shadow: 0 0 3px fade-out($color: black, $amount: 0.8);
     border-radius: $border-radius;
   }
+  &.vertical .g-sub-nav-popover {
+    border-radius: 0;
+    box-shadow: none;
+    position: static;
+  }
 }
 .g-sub-nav .g-sub-nav {
   & .g-sub-nav-icon {
@@ -175,7 +182,13 @@ export default {
       transform: rotate(180deg);
     }
   }
-  &.active {
+  &.vertical .g-sub-nav-icon {
+    transform: rotate(0);
+    &.activeicon {
+      transform: rotate(90deg);
+    }
+  }
+  & .g-sub-nav-label.active {
     background-color: $blue-bc;
     color: $blue;
     &::after {
@@ -186,6 +199,10 @@ export default {
     top: 0;
     left: 100%;
     margin-left: 8px;
+  }
+  &.vertical .g-sub-nav-popover {
+    margin-left: 0;
+    border-radius: 0;
   }
 }
 </style>
