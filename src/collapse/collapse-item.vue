@@ -1,9 +1,20 @@
 <template>
   <div class="collapseItem">
     <div class="title" @click="toggle">{{title}}</div>
-    <div class="content" v-if="open">
-      <slot></slot>
-    </div>
+    <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
+    >
+      <div class="g-coll-content" v-if="open">
+        <div style="margin:8px;">
+          <slot></slot>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 <script>
@@ -22,7 +33,7 @@ export default {
   },
   data() {
     return {
-      open: false,
+      open: false
     };
   },
   mounted() {
@@ -35,6 +46,33 @@ export default {
     });
   },
   methods: {
+    beforeEnter(el) {
+      el.style.overflow = "hidden";
+      el.style.transition = "all 0.3s";
+    },
+    enter(el) {
+      let { height } = el.getBoundingClientRect();
+      console.log(height);
+      el.style.height = 0;
+      el.getBoundingClientRect();
+      el.style.height = `${height}px`;
+    },
+    afterEnter(el) {
+      el.style.overflow = "";
+      el.style.height = "auto";
+    },
+    beforeLeave(el) {
+      el.style.overflow = "hidden";
+    },
+    leave(el) {
+      let { height } = el.getBoundingClientRect();
+      el.style.height = `${height}px`;
+      el.getBoundingClientRect();
+      el.style.height = 0;
+    },
+    afterLeave(el) {
+      el.style.height = "auto";
+    },
     toggle() {
       if (this.open) {
         this.eventBus.$emit("update:removeselected", this.name);
@@ -71,8 +109,7 @@ $border-radius: 4px;
       border-bottom: none;
     }
   }
-  & .content {
-    padding: 8px;
+  & .g-coll-content {
   }
 }
 </style>
