@@ -167,6 +167,11 @@ export default {
     box-shadow: 0 0 3px fade-out($color: black, $amount: 0.8);
     border-radius: $border-radius;
   }
+  &.vertical .g-sub-nav-label.active {
+    &::after {
+      display: none;
+    }
+  }
   &.vertical .g-sub-nav-popover {
     border-radius: 0;
     box-shadow: none;

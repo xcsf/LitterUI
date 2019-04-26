@@ -1,5 +1,5 @@
 <template>
-  <div class="g-nav-item" :class="[{selected}]" @click="onClick">
+  <div class="g-nav-item" :class="[{selected},{vertical:root.vertical}]" @click="onClick">
     <slot></slot>
   </div>
 </template>
@@ -35,6 +35,25 @@ export default {
   padding: 12px;
   &:hover {
     background-color: $blue-bc;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      border-bottom: 2px solid $blue;
+      left: 0;
+      width: 100%;
+    }
+  }
+  &.vertical {
+    &:hover {
+      background-color: $blue-bc;
+      &::after {
+        display: none;
+      }
+    }
+    &::after {
+      display: none;
+    }
   }
   &.selected {
     background-color: $blue-bc;
@@ -49,7 +68,17 @@ export default {
     }
   }
 }
+a {
+  color: inherit;
+  text-decoration-line: none;
+}
 .g-sub-nav .g-nav-item {
+  &:hover {
+    background-color: $blue-bc;
+    &::after {
+      display: none;
+    }
+  }
   &.selected {
     color: $blue;
     background-color: white;

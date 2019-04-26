@@ -114,30 +114,10 @@
             </g-slides>
           </div>
           <div>
-            <g-nav :selected.sync="selectednav">
-              <g-nav-item name="home">页面1</g-nav-item>
-              <g-sub-nav name="about">
-                <template v-slot:title>关于</template>
-                <g-nav-item name="culture">企业文化</g-nav-item>
-                <g-nav-item name="developers">团队</g-nav-item>
-                <g-sub-nav name="contacts">
-                  <template v-slot:title>联系电话</template>
-                  <g-nav-item name="wechat">微信</g-nav-item>
-                  <g-nav-item name="qq">QQ</g-nav-item>
-                  <g-sub-nav name="phone">
-                    <template slot="title">手机</template>
-                    <g-nav-item name="cm">移动</g-nav-item>
-                    <g-nav-item name="cu">联通</g-nav-item>
-                    <g-nav-item name="cn">电信</g-nav-item>
-                  </g-sub-nav>
-                </g-sub-nav>
-              </g-sub-nav>
-              <g-nav-item name="hire">页面3</g-nav-item>
-            </g-nav>
-          </div>
-          <div>
-            <g-nav :selected.sync="selectednav">
-              <g-nav-item name="home">页面1</g-nav-item>
+            <g-nav :selected.sync="selectednav" >
+              <g-nav-item name="home">
+                <a href="https://www.baidu.com" target="_blank">首页</a>
+              </g-nav-item>
               <g-sub-nav name="about">
                 <template v-slot:title>关于</template>
                 <g-nav-item name="culture">企业文化</g-nav-item>
