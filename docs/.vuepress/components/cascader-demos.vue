@@ -1,17 +1,21 @@
 
 <template>
   <div>
-    <s-wrapper title="基础用法">
+    <s-wrapper title="基础用法" :instruction="instruction1">
       <template slot="component">
-        <g-cascader :source="sourceStatic" popover-height="height:200px"></g-cascader>
+        <div style="height:250px;">
+          <g-cascader :source="sourceStatic" popover-height="height:200px"></g-cascader>
+        </div>
       </template>
       <pre slot="code"><code>{{code1}}</code></pre>
     </s-wrapper>
-    <s-wrapper title="基础用法--动态数据">
+    <s-wrapper title="基础用法--动态数据" :instruction="instruction2">
       <template slot="component">
-        <g-cascader :source="source" popover-height="height:200px" :load-data="loadData"></g-cascader>
+        <div style="height:250px;">
+          <g-cascader :source="source" popover-height="height:200px" :load-data="loadData"></g-cascader>
+        </div>
       </template>
-      <pre slot="code"><code>{{code1}}</code></pre>
+      <pre slot="code"><code>{{code2}}</code></pre>
     </s-wrapper>
   </div>
 </template>
@@ -19,7 +23,7 @@
 import Cascader from "../../../src/cascader/cascader";
 import db from "../../../tests/fixture/db";
 import Wrapper from "./wrapper";
-function ajax2(pareateId = 0) {
+function ajax(pareateId = 0) {
   return new Promise((reslove, reject) => {
     setTimeout(() => {
       let result = db.filter(item => {
@@ -119,26 +123,29 @@ export default {
           ]
         }
       ],
-      code1: `<g-button>默认按钮</g-button>
-<g-button icon="settings">默认按钮</g-button>
-<g-button :loading="true">默认按钮</g-button>
-<g-button disabled>默认按钮</g-button>`,
-      code2: `<g-button-group>
-  <g-button icon="left">上一页</g-button>
-  <g-button>更多</g-button>
-  <g-button icon="right" icon-position="right">下一页</g-button>
-</g-button-group>`
+      code1: `<g-cascader :source="sourceStatic" popover-height="height:200px"></g-cascader>`,
+      code2: `<g-cascader :source="source" popover-height="height:200px" :load-data="loadData"></g-cascader>
+
+methods: {
+  loadData(newSelected, callback) {
+    let { id } = newSelected;
+    ajax(id).then(result => {
+      callback(result);
+    });
+  }
+}`,
+      instruction2: `使用load-data选项动态加载数据源`
     };
   },
   created() {
-    ajax2(0).then(result => {
+    ajax(0).then(result => {
       this.source = result;
     });
   },
   methods: {
     loadData(newSelected, callback) {
       let { id } = newSelected;
-      ajax2(id).then(result => {
+      ajax(id).then(result => {
         callback(result);
       });
     }
