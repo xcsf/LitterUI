@@ -7,7 +7,6 @@
           <g-collapse-item title="标题2" name="2">内容2</g-collapse-item>
           <g-collapse-item title="标题3" name="3">内容3</g-collapse-item>
         </g-collapse>
-        {{selectedcoll}}
       </g-sider>
       <g-layout>
         <g-header style="border:1px solid black;">header</g-header>
@@ -114,7 +113,7 @@
             </g-slides>
           </div>
           <div>
-            <g-nav :selected.sync="selectednav" >
+            <g-nav :selected.sync="selectednav">
               <g-nav-item name="home">
                 <a href="https://www.baidu.com" target="_blank">首页</a>
               </g-nav-item>

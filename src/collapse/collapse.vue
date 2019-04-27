@@ -1,5 +1,5 @@
 <template>
-  <div class="collapse">
+  <div class="g-collapse">
     <slot></slot>
   </div>
 </template>
@@ -28,17 +28,17 @@ export default {
   },
   mounted() {
     this.eventBus.$emit("update:selected", this.selected);
-      this.eventBus.$on('update:addselected', (name) => {
-        let selectedCopy = JSON.parse(JSON.stringify(this.selected))
-        if (this.single) {
-          selectedCopy = [name]
-        } else {
-          selectedCopy.push(name)
-        }
-        this.eventBus.$emit('update:selected', selectedCopy)
-        this.$emit('update:selected', selectedCopy)
-      })
-    this.eventBus.$on("update:removeSelected", name => {
+    this.eventBus.$on("update:addselected", name => {
+      let selectedCopy = JSON.parse(JSON.stringify(this.selected));
+      if (this.single) {
+        selectedCopy = [name];
+      } else {
+        selectedCopy.push(name);
+      }
+      this.eventBus.$emit("update:selected", selectedCopy);
+      this.$emit("update:selected", selectedCopy);
+    });
+    this.eventBus.$on("update:removeselected", name => {
       let selectedCopy = JSON.parse(JSON.stringify(this.selected));
       let index = selectedCopy.indexOf(name);
       selectedCopy.splice(index, 1);
@@ -52,7 +52,7 @@ export default {
 <style lang="scss" scoped>
 $grey: #ddd;
 $border-radius: 4px;
-.collapse {
+.g-collapse {
   border: 1px solid $grey;
   border-radius: $border-radius;
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="collapseItem">
-    <div class="title" @click="toggle">{{title}}</div>
+  <div class="g-collapseItem">
+    <div class="g-title" @click="toggle">{{title}}</div>
     <transition
       @before-enter="beforeEnter"
       @enter="enter"
@@ -52,7 +52,6 @@ export default {
     },
     enter(el) {
       let { height } = el.getBoundingClientRect();
-      console.log(height);
       el.style.height = 0;
       el.getBoundingClientRect();
       el.style.height = `${height}px`;
@@ -87,8 +86,8 @@ export default {
 <style lang="scss" scoped>
 $grey: #ddd;
 $border-radius: 4px;
-.collapseItem {
-  & .title {
+.g-collapseItem {
+  & .g-title {
     border: 1px solid $grey;
     margin: -1px -1px 0 -1px;
     min-height: 32px;
@@ -97,13 +96,13 @@ $border-radius: 4px;
     padding: 0 8px;
   }
   &:first-child {
-    & .title {
+    & .g-title {
       border-top-left-radius: $border-radius;
       border-top-right-radius: $border-radius;
     }
   }
   &:last-child {
-    & .title:last-child {
+    & .g-title:last-child {
       border-bottom-left-radius: $border-radius;
       border-bottom-right-radius: $border-radius;
       border-bottom: none;

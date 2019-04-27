@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <s-wrapper title="简单按钮">
+    <s-wrapper title="基础用法">
       <template slot="component">
         <g-tabs :selected.sync="selectedTab">
           <g-tabs-head>
