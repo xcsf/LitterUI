@@ -114,7 +114,6 @@ export default {
       }
     },
     selectItem(newIndex) {
-      this.lastSelectedIndex = this.selectedIndex;
       if (newIndex === -1) {
         newIndex = this.names.length - 1;
       }
@@ -204,6 +203,7 @@ export default {
           vm.selected = selected;
         });
       });
+      this.lastSelectedIndex = this.selectedIndex;
     }
   }
 };
@@ -231,6 +231,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     .slides-page {
+      user-select: none;
       align-self: flex-end;
       z-index: 2;
       > span {
