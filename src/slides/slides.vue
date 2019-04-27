@@ -187,14 +187,14 @@ export default {
             this.lastSelectedIndex === this.items.length - 1 &&
             this.selectedIndex === 0
           ) {
-            reverse = false;
+            reverse = true;
           }
           //right->left
           if (
             this.lastSelectedIndex === 0 &&
             this.selectedIndex === this.items.length - 1
           ) {
-            reverse = true;
+            reverse = false;
           }
         }
         vm.reverse = reverse;
