@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <s-wrapper title="基础用法" :instruction="instruction1">
+    <s-wrapper title="基础用法">
       <template slot="component">
         <div style="height:250px;">
           <g-cascader :source="sourceStatic" popover-height="height:200px"></g-cascader>
