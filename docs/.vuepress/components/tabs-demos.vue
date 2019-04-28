@@ -52,7 +52,7 @@
       </template>
       <pre slot="code"><code>{{code3}}</code></pre>
     </s-wrapper>
-    <s-wrapper title="按钮">
+    <s-wrapper title="控制按钮">
       <template slot="component">
         <g-tabs :selected.sync="selectedTab">
           <g-tabs-head>

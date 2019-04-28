@@ -104,9 +104,10 @@ $border-color: #ddd;
   & .items-wrapper {
     background-color: #f5f7fa;
     & .tabs-item {
+      border: 1px solid #f5f7fa;
       &.active {
         background-color: white;
-        border-bottom: 1px solid white;
+        border-bottom-color: white;
       }
     }
     & .tabs-item:not(:first-child) {
