@@ -1,22 +1,22 @@
 
 <template>
   <div>
-    <s-wrapper title="基础用法">
-      <template slot="component">
-        <div style="height:250px;">
+    <div style="position:relative;z-index:2;">
+      <s-wrapper title="基础用法">
+        <template slot="component">
           <g-cascader :source="sourceStatic" popover-height="height:200px"></g-cascader>
-        </div>
-      </template>
-      <pre slot="code"><code>{{code1}}</code></pre>
-    </s-wrapper>
-    <s-wrapper title="基础用法--动态数据" :instruction="instruction2">
-      <template slot="component">
-        <div style="height:250px;">
+        </template>
+        <pre slot="code"><code>{{code1}}</code></pre>
+      </s-wrapper>
+    </div>
+    <div>
+      <s-wrapper title="基础用法--动态数据" :instruction="instruction2">
+        <template slot="component">
           <g-cascader :source="source" popover-height="height:200px" :load-data="loadData"></g-cascader>
-        </div>
-      </template>
-      <pre slot="code"><code>{{code2}}</code></pre>
-    </s-wrapper>
+        </template>
+        <pre slot="code"><code>{{code2}}</code></pre>
+      </s-wrapper>
+    </div>
   </div>
 </template>
 <script>
@@ -152,3 +152,4 @@ methods: {
   }
 };
 </script>
+

@@ -84,7 +84,7 @@ export default {
       selectedSlides: "second",
       selectedSlides1: "first",
       instruction1:"使用 :selected.sync 绑定 slides-item 中唯一标识属性 name 类型为 String",
-      instruction2:"添加 autoPlay 属性开启自动切换, 可通过 autoPlayDelay 属性设置间隔时间，单位：毫秒(ms)，默认为 3000ms",
+      instruction2:"添加 autoPlay 属性开启自动切换, 可通过 autoPlayDelay 属性设置间隔时间，单位：毫秒(ms)，默认为 3000ms,当鼠标移入时则会停止自动切换",
       code1: `<g-slides :selected.sync="selectedSlides">
   <g-slides-item name="first">
     <div class="box">0</div>

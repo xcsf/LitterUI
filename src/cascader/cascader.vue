@@ -104,12 +104,12 @@ export default {
         let copy = JSON.parse(JSON.stringify(this.source));
         let toUpdate = this.foundItem(this.source, lastSelected.id);
         reuslt.length > 0 && this.$set(toUpdate, "children", reuslt);
-        this.selectedItem = {}
+        this.selectedItem = {};
       };
       //don't loadData if click item is leaf
       if (this.loadData) {
         !lastSelected.isLeaf && this.loadData(lastSelected, updateSource);
-        this.selectedItem = lastSelected
+        this.selectedItem = lastSelected;
       }
     }
   }
@@ -120,6 +120,7 @@ export default {
 .cascader {
   display: inline-block;
   position: relative;
+  vertical-align: top;
   .trigger {
     height: $input-height;
     line-height: $input-height;
