@@ -86,7 +86,9 @@ describe('Input', () => {
                 )
                 let InputElement = vm.$el.querySelector('input')
                 InputElement.dispatchEvent(event);
-                expect(callback).to.have.been.calledWith('hi')
+                setTimeout(() => {
+                    expect(callback).to.have.been.calledWith('hi')
+                }, 0);
             })
         })
     })

@@ -47,11 +47,13 @@ describe('Row', () => {
                 gutter: '20'
             },
             slots: {
-                default: [Col,Col],
+                default: [Col, Col],
             }
         })
-        expect(wrapper.find('.col').attributes('style')).equal('padding-left: 10px; padding-right: 10px;')
-        expect(wrapper.attributes('style')).equal('margin-left: -10px; margin-right: -10px;')
+        wrapper.vm.$nextTick(() => {
+            expect(wrapper.find('.col').attributes('style')).equal('padding-left: 10px; padding-right: 10px;')
+            expect(wrapper.attributes('style')).equal('margin-left: -10px; margin-right: -10px;')
+        })
     })
     it('接受align属性', () => {
         //原始版供学习

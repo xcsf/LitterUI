@@ -2,6 +2,7 @@ import chai, { expect } from 'chai'
 import { shallowMount, mount } from '@vue/test-utils'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
+
 import Slides from '@/slides/slides.vue'
 import SlidesItem from '@/slides/slides-item.vue'
 import Vue from 'vue'
@@ -12,7 +13,7 @@ describe('Slides.vue', () => {
         expect(Slides).to.exist
     })
 
-    it('接受 GuluSlidesItem 默认展示第一个', (done) => {
+    it('接受 GuluSlidesItem 默认展示第一个', () => {
         Vue.component('g-slides-item', SlidesItem)
         let wrapper = mount(Slides, {
             propsData: {
@@ -33,13 +34,12 @@ describe('Slides.vue', () => {
             }
         })
         setTimeout(() => {
-            expect(wrapper.find('.box1').exists()).to.be.true
+            expect(wrapper.find('.box1').exists()).to.equal(true)
             wrapper.destroy()
-            done()
-        })
+        }, 0)
     })
 
-    it('接受 selected', (done) => {
+    it('接受 selected', () => {
         Vue.component('g-slides-item', SlidesItem)
         let wrapper = mount(Slides, {
             propsData: {
@@ -63,11 +63,10 @@ describe('Slides.vue', () => {
         setTimeout(() => {
             expect(wrapper.find('.box2').exists()).to.be.true
             wrapper.destroy()
-            done()
         })
     })
 
-    it('点击第二个span 展示第二个item', (done) => {
+    it('点击第二个span 展示第二个item', () => {
         Vue.component('g-slides-item', SlidesItem)
         let wrapper = mount(Slides, {
             propsData: {
@@ -90,7 +89,6 @@ describe('Slides.vue', () => {
                 'update:selected': (val) => {
                     expect(val).to.eq('second')
                     wrapper.destroy()
-                    done()
                 }
             }
         })
@@ -99,7 +97,7 @@ describe('Slides.vue', () => {
         })
     })
 
-    it('自动播放', (done) => {
+    it('自动播放', () => {
         Vue.component('g-slides-item', SlidesItem)
         const callback = sinon.fake()
         let wrapper = mount(Slides, {
@@ -127,11 +125,10 @@ describe('Slides.vue', () => {
         setTimeout(() => {
             expect(callback).to.have.been.calledWith('second')
             wrapper.destroy()
-            done()
         }, 21)
     })
 
-    it('可以点击上一张', (done) => {
+    it('可以点击上一张', () => {
         Vue.component('g-slides-item', SlidesItem)
         const callback = sinon.fake()
         let wrapper = mount(Slides, {
@@ -159,10 +156,9 @@ describe('Slides.vue', () => {
         setTimeout(() => {
             expect(callback).to.have.been.calledWith('third')
             wrapper.destroy()
-            done()
         }, 21)
     })
-    it('可以点击下一张', (done) => {
+    it('可以点击下一张', () => {
         Vue.component('g-slides-item', SlidesItem)
         const callback = sinon.fake()
         let wrapper = mount(Slides, {
@@ -190,7 +186,6 @@ describe('Slides.vue', () => {
         setTimeout(() => {
             expect(callback).to.have.been.calledWith('second')
             wrapper.destroy()
-            done()
         }, 21)
     })
 })

@@ -45,7 +45,7 @@ describe('Button.vue', () => {
         vm.$el.remove()
         vm.$destroy()
     })
-    xit('icon 默认的 order 是 1', () => {
+    it('icon 默认的 order 是 1', () => {
         const div = document.createElement('div')
         document.body.appendChild(div)
         const Constructor = Vue.extend(Button)
@@ -59,7 +59,7 @@ describe('Button.vue', () => {
         vm.$el.remove()
         vm.$destroy()
     })
-    xit('设置 iconPosition 可以改变 order', () => {
+    it('设置 iconPosition 可以改变 order', () => {
         const div = document.createElement('div')
         document.body.appendChild(div)
         const Constructor = Vue.extend(Button)
@@ -86,7 +86,5 @@ describe('Button.vue', () => {
         vm.$on('click', callback)
         vm.$el.click()
         expect(callback).to.have.been.called
-
     })
-
 })

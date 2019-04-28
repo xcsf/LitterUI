@@ -1428,7 +1428,7 @@
     "@shellscape/koa-send" "^4.1.0"
     debug "^2.6.8"
 
-"@sinonjs/commons@^1", "@sinonjs/commons@^1.0.2", "@sinonjs/commons@^1.3.1":
+"@sinonjs/commons@^1", "@sinonjs/commons@^1.0.2", "@sinonjs/commons@^1.4.0":
   version "1.4.0"
   resolved "http://registry.npm.taobao.org/@sinonjs/commons/download/@sinonjs/commons-1.4.0.tgz#7b3ec2d96af481d7a0321252e7b1c94724ec5a78"
   integrity sha1-ez7C2Wr0gdegMhJS57HJRyTsWng=
@@ -1443,10 +1443,19 @@
     "@sinonjs/commons" "^1"
     "@sinonjs/samsam" "^3.1.0"
 
-"@sinonjs/samsam@^3.1.0", "@sinonjs/samsam@^3.2.0":
+"@sinonjs/samsam@^3.1.0":
   version "3.3.0"
   resolved "http://registry.npm.taobao.org/@sinonjs/samsam/download/@sinonjs/samsam-3.3.0.tgz#9557ea89cd39dbc94ffbd093c8085281cac87416"
   integrity sha1-lVfqic0528lP+9CTyAhSgcrIdBY=
+  dependencies:
+    "@sinonjs/commons" "^1.0.2"
+    array-from "^2.1.1"
+    lodash "^4.17.11"
+
+"@sinonjs/samsam@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.npm.taobao.org/@sinonjs/samsam/download/@sinonjs/samsam-3.3.1.tgz#e88c53fbd9d91ad9f0f2b0140c16c7c107fe0d07"
+  integrity sha1-6IxT+9nZGtnw8rAUDBbHwQf+DQc=
   dependencies:
     "@sinonjs/commons" "^1.0.2"
     array-from "^2.1.1"
@@ -2421,7 +2430,7 @@ async@^1.5.2:
   resolved "http://registry.npm.taobao.org/async/download/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
   integrity sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
 
-async@^2.6.1:
+async@^2.0.0, async@^2.6.1:
   version "2.6.2"
   resolved "http://registry.npm.taobao.org/async/download/async-2.6.2.tgz#18330ea7e6e313887f5d2f2a904bac6fe4dd5381"
   integrity sha1-GDMOp+bjE4h/XS8qkEusb+TdU4E=
@@ -2571,7 +2580,7 @@ babel-plugin-transform-vue-jsx@^4.0.1:
   dependencies:
     esutils "^2.0.2"
 
-babel-runtime@^6.18.0, babel-runtime@^6.26.0:
+babel-runtime@^6.0.0, babel-runtime@^6.18.0, babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "http://registry.npm.taobao.org/babel-runtime/download/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
@@ -3149,9 +3158,9 @@ chai-spies@^1.0.0:
   resolved "http://registry.npm.taobao.org/chai-spies/download/chai-spies-1.0.0.tgz#d16b39336fb316d03abf8c375feb23c0c8bb163d"
   integrity sha1-0Ws5M2+zFtA6v4w3X+sjwMi7Fj0=
 
-chai@^4.1.2:
+chai@^4.2.0:
   version "4.2.0"
-  resolved "http://registry.npm.taobao.org/chai/download/chai-4.2.0.tgz#760aa72cf20e3795e84b12877ce0e83737aa29e5"
+  resolved "https://registry.npm.taobao.org/chai/download/chai-4.2.0.tgz#760aa72cf20e3795e84b12877ce0e83737aa29e5"
   integrity sha1-dgqnLPION5XoSxKHfODoNzeqKeU=
   dependencies:
     assertion-error "^1.1.0"
@@ -3418,7 +3427,7 @@ colormin@^1.0.5:
     css-color-names "0.0.4"
     has "^1.0.1"
 
-colors@^1.1.0:
+colors@^1.1.0, colors@^1.1.2:
   version "1.3.3"
   resolved "http://registry.npm.taobao.org/colors/download/colors-1.3.3.tgz#39e005d546afe01e01f9c4ca8fa50f686a01205d"
   integrity sha1-OeAF1Uav4B4B+cTKj6UPaGoBIF0=
@@ -6646,7 +6655,7 @@ karma-chai@^0.1.0:
 
 karma-chrome-launcher@^2.2.0:
   version "2.2.0"
-  resolved "http://registry.npm.taobao.org/karma-chrome-launcher/download/karma-chrome-launcher-2.2.0.tgz#cf1b9d07136cc18fe239327d24654c3dbc368acf"
+  resolved "https://registry.npm.taobao.org/karma-chrome-launcher/download/karma-chrome-launcher-2.2.0.tgz#cf1b9d07136cc18fe239327d24654c3dbc368acf"
   integrity sha1-zxudBxNswY/iOTJ9JGVMPbw2is8=
   dependencies:
     fs-access "^1.0.0"
@@ -6654,7 +6663,7 @@ karma-chrome-launcher@^2.2.0:
 
 karma-mocha@^1.3.0:
   version "1.3.0"
-  resolved "http://registry.npm.taobao.org/karma-mocha/download/karma-mocha-1.3.0.tgz#eeaac7ffc0e201eb63c467440d2b69c7cf3778bf"
+  resolved "https://registry.npm.taobao.org/karma-mocha/download/karma-mocha-1.3.0.tgz#eeaac7ffc0e201eb63c467440d2b69c7cf3778bf"
   integrity sha1-7qrH/8DiAetjxGdEDStpx883eL8=
   dependencies:
     minimist "1.2.0"
@@ -6664,10 +6673,36 @@ karma-sinon-chai@^2.0.2:
   resolved "http://registry.npm.taobao.org/karma-sinon-chai/download/karma-sinon-chai-2.0.2.tgz#e28c109b989973abafc28a7c9f09ef24a05e07c2"
   integrity sha1-4owQm5iZc6uvwop8nwnvJKBeB8I=
 
-karma@^4.0.0:
-  version "4.0.1"
-  resolved "http://registry.npm.taobao.org/karma/download/karma-4.0.1.tgz#2581d6caa0d4cd28b65131561b47bad6d5478773"
-  integrity sha1-JYHWyqDUzSi2UTFWG0e61tVHh3M=
+karma-sourcemap-loader@^0.3.7:
+  version "0.3.7"
+  resolved "https://registry.npm.taobao.org/karma-sourcemap-loader/download/karma-sourcemap-loader-0.3.7.tgz#91322c77f8f13d46fed062b042e1009d4c4505d8"
+  integrity sha1-kTIsd/jxPUb+0GKwQuEAnUxFBdg=
+  dependencies:
+    graceful-fs "^4.1.2"
+
+karma-spec-reporter@^0.0.32:
+  version "0.0.32"
+  resolved "https://registry.npm.taobao.org/karma-spec-reporter/download/karma-spec-reporter-0.0.32.tgz#2e9c7207ea726771260259f82becb543209e440a"
+  integrity sha1-LpxyB+pyZ3EmAln4K+y1QyCeRAo=
+  dependencies:
+    colors "^1.1.2"
+
+karma-webpack@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.npm.taobao.org/karma-webpack/download/karma-webpack-3.0.5.tgz#1ff1e3a690fb73ae95ee95f9ab58f341cfc7b40f"
+  integrity sha1-H/HjppD7c66V7pX5q1jzQc/HtA8=
+  dependencies:
+    async "^2.0.0"
+    babel-runtime "^6.0.0"
+    loader-utils "^1.0.0"
+    lodash "^4.0.0"
+    source-map "^0.5.6"
+    webpack-dev-middleware "^2.0.6"
+
+karma@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npm.taobao.org/karma/download/karma-4.1.0.tgz#d07387c9743a575b40faf73e8a3eb5421c2193e1"
+  integrity sha1-0HOHyXQ6V1tA+vc+ij61Qhwhk+E=
   dependencies:
     bluebird "^3.3.0"
     body-parser "^1.16.1"
@@ -6935,7 +6970,7 @@ loader-utils@^0.2.16:
     json5 "^0.5.0"
     object-assign "^4.0.1"
 
-loader-utils@^1.0.1, loader-utils@^1.0.2, loader-utils@^1.1.0:
+loader-utils@^1.0.0, loader-utils@^1.0.1, loader-utils@^1.0.2, loader-utils@^1.1.0:
   version "1.2.3"
   resolved "http://registry.npm.taobao.org/loader-utils/download/loader-utils-1.2.3.tgz#1ff5dc6911c9f0a062531a4c04b609406108c2c7"
   integrity sha1-H/XcaRHJ8KBiUxpMBLYJQGEIwsc=
@@ -7100,10 +7135,10 @@ lolex@^2.3.2:
   resolved "http://registry.npm.taobao.org/lolex/download/lolex-2.7.5.tgz#113001d56bfc7e02d56e36291cc5c413d1aa0733"
   integrity sha1-ETAB1Wv8fgLVbjYpHMXEE9GqBzM=
 
-lolex@^3.1.0:
-  version "3.1.0"
-  resolved "http://registry.npm.taobao.org/lolex/download/lolex-3.1.0.tgz#1a7feb2fefd75b3e3a7f79f0e110d9476e294434"
-  integrity sha1-Gn/rL+/XWz46f3nw4RDZR24pRDQ=
+lolex@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npm.taobao.org/lolex/download/lolex-4.0.1.tgz#4a99c2251579d693c6a083446dae0e5c3844d3fa"
+  integrity sha1-SpnCJRV51pPGoINEba4OXDhE0/o=
 
 loose-envify@^1.0.0:
   version "1.4.0"
@@ -10042,19 +10077,19 @@ simple-swizzle@^0.2.2:
 
 sinon-chai@^3.3.0:
   version "3.3.0"
-  resolved "http://registry.npm.taobao.org/sinon-chai/download/sinon-chai-3.3.0.tgz#8084ff99451064910fbe2c2cb8ab540c00b740ea"
+  resolved "https://registry.npm.taobao.org/sinon-chai/download/sinon-chai-3.3.0.tgz#8084ff99451064910fbe2c2cb8ab540c00b740ea"
   integrity sha1-gIT/mUUQZJEPviwsuKtUDAC3QOo=
 
-sinon@^7.2.3:
-  version "7.2.7"
-  resolved "http://registry.npm.taobao.org/sinon/download/sinon-7.2.7.tgz#ee90f83ce87d9a6bac42cf32a3103d8c8b1bfb68"
-  integrity sha1-7pD4POh9mmusQs8yoxA9jIsb+2g=
+sinon@^7.3.2:
+  version "7.3.2"
+  resolved "https://registry.npm.taobao.org/sinon/download/sinon-7.3.2.tgz#82dba3a6d85f6d2181e1eca2c10d8657c2161f28"
+  integrity sha1-gtujpthfbSGB4eyiwQ2GV8IWHyg=
   dependencies:
-    "@sinonjs/commons" "^1.3.1"
+    "@sinonjs/commons" "^1.4.0"
     "@sinonjs/formatio" "^3.2.1"
-    "@sinonjs/samsam" "^3.2.0"
+    "@sinonjs/samsam" "^3.3.1"
     diff "^3.5.0"
-    lolex "^3.1.0"
+    lolex "^4.0.1"
     nise "^1.4.10"
     supports-color "^5.5.0"
 
@@ -11487,7 +11522,7 @@ webpack-chain@^4.11.0, webpack-chain@^4.6.0:
     deepmerge "^1.5.2"
     javascript-stringify "^1.6.0"
 
-webpack-dev-middleware@3.6.0, webpack-dev-middleware@^3.0.0, webpack-dev-middleware@^3.5.1:
+webpack-dev-middleware@3.6.0, webpack-dev-middleware@^2.0.6, webpack-dev-middleware@^3.0.0, webpack-dev-middleware@^3.5.1:
   version "3.6.0"
   resolved "http://registry.npm.taobao.org/webpack-dev-middleware/download/webpack-dev-middleware-3.6.0.tgz#71f1b04e52ff8d442757af2be3a658237d53a3e5"
   integrity sha1-cfGwTlL/jUQnV68r46ZYI31To+U=

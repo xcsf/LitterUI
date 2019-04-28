@@ -54,7 +54,7 @@ describe('Tabs', () => {
             // })
             let wrapper = mount(Tabs, {
                 propsData: {
-                    selected:'finance'
+                    selected: 'finance'
                 },
                 slots: {
                     default: `
@@ -71,7 +71,9 @@ describe('Tabs', () => {
                     `
                 }
             })
-            expect(wrapper.find('.tabs-item[name="finance"]').classes('active')).to.be.true
+            wrapper.vm.$nextTick(() => {
+                expect(wrapper.find('.tabs-item[name="finance"]').classes('active')).to.be.true
+            })
         })
         xit('接受 direction', () => {
 
