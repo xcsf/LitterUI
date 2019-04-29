@@ -1,6 +1,6 @@
 # 一个轮子
 
-[![Build Status](https://www.travis-ci.org/xcsf/Vue-UI.svg?branch=master)](https://www.travis-ci.org/xcsf/Vue-UI)
+[![Build Status](https://www.travis-ci.org/xcsf/LitterUI.svg?branch=master)](https://www.travis-ci.org/xcsf/LitterUI)
 
 ## 介绍
 
