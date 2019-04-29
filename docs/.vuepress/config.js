@@ -36,6 +36,7 @@ module.exports = {
           '/components/cascader',
           '/components/collapse',
           '/components/slides',
+          '/components/nav',
         ]
       },
     ]

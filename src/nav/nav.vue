@@ -4,7 +4,6 @@
   </div>
 </template>
 <script>
-import { constants } from "crypto";
 export default {
   name: "GuluNav",
   provide() {
@@ -17,17 +16,13 @@ export default {
       type: Array,
       default: () => []
     },
-    multiple: {
-      type: Boolean,
-      default: false
+    trigger: {
+      type: String,
+      default: "click",
+      validator(val) {
+        return ["click", "hover"].indexOf(val) >= 0;
+      }
     },
-    // trigger: {
-    //   type: String,
-    //   default: "click",
-    //   validator(val) {
-    //     return ["click", "hover"].indexOf(val) >= 0;
-    //   }
-    // }
     vertical: {
       type: Boolean,
       default: false
@@ -51,6 +46,7 @@ export default {
   computed: {},
   methods: {
     addItem(vm) {
+      console.log(vm.name)
       this.items.push(vm);
     },
     updatedChildren() {
@@ -67,16 +63,8 @@ export default {
     },
     listenToChilderen() {
       this.items.forEach(vm => {
-        vm.$on("add:selected", name => {
-          if (this.multiple) {
-            if (this.selected.indexOf(name) < 0) {
-              let copy = JSON.parse(JSON.stringify(this.selected));
-              copy.push(name);
-              this.$emit("update:selected", copy);
-            }
-          } else {
-            this.$emit("update:selected", [name]);
-          }
+        vm.$on("update:selected", name => {
+          this.$emit("update:selected", [name]);
         });
       });
     }
@@ -92,7 +80,6 @@ export default {
   user-select: none;
   &.vertical {
     flex-direction: column;
-    border-right: 1px solid $grey;
   }
 }
 </style>

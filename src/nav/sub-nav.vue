@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       isOpen: false,
-      trigger: "click",
+      trigger: this.root.trigger,
       t: null
     };
   },

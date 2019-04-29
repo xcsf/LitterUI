@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     onClick() {
-      this.$emit("add:selected", this.name);
+      this.$emit("update:selected", this.name);
     }
   }
 };

@@ -113,7 +113,7 @@
             </g-slides>
           </div>
           <div>
-            <g-nav :selected.sync="selectednav">
+            <g-nav :selected.sync="selectednav" trigger="hover">
               <g-nav-item name="home">
                 <a href="https://www.baidu.com" target="_blank">首页</a>
               </g-nav-item>
