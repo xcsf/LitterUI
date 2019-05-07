@@ -46,7 +46,6 @@ export default {
   computed: {},
   methods: {
     addItem(vm) {
-      console.log(vm.name)
       this.items.push(vm);
     },
     updatedChildren() {
