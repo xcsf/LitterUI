@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div class="slidesitem" v-if="visible" :class="[{reverse:reverse},positionCard]">
+    <div class="g-slidesitem" v-if="visible" :class="[{reverse:reverse},positionCard]">
       <slot></slot>
     </div>
   </transition>
@@ -51,7 +51,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.slidesitem {
+.g-slidesitem {
   width: 100%;
   height: 100%;
   &.slide-leave-active {
@@ -77,7 +77,7 @@ export default {
   }
 }
 .card {
-  &.slidesitem {
+  &.g-slidesitem {
     height: 100%;
     width: 40%;
     transition: all 1s;

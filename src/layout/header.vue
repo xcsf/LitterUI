@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="g-header">
     <slot></slot>
   </div>
 </template>
@@ -8,6 +8,6 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-.header {
+.g-header {
 }
 </style>

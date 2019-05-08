@@ -1,5 +1,5 @@
 <template>
-  <div class="gulu-content">
+  <div class="g-content">
     <slot></slot>
   </div>
 </template>
@@ -8,7 +8,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-.gulu-content {
+.g-content {
     flex-grow: 1;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs" :class="typeClass">
+  <div class="g-tabs" :class="typeClass">
     <slot></slot>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="cascader-item" :style="height">
+  <div class="g-cascader-item" :style="height">
     <div class="left">
       <div class="lable" v-for="(item,index) in items" :key="index" @click="onClickLabel(item)">
         <span class="name">{{item.name}}</span>
@@ -89,7 +89,7 @@ export default {
 <style lang="scss" scoped>
 @import "./../../styles/var";
 
-.cascader-item {
+.g-cascader-item {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;

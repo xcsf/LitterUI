@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="g-footer">
     <slot></slot>
   </div>
 </template>
@@ -8,6 +8,6 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-.footer {
+.g-footer {
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="cascader" ref="cascader" v-click-outside="close">
+  <div class="g-cascader" ref="cascader" v-click-outside="close">
     <!-- <div>
       <slot></slot>
     </div>
@@ -117,7 +117,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "./../../styles/var";
-.cascader {
+.g-cascader {
   display: inline-block;
   position: relative;
   vertical-align: top;

@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-head" :class="typeClass">
+  <div class="g-tabs-head" :class="typeClass">
     <div class="items-wrapper">
       <slot></slot>
     </div>
@@ -42,7 +42,7 @@ export default {
 $tabs-height: 40px;
 $blue: blue;
 $border-color: #ddd;
-.tabs-head {
+.g-tabs-head {
   position: relative;
   .items-wrapper {
     border-bottom: 1px solid $border-color;

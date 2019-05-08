@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-pane" :class="classes" v-if="active">
+  <div class="g-tabs-pane" :class="classes" v-if="active">
     <slot></slot>
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.tabs-pane {
+.g-tabs-pane {
   padding: 1em;
   &.active {
     // background-color: red;

@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="onClick" :class="classes" :name="name">
+  <div class="g-tabs-item" @click="onClick" :class="classes" :name="name">
     <slot></slot>
   </div>
 </template>
@@ -51,7 +51,7 @@ export default {
 $blur: blue;
 $border-color: #ddd;
 $disabled-color: grey;
-.tabs-item {
+.g-tabs-item {
   display: flex;
   align-items: center;
   flex-shrink: 0;

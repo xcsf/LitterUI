@@ -1,22 +1,22 @@
 <template>
   <div
-    class="slides"
+    class="g-slides"
     @touchstart="onTouchStart"
     @touchmove="onTouchMove"
     @touchend="onTouchEnd"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
   >
-    <div class="slides-window">
-      <div class="slides-wapper">
+    <div class="g-slides-window">
+      <div class="g-slides-wapper">
         <slot></slot>
       </div>
     </div>
-    <div class="slides-dots">
+    <div class="g-slides-dots">
       <span @click="selectItem(selectedIndex-1)">
         <g-icon name="left"></g-icon>
       </span>
-      <div class="slides-page">
+      <div class="g-slides-page">
         <span
           v-for="(child, index) in childrenLength"
           :class="{active:selectedIndex === index}"
@@ -209,11 +209,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.slides {
+.g-slides {
   position: relative;
-  & .slides-window {
+  & .g-slides-window {
     overflow: hidden;
-    & .slides-wapper {
+    & .g-slides-wapper {
       position: relative;
       display: flex;
       justify-content: center;
@@ -230,7 +230,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .slides-page {
+    .g-slides-page {
       user-select: none;
       align-self: flex-end;
       z-index: 2;

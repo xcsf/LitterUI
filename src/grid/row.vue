@@ -1,5 +1,5 @@
 <template>
-  <div :class="['row',rowClass]" :style="rowStyle">
+  <div :class="['g-row',rowClass]" :style="rowStyle">
     <slot></slot>
   </div>
 </template>
@@ -40,7 +40,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.row {
+.g-row {
   display: flex;
   flex-wrap: wrap;
   &.align-right {
