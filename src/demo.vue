@@ -136,6 +136,9 @@
               <g-nav-item name="hire">页面3</g-nav-item>
             </g-nav>
           </div>
+          <div>
+            <g-pager :totalPage="20" :currentPage="3"></g-pager>
+          </div>
         </g-content>
         <g-footer style="border:1px solid black;">footer</g-footer>
       </g-layout>
@@ -180,6 +183,7 @@ import Layout from "./layout/layout";
 import Nav from "./nav/nav";
 import NavItem from "./nav/nav-item";
 import Plugin from "./plugin";
+import Pager from "./pager/pager";
 import Popover from "./popover";
 import Row from "./grid/row";
 import Sider from "./layout/sider";
@@ -328,6 +332,7 @@ export default {
     "g-input": Input,
     "g-footer": Footer,
     "g-popover": Popover,
+    "g-pager": Pager,
     "g-tabs": Tabs,
     "g-tabs-pane": TabsPane,
     "g-tabs-item": TabsItem,

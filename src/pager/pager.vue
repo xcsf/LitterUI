@@ -1,0 +1,113 @@
+<template>
+  <div class="g-pager">
+    <span class="g-pager-item" v-for="(page,index) in pages" :key="index">{{page}}</span>
+  </div>
+</template>
+<script>
+export default {
+  name: "GuluPager",
+  props: {
+    totalPage: {
+      type: Number,
+      required: true
+    },
+    currentPage: {
+      type: Number,
+      required: true
+    },
+    hideIfOnePage: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data() {
+    let pages = unique(
+      [
+        1,
+        this.currentPage,
+        this.currentPage - 1,
+        this.currentPage - 2,
+        this.currentPage + 1,
+        this.currentPage + 2,
+        this.totalPage
+      ].sort((a, b) => a - b)
+    ).reduce((prev, current, index, array) => {
+      prev.push(current);
+      array[index + 1] !== undefined &&
+        array[index + 1] - array[index] > 1 &&
+        prev.push("...");
+      return prev;
+    }, []);
+
+    return {
+      pages
+    };
+  }
+};
+
+function unique(array) {
+  // return [...new Set(array)]
+  const obj = {};
+  array.map(num => {
+    obj[num] = true;
+  });
+  return Object.keys(obj).map(s => parseInt(s, 10));
+}
+</script>
+<style lang="scss" scoped>
+@import "./../../styles/var";
+.g-pager {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  user-select: none;
+  $width: 20px;
+  $height: 20px;
+  $font-size: 12px;
+  &.hide {
+    display: none;
+  }
+  &-separator {
+    width: $width;
+    font-size: $font-size;
+  }
+  &-item {
+    min-width: $width;
+    height: $height;
+    font-size: $font-size;
+    border: 1px solid #e1e1e1;
+    border-radius: $border-radius;
+    padding: 0 4px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 4px;
+    cursor: pointer;
+    &.current,
+    &:hover {
+      border-color: $blue;
+    }
+    &.current {
+      cursor: default;
+    }
+  }
+  &-nav {
+    margin: 0 4px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: $grey;
+    height: $height;
+    width: $width;
+    border-radius: $border-radius;
+    font-size: $font-size;
+    cursor: pointer;
+    &.disabled {
+      cursor: default;
+      svg {
+        fill: darken($grey, 30%);
+      }
+    }
+  }
+}
+</style>
