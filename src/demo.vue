@@ -137,7 +137,7 @@
             </g-nav>
           </div>
           <div>
-            <g-pager :totalPage="20" :currentPage="3"></g-pager>
+            <g-pager :totalPage="20" :currentPage="1"></g-pager>
           </div>
         </g-content>
         <g-footer style="border:1px solid black;">footer</g-footer>

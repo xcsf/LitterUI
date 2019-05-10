@@ -1,11 +1,31 @@
 <template>
   <div class="g-pager">
-    <span class="g-pager-item" v-for="(page,index) in pages" :key="index">{{page}}</span>
+    <span class="g-pager-nav prev" :class="{disabled:currentPage===1}">
+      <g-icon name="left"></g-icon>
+    </span>
+    <template v-for="(page, index) in pages">
+      <template v-if="page === currentPage">
+        <span class="g-pager-item current" :key="index">{{page}}</span>
+      </template>
+      <template v-else-if="page === '...'">
+        <g-icon class="g-pager-separator" :key="index" name="omit"></g-icon>
+      </template>
+      <template v-else>
+        <span class="g-pager-item other" :key="index">{{page}}</span>
+      </template>
+    </template>
+    <span class="g-pager-nav prev" :class="{disabled:currentPage===totalPage}">
+      <g-icon name="right"></g-icon>
+    </span>
   </div>
 </template>
 <script>
+import Icon from "../icon";
 export default {
   name: "GuluPager",
+  components: {
+    "g-icon": Icon
+  },
   props: {
     totalPage: {
       type: Number,
@@ -30,7 +50,9 @@ export default {
         this.currentPage + 1,
         this.currentPage + 2,
         this.totalPage
-      ].sort((a, b) => a - b)
+      ]
+        .filter(n => n > 0 && n <= this.totalPage)
+        .sort((a, b) => a - b)
     ).reduce((prev, current, index, array) => {
       prev.push(current);
       array[index + 1] !== undefined &&
