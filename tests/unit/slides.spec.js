@@ -152,7 +152,7 @@ describe('Slides.vue', () => {
                 'update:selected': callback
             }
         })
-        wrapper.find('.slides-dots span:first-child').trigger('click')
+        wrapper.find('.g-slides-dots span:first-child').trigger('click')
         setTimeout(() => {
             expect(callback).to.have.been.calledWith('third')
             wrapper.destroy()
@@ -182,7 +182,7 @@ describe('Slides.vue', () => {
                 'update:selected': callback
             }
         })
-        wrapper.find('.slides-dots >span:last-child').trigger('click')
+        wrapper.find('.g-slides-dots >span:last-child').trigger('click')
         setTimeout(() => {
             expect(callback).to.have.been.calledWith('second')
             wrapper.destroy()
