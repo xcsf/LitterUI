@@ -1,6 +1,6 @@
 <template>
   <div>
-    <g-layout style="height:100vh">
+    <g-layout>
       <g-sider style="border:1px solid black;">
         <g-collapse single :selected.sync="selectedcoll" style="margin: 40px">
           <g-collapse-item title="标题1" name="1">内容1</g-collapse-item>
@@ -9,8 +9,8 @@
         </g-collapse>
       </g-sider>
       <g-layout>
-        <g-header style="border:1px solid black;">header</g-header>
-        <g-content style="border:1px solid black;">
+        <g-header style="padding: 50px;">header</g-header>
+        <g-content style="padding: 50px;">
           <div>
             <g-button @click="showToast1" :enableHtml="true">Show Toast</g-button>
             <g-button @click="showToast2">Show Toast</g-button>
@@ -112,7 +112,7 @@
               </g-slides-item>
             </g-slides>
           </div>
-          <div>
+          <div style="margin-top:20px">
             <g-nav :selected.sync="selectednav" trigger="hover">
               <g-nav-item name="home">
                 <a href="https://www.baidu.com" target="_blank">首页</a>
@@ -136,11 +136,24 @@
               <g-nav-item name="hire">页面3</g-nav-item>
             </g-nav>
           </div>
+          <div style="margin-top:20px">
+            {{tableselected}}
+            <g-table
+              :selected-items.sync="tableselected"
+              striped
+              :columns="columns"
+              :dataSource="tabledataSource"
+              :order-by.sync="orderBy"
+              @update:orderBy="xxx"
+              :loading="tableloading"
+              bordered
+            ></g-table>
+          </div>
           <div>
-            <g-pager :totalPage="20" :currentPage="1"></g-pager>
+            <g-pager :totalPage="15" :currentPage.sync="currentPage" :hide-if-one-page="false"></g-pager>
           </div>
         </g-content>
-        <g-footer style="border:1px solid black;">footer</g-footer>
+        <g-footer style="padding: 50px;">footer</g-footer>
       </g-layout>
     </g-layout>
     <div style="margin: 20px 0;">
@@ -195,6 +208,7 @@ import TabsBody from "./tabs/tabs-body";
 import TabsHead from "./tabs/tabs-head";
 import TabsItem from "./tabs/tabs-item";
 import TabsPane from "./tabs/tabs-pane";
+import Table from "./table/table";
 import Vue from "vue";
 import db from "./../tests/fixture/db";
 import { removeListener } from "./click-outside";
@@ -245,6 +259,39 @@ export default {
       selectedcoll: ["2", "3"],
       selectednav: ["culture"],
       selectedSlides: "second",
+      currentPage: 1,
+      columns: [
+        { text: "姓名", field: "name" },
+        { text: "分数", field: "score" }
+      ],
+      orderBy: {
+        // name: "asc",
+        score: "desc"
+      },
+      tableloading: false,
+      tableselected: [],
+      tabledataSource: [
+        { id: 1, name: "方方", score: 100, description: "xxxx xxxx" },
+        { id: 2, name: "圆圆", score: 99, description: "yyyy yyyy" },
+        { id: 3, name: "张三", score: 100 },
+        { id: 4, name: "李四", score: 99 },
+        { id: 5, name: "超人", score: 100 },
+        { id: 6, name: "蝙蝠侠", score: 99 },
+        { id: 7, name: "蜘蛛侠", score: 100 },
+        { id: 8, name: "钢铁侠", score: 99 },
+        { id: 9, name: "方方", score: 100 },
+        { id: 10, name: "圆圆", score: 99 },
+        { id: 11, name: "张三", score: 100 },
+        { id: 12, name: "李四", score: 99 },
+        { id: 13, name: "超人", score: 100 },
+        { id: 14, name: "蝙蝠侠", score: 99 },
+        { id: 15, name: "蜘蛛侠", score: 100 },
+        { id: 16, name: "钢铁侠", score: 99 },
+        { id: 17, name: "蜘蛛侠", score: 100 },
+        { id: 18, name: "钢铁侠", score: 99 },
+        { id: 19, name: "方方", score: 100 },
+        { id: 20, name: "圆圆", score: 99 }
+      ],
       source: [],
       sourceStatic: [
         {
@@ -338,6 +385,7 @@ export default {
     "g-tabs-item": TabsItem,
     "g-tabs-head": TabsHead,
     "g-tabs-body": TabsBody,
+    "g-table": Table,
     "g-collapse": Collapse,
     "g-collapse-item": CollapseItem,
     "g-header": Header,
@@ -356,6 +404,19 @@ export default {
     // removeListener();
   },
   methods: {
+    xxx() {
+      this.tableloading = true;
+      setTimeout(() => {
+        this.tabledataSource = this.tabledataSource.sort(
+          (a, b) => a.score - b.score
+        );
+        this.tableloading = false;
+      }, 3000);
+    },
+    changeItem(obj) {
+      console.log(obj);
+      // this.tableselected.push
+    },
     loadData(newSelected, callback) {
       let { id } = newSelected;
       ajax2(id).then(result => {
