@@ -146,6 +146,7 @@
               :order-by.sync="orderBy"
               @update:orderBy="xxx"
               :loading="tableloading"
+              height="400px"
               bordered
             ></g-table>
           </div>
@@ -411,7 +412,7 @@ export default {
           (a, b) => a.score - b.score
         );
         this.tableloading = false;
-      }, 3000);
+      }, 1000);
     },
     changeItem(obj) {
       console.log(obj);
