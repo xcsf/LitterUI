@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <s-wrapper title="顶部导航" :instruction="instruction1">
+    <s-wrapper title="顶部导航" :instruction="instruction1" :zindex="9">
       <template slot="component">
         <g-nav :selected.sync="selectednav">
           <g-nav-item name="home">
@@ -28,7 +28,7 @@
       </template>
       <pre slot="code"><code>{{code1}}</code></pre>
     </s-wrapper>
-    <s-wrapper title="vertical 垂直导航" :instruction="instruction2">
+    <s-wrapper title="vertical 垂直导航" :instruction="instruction2" :zindex="8">
       <template slot="component">
         <g-nav :selected.sync="selectednav" vertical style="width:200px;">
           <g-nav-item name="home">
@@ -55,7 +55,7 @@
       </template>
       <pre slot="code"><code>{{code2}}</code></pre>
     </s-wrapper>
-    <s-wrapper title="trigger 触发属性" :instruction="instruction3">
+    <s-wrapper :zindex="7" title="trigger 触发属性" :instruction="instruction3">
       <template slot="component">
         <g-nav :selected.sync="selectednav" trigger="hover">
           <g-nav-item name="home">

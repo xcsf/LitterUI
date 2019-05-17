@@ -1,5 +1,5 @@
 <template>
-  <div class="s-wrapper">
+  <div class="s-wrapper" :style="`z-index:${zindex}`">
     <h3 :id="title">
       <a :href="`#${title}`">#</a>
       {{title}}
@@ -38,6 +38,9 @@ export default {
     instruction: {
       type: String,
       default: "asdasdasdasd"
+    },
+    zindex: {
+      type: Number
     }
   },
   data() {
@@ -101,6 +104,7 @@ article.a-post:target {
   }
 }
 .s-wrapper {
+  position: relative;
   & h3 {
     position: relative;
     z-index: 0;
