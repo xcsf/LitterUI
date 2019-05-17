@@ -137,7 +137,6 @@
             </g-nav>
           </div>
           <div style="margin-top:20px">
-            {{tableselected}}
             <g-table
               :selected-items.sync="tableselected"
               striped
@@ -262,8 +261,8 @@ export default {
       selectedSlides: "second",
       currentPage: 1,
       columns: [
-        { text: "姓名", field: "name" },
-        { text: "分数", field: "score" }
+        { text: "姓名", field: "name", width: "200" },
+        { text: "分数", field: "score", width: "200" }
       ],
       orderBy: {
         // name: "asc",
@@ -276,7 +275,7 @@ export default {
         { id: 2, name: "圆圆", score: 99, description: "yyyy yyyy" },
         { id: 3, name: "张三", score: 100 },
         { id: 4, name: "李四", score: 99 },
-        { id: 5, name: "超人", score: 100 },
+        { id: 5, name: "超人超人超人超", score: 100 },
         { id: 6, name: "蝙蝠侠", score: 99 },
         { id: 7, name: "蜘蛛侠", score: 100 },
         { id: 8, name: "钢铁侠", score: 99 },

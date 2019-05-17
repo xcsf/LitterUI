@@ -4,7 +4,7 @@
       <table class="g-table" :class="{headborder:bordered, compact}">
         <thead ref="tablehead">
           <tr>
-            <th>
+            <th style="width:50px">
               <input
                 :checked="areAllItemsSelected"
                 type="checkbox"
@@ -12,8 +12,12 @@
                 ref="allChecked"
               >
             </th>
-            <th v-if="idVisible">#</th>
-            <th v-for="(column) in columns" :key="column.field">
+            <th v-if="idVisible">id</th>
+            <th
+              v-for="(column) in columns"
+              :key="column.field"
+              :style="`width:${column.width && column.width}px`"
+            >
               <div class="g-table-header">
                 {{column.text}}
                 <span
@@ -34,16 +38,19 @@
       <table class="g-table" :class="{bodyborder:bordered, compact, striped}">
         <tbody ref="tablebody">
           <tr v-for="(item,index) in dataSource" :key="item.id">
-            <td>
+            <td style="width:50px">
               <input
                 :checked="isCheckedItem(item)"
                 type="checkbox"
                 @change="onChangeItem(item , index, $event)"
               >
             </td>
-            <td v-if="idVisible">{{index}}</td>
+            <td v-if="idVisible">{{item.id}}</td>
             <template v-for="(column,index) in columns">
-              <td :key="index">{{item[column.field]}}</td>
+              <td
+                :key="index"
+                :style="`width:${column.width && column.width}px`"
+              >{{item[column.field]}}</td>
             </template>
           </tr>
         </tbody>
@@ -118,9 +125,11 @@ export default {
     }
   },
   mounted() {
-    this.updateHeaderWidth();
-    this.onWindowResize = () => this.updateHeaderWidth();
-    window.addEventListener("resize", this.onWindowResize);
+    // this.$nextTick(() => {
+    //   this.updateHeaderWidth();
+    // });
+    // this.onWindowResize = () => this.updateHeaderWidth();
+    // window.addEventListener("resize", this.onWindowResize);
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.onWindowResize);
@@ -136,9 +145,10 @@ export default {
   },
   methods: {
     updateHeaderWidth() {
-      Array.from(this.$refs.tablebody.children[0].children).map((el, index) => {
+      console.log(this.$refs.tablehead.children[0].children);
+      Array.from(this.$refs.tablehead.children[0].children).map((el, index) => {
         let { width } = el.getBoundingClientRect();
-        this.$refs.tablehead.children[0].children[index].style.width =
+        this.$refs.tablebody.children[0].children[index].style.width =
           width + "px";
       });
     },
@@ -181,6 +191,9 @@ $grey: darken($grey, 10%);
 .g-table {
   width: 100%;
   border-collapse: collapse;
+  &-wrapper {
+    position: relative;
+  }
   > tbody {
     overflow: auto;
   }
@@ -247,9 +260,7 @@ $grey: darken($grey, 10%);
       fill: red;
     }
   }
-  &-wrapper {
-    position: relative;
-  }
+
   &-loading {
     background-color: rgba(255, 255, 255, 0.6);
     position: absolute;
