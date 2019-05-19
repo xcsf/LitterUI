@@ -4,7 +4,7 @@
       <table class="g-table" :class="{headborder:bordered, compact}">
         <thead ref="tablehead">
           <tr>
-            <th style="width:50px">
+            <th v-if="selectedItems" style="width:50px;" class="g-table-center">
               <input
                 :checked="areAllItemsSelected"
                 type="checkbox"
@@ -13,11 +13,7 @@
               >
             </th>
             <th v-if="idVisible">id</th>
-            <th
-              v-for="(column) in columns"
-              :key="column.field"
-              :style="`width:${column.width && column.width}px`"
-            >
+            <th v-for="(column) in columns" :key="column.field" :style="`width:${column.width}px`">
               <div class="g-table-header">
                 {{column.text}}
                 <span
@@ -30,6 +26,7 @@
                 </span>
               </div>
             </th>
+            <th ref="actionsHeader" v-if="$scopedSlots.default"></th>
           </tr>
         </thead>
       </table>
@@ -38,7 +35,7 @@
       <table class="g-table" :class="{bodyborder:bordered, compact, striped}">
         <tbody ref="tablebody">
           <tr v-for="(item,index) in dataSource" :key="item.id">
-            <td style="width:50px">
+            <td v-if="selectedItems" style="width:50px" class="g-table-center">
               <input
                 :checked="isCheckedItem(item)"
                 type="checkbox"
@@ -47,11 +44,13 @@
             </td>
             <td v-if="idVisible">{{item.id}}</td>
             <template v-for="(column,index) in columns">
-              <td
-                :key="index"
-                :style="`width:${column.width && column.width}px`"
-              >{{item[column.field]}}</td>
+              <td :key="index" :style="`width:${column.width}px`">{{item[column.field]}}</td>
             </template>
+            <td v-if="$scopedSlots.default">
+              <div ref="actions" style="display: inline-block;">
+                <slot :item="item"></slot>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -97,8 +96,8 @@ export default {
       type: Boolean
     },
     selectedItems: {
-      type: Array,
-      default: () => []
+      type: Array
+      // default: () => []
     },
     loading: {
       type: Boolean,
@@ -125,11 +124,22 @@ export default {
     }
   },
   mounted() {
-    // this.$nextTick(() => {
-    //   this.updateHeaderWidth();
-    // });
-    // this.onWindowResize = () => this.updateHeaderWidth();
-    // window.addEventListener("resize", this.onWindowResize);
+    this.$nextTick(() => {
+      this.updateHeaderWidth();
+    });
+    this.onWindowResize = () => this.updateHeaderWidth();
+    window.addEventListener("resize", this.onWindowResize);
+
+    let div = this.$refs.actions[0];
+    let { width } = div.getBoundingClientRect();
+    let parent = div.parentNode;
+    let styles = getComputedStyle(parent);
+    let paddingLeft = styles.getPropertyValue("padding-left");
+    let paddingRight = styles.getPropertyValue("padding-right");
+    let borderLeft = styles.getPropertyValue("border-left-width");
+    let borderRight = styles.getPropertyValue("border-right-width");
+    let width2 = width + parseInt(paddingRight) + parseInt(paddingRight) + parseInt(borderLeft) + parseInt(borderRight) + "px";
+    this.$refs.actionsHeader.style.width = width2;
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.onWindowResize);
@@ -145,7 +155,6 @@ export default {
   },
   methods: {
     updateHeaderWidth() {
-      console.log(this.$refs.tablehead.children[0].children);
       Array.from(this.$refs.tablehead.children[0].children).map((el, index) => {
         let { width } = el.getBoundingClientRect();
         this.$refs.tablebody.children[0].children[index].style.width =
@@ -191,6 +200,9 @@ $grey: darken($grey, 10%);
 .g-table {
   width: 100%;
   border-collapse: collapse;
+  & &-center {
+    text-align: center;
+  }
   &-wrapper {
     position: relative;
   }

@@ -143,11 +143,16 @@
               :columns="columns"
               :dataSource="tabledataSource"
               :order-by.sync="orderBy"
-              @update:orderBy="xxx"
+              @update:orderBy="orderFun"
               :loading="tableloading"
               height="400px"
               bordered
-            ></g-table>
+            >
+              <template v-slot="prop">
+                <button @click="tableEdit(prop)">编辑</button>
+                <button @click="tableSave(prop)">保存</button>
+              </template>
+            </g-table>
           </div>
           <div>
             <g-pager :totalPage="15" :currentPage.sync="currentPage" :hide-if-one-page="false"></g-pager>
@@ -261,8 +266,8 @@ export default {
       selectedSlides: "second",
       currentPage: 1,
       columns: [
-        { text: "姓名", field: "name", width: "200" },
-        { text: "分数", field: "score", width: "200" }
+        { text: "姓名", field: "name", width: 200 },
+        { text: "分数", field: "score" }
       ],
       orderBy: {
         // name: "asc",
@@ -275,7 +280,11 @@ export default {
         { id: 2, name: "圆圆", score: 99, description: "yyyy yyyy" },
         { id: 3, name: "张三", score: 100 },
         { id: 4, name: "李四", score: 99 },
-        { id: 5, name: "超人超人超人超", score: 100 },
+        {
+          id: 5,
+          name: "超人超人超超人超人超超人超人超超人超人超超人超人超人超",
+          score: 100
+        },
         { id: 6, name: "蝙蝠侠", score: 99 },
         { id: 7, name: "蜘蛛侠", score: 100 },
         { id: 8, name: "钢铁侠", score: 99 },
@@ -404,7 +413,13 @@ export default {
     // removeListener();
   },
   methods: {
-    xxx() {
+    tableEdit(prop) {
+      console.log(prop);
+    },
+    tableSave(prop) {
+      console.log(prop);
+    },
+    orderFun() {
       this.tableloading = true;
       setTimeout(() => {
         this.tabledataSource = this.tabledataSource.sort(
