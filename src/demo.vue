@@ -154,8 +154,21 @@
               </template>
             </g-table>
           </div>
-          <div>
+          <div style="margin-top:20px">
             <g-pager :totalPage="15" :currentPage.sync="currentPage" :hide-if-one-page="false"></g-pager>
+          </div>
+          <div style="margin-top:20px">
+            <g-uploader
+              accept="image/*"
+              action="http://localhost:3000/upload"
+              name="filename"
+              :fileList.sync="uplodefilelist"
+              :parseResponse="uploaderParseResponse"
+            >
+              <button>Upload</button>
+              <div>xxxxxxxxxxx</div>
+            </g-uploader>
+            <button>Save</button>
           </div>
         </g-content>
         <g-footer style="padding: 50px;">footer</g-footer>
@@ -214,6 +227,7 @@ import TabsHead from "./tabs/tabs-head";
 import TabsItem from "./tabs/tabs-item";
 import TabsPane from "./tabs/tabs-pane";
 import Table from "./table/table";
+import Uploader from "./upload/uploader";
 import Vue from "vue";
 import db from "./../tests/fixture/db";
 import { removeListener } from "./click-outside";
@@ -265,6 +279,7 @@ export default {
       selectednav: ["culture"],
       selectedSlides: "second",
       currentPage: 1,
+      uplodefilelist: [],
       columns: [
         { text: "姓名", field: "name", width: 200 },
         { text: "分数", field: "score" }
@@ -401,7 +416,8 @@ export default {
     "g-content": Content,
     "g-nav": Nav,
     "g-nav-item": NavItem,
-    "g-sub-nav": SubNav
+    "g-sub-nav": SubNav,
+    "g-uploader": Uploader
   },
   created() {
     // ajax(0, result => {
@@ -413,6 +429,10 @@ export default {
     // removeListener();
   },
   methods: {
+    uploaderParseResponse(response) {
+      let obj = JSON.parse(response);
+      return `http://localhost:3000/preview/${obj.id}`;
+    },
     tableEdit(prop) {
       console.log(prop);
     },
