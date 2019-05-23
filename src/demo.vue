@@ -158,6 +158,7 @@
             <g-pager :totalPage="15" :currentPage.sync="currentPage" :hide-if-one-page="false"></g-pager>
           </div>
           <div style="margin-top:20px">
+            {{uplodefilelist}}
             <g-uploader
               accept="image/*"
               action="http://localhost:3000/upload"
@@ -165,8 +166,7 @@
               :fileList.sync="uplodefilelist"
               :parseResponse="uploaderParseResponse"
             >
-              <button>Upload</button>
-              <div>xxxxxxxxxxx</div>
+              <g-button icon="upload">Upload</g-button>
             </g-uploader>
             <button>Save</button>
           </div>
