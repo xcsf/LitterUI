@@ -165,6 +165,8 @@
               name="filename"
               :fileList.sync="uplodefilelist"
               :parseResponse="uploaderParseResponse"
+              @error="errorinfo"
+              :size-limit="1024"
             >
               <g-button icon="upload">Upload</g-button>
             </g-uploader>
@@ -429,6 +431,9 @@ export default {
     // removeListener();
   },
   methods: {
+    errorinfo(error) {
+      alert(error);
+    },
     uploaderParseResponse(response) {
       let obj = JSON.parse(response);
       return `http://localhost:3000/preview/${obj.id}`;

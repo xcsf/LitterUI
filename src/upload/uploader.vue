@@ -7,23 +7,25 @@
     <ol class="g-uploader-filelist">
       <li v-for="file in fileList" :key="file.name">
         <template v-if="file.status==='uploading'">
-          <span>菊花</span>
+          <g-icon name="loading" class="g-uploader-loading">菊花</g-icon>
         </template>
-        <template v-if="file.type.indexOf('image')===0">
+        <template v-else-if="file.type.indexOf('image')===0">
           <img class="g-uploader-image" :src="file.url">
         </template>
         <template v-else>
           <div class="g-uploder-image-default"></div>
         </template>
         <span class="g-uploader-name" :class="{[file.status]:file.status}">{{file.name}}</span>
-        <button @click="onRemove(file)">Remove</button>
+        <span class="g-uploader-remove" @click="onRemove(file)">Remove</span>
       </li>
     </ol>
   </div>
 </template>
 <script>
+import GIcon from "../icon";
 export default {
   name: "GuluUploader",
+  components: { GIcon },
   props: {
     fileList: {
       type: Array,
@@ -44,6 +46,9 @@ export default {
     parseResponse: {
       type: Function,
       required: true
+    },
+    sizeLimit: {
+      type: Number
     }
   },
   data() {
@@ -69,6 +74,8 @@ export default {
       input.click();
     },
     createInput() {
+      //delete all input element
+      this.$refs.trigger.innerHTML = "";
       let input = document.createElement("input");
       input.type = "file";
       this.$refs.trigger.appendChild(input);
@@ -76,14 +83,21 @@ export default {
     },
     beforeUploadFile(rawFile, theName) {
       let { size, type } = rawFile;
+      if (size > this.sizeLimit) {
+        this.$emit("error", "文件大于2MB");
+        return false;
+      }
       this.$emit("update:fileList", [
         ...this.fileList,
         { name: theName, size, type, status: "uploading" }
       ]);
+      return true;
     },
     uploadFile(rawFile) {
       let theName = this.gengerateName(rawFile.name);
-      this.beforeUploadFile(rawFile, theName);
+      if (!this.beforeUploadFile(rawFile, theName)) {
+        return;
+      }
       let formData = new FormData();
       formData.append(this.name, rawFile);
       this.doUploadFile(
@@ -92,17 +106,22 @@ export default {
           this.url = this.parseResponse(response);
           this.afterUploadFile(rawFile, theName, this.url);
         },
-        () => {
-          this.uploadeError(theName);
+        xhr => {
+          this.uploadeError(xhr, theName);
         }
       );
     },
-    uploadeError(theName) {
+    uploadeError(xhr, theName) {
       let file = this.fileList.filter(f => f.name === theName)[0];
       let index = this.fileList.indexOf(file);
       let copyfileList = JSON.parse(JSON.stringify(this.fileList));
       copyfileList[index].status = "fail";
       this.$emit("update:fileList", copyfileList);
+      let error = "";
+      if (xhr.status === 0) {
+        error = "网络无法连接";
+      }
+      this.$emit("error", error);
     },
     afterUploadFile(rawFile, theName, url) {
       let file = this.fileList.filter(f => f.name === theName)[0];
@@ -116,14 +135,10 @@ export default {
       let xhr = new XMLHttpRequest();
       xhr.open(this.method, this.action);
       xhr.onload = () => {
-        if (xhr.status == 200) {
-          success(xhr.response);
-        } else {
-          fail();
-          console.log(
-            "Error " + xhr.status + " occurred when trying to upload your file."
-          );
-        }
+        success(xhr.response);
+      };
+      xhr.onerror = () => {
+        fail(xhr);
       };
       xhr.send(formData);
     },
@@ -139,13 +154,13 @@ export default {
   }
 };
 </script>
-
 <style lang="scss" scoped>
+@import "./../../styles/var";
 .g-uploader {
-  border: 1px solid red;
   &-filelist {
     list-style: none;
     > li {
+      border: 1px solid grey;
       display: flex;
       align-items: center;
       margin: 8px 0;
@@ -161,12 +176,22 @@ export default {
     }
   }
   &-name {
+    margin-left: 8px;
     &.success {
       color: green;
     }
     &.fail {
       color: red;
     }
+  }
+  &-remove {
+    margin-left: auto;
+  }
+  &-loading {
+    @include spin;
+    width: 80px;
+    height: 80px;
+    fill: grey;
   }
 }
 </style>
