@@ -68,48 +68,75 @@ export default {
     onClickUpload() {
       let input = this.createInput();
       input.addEventListener("change", () => {
-        this.uploadFile(input.files[0]);
+        this.uploadFile(input.files); //单文件
+        // this.uploadFiles(input.files);
         input.remove();
       });
       input.click();
     },
+    // uploadFiles(files) {
+    //   let formData = new FormData();
+    //   for (let i = 0; i < files.length; i++) {
+    //     formData.append(this.name, files[i]);
+    //   }
+    //   let xhr = new XMLHttpRequest();
+    //   xhr.open(this.method, this.action);
+    //   xhr.send(formData);
+    // },
     createInput() {
       //delete all input element
       this.$refs.trigger.innerHTML = "";
       let input = document.createElement("input");
       input.type = "file";
+      input.multiple = true;
       this.$refs.trigger.appendChild(input);
       return input;
     },
-    beforeUploadFile(rawFile, theName) {
-      let { size, type } = rawFile;
-      if (size > this.sizeLimit) {
-        this.$emit("error", "文件大于2MB");
-        return false;
+    beforeUploadFile(rawFiles, theNames) {
+      let addfileList = [];
+      for (let i = 0; i < rawFiles.length; i++) {
+        let rawFile = rawFiles[i];
+        let { size, type } = rawFile;
+        if (size > this.sizeLimit) {
+          this.$emit("error", "文件" + theNames[i] + "大于2MB");
+          return false;
+        }
+        addfileList.push({
+          name: theNames[i],
+          size,
+          type,
+          status: "uploading"
+        });
       }
-      this.$emit("update:fileList", [
-        ...this.fileList,
-        { name: theName, size, type, status: "uploading" }
-      ]);
+      this.$emit("update:fileList", [...this.fileList, ...addfileList]);
       return true;
     },
-    uploadFile(rawFile) {
-      let theName = this.gengerateName(rawFile.name);
-      if (!this.beforeUploadFile(rawFile, theName)) {
+    uploadFile(rawFiles) {
+      let theNames = [];
+      for (let i = 0; i < rawFiles.length; i++) {
+        let rawFile = rawFiles[i];
+        let theName = this.gengerateName(rawFile.name);
+        theNames[i] = theName;
+      }
+      if (!this.beforeUploadFile(rawFiles, theNames)) {
         return;
       }
-      let formData = new FormData();
-      formData.append(this.name, rawFile);
-      this.doUploadFile(
-        formData,
-        response => {
-          this.url = this.parseResponse(response);
-          this.afterUploadFile(rawFile, theName, this.url);
-        },
-        xhr => {
-          this.uploadeError(xhr, theName);
-        }
-      );
+      for (let i = 0; i < rawFiles.length; i++) {
+        let rawFile = rawFiles[i];
+        //分开上传各个文件
+        let formData = new FormData();
+        formData.append(this.name, rawFile);
+        this.doUploadFile(
+          formData,
+          response => {
+            this.url = this.parseResponse(response);
+            this.afterUploadFile(rawFile, theNames[i], this.url);
+          },
+          xhr => {
+            this.uploadeError(xhr, theNames[i]);
+          }
+        );
+      }
     },
     uploadeError(xhr, theName) {
       let file = this.fileList.filter(f => f.name === theName)[0];
@@ -124,6 +151,7 @@ export default {
       this.$emit("error", error);
     },
     afterUploadFile(rawFile, theName, url) {
+      // console.log(this.fileList);
       let file = this.fileList.filter(f => f.name === theName)[0];
       let index = this.fileList.indexOf(file);
       let copyfileList = JSON.parse(JSON.stringify(this.fileList));
@@ -186,6 +214,8 @@ export default {
   }
   &-remove {
     margin-left: auto;
+    margin-right: 8px;
+    user-select: none;
   }
   &-loading {
     @include spin;

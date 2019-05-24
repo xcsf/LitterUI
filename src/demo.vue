@@ -166,7 +166,7 @@
               :fileList.sync="uplodefilelist"
               :parseResponse="uploaderParseResponse"
               @error="errorinfo"
-              :size-limit="1024"
+              :size-limit="2*1024*1024"
             >
               <g-button icon="upload">Upload</g-button>
             </g-uploader>
