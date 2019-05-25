@@ -161,7 +161,7 @@ export default {
       this.$emit("update:fileList", copyfileList);
     },
     doUploadFile(formData, success, fail) {
-      ajax(this.method, this.action, {
+      ajax[this.method.toLowerCase()](this.action, {
         success,
         fail,
         data: formData

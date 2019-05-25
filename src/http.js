@@ -1,4 +1,4 @@
-export default function ajax(method, url, options) {
+function core(method, url, options) {
     let xhr = new XMLHttpRequest()
     xhr.open(method, url)
     xhr.onload = () => {
@@ -9,3 +9,13 @@ export default function ajax(method, url, options) {
     }
     xhr.send(options.data)
 }
+const http = {
+    get() { },
+    post(url, options) {
+        return core('post', url, options)
+    },
+    put() { },
+    delete() { },
+    patch() { }
+}
+export default http
