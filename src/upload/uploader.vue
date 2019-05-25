@@ -23,6 +23,7 @@
 </template>
 <script>
 import GIcon from "../icon";
+import ajax from "../http";
 export default {
   name: "GuluUploader",
   components: { GIcon },
@@ -160,15 +161,20 @@ export default {
       this.$emit("update:fileList", copyfileList);
     },
     doUploadFile(formData, success, fail) {
-      let xhr = new XMLHttpRequest();
-      xhr.open(this.method, this.action);
-      xhr.onload = () => {
-        success(xhr.response);
-      };
-      xhr.onerror = () => {
-        fail(xhr);
-      };
-      xhr.send(formData);
+      ajax(this.method, this.action, {
+        success,
+        fail,
+        data: formData
+      });
+      // let xhr = new XMLHttpRequest();
+      // xhr.open(this.method, this.action);
+      // xhr.onload = () => {
+      //   success(xhr.response);
+      // };
+      // xhr.onerror = () => {
+      //   fail(xhr);
+      // };
+      // xhr.send(formData);
     },
     gengerateName(name) {
       while (this.fileList.filter(f => f.name === name).length > 0) {
