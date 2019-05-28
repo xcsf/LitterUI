@@ -131,7 +131,7 @@ export default {
           formData,
           response => {
             this.url = this.parseResponse(response);
-            this.afterUploadFile(rawFile, theNames[i], this.url);
+            this.afterUploadFile(theNames[i], this.url);
           },
           xhr => {
             this.uploadeError(xhr, theNames[i]);
@@ -151,7 +151,7 @@ export default {
       }
       this.$emit("error", error);
     },
-    afterUploadFile(rawFile, theName, url) {
+    afterUploadFile(theName, url) {
       // console.log(this.fileList);
       let file = this.fileList.filter(f => f.name === theName)[0];
       let index = this.fileList.indexOf(file);

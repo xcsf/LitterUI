@@ -74,7 +74,6 @@ describe('Row', () => {
                 align: 'right'
             }
         })
-        console.log(wrapper.html())
         expect(wrapper.find('.g-row').classes()).contain('align-right')
     })
 })

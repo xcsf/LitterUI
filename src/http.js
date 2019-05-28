@@ -9,7 +9,7 @@ function core(method, url, options) {
     }
     xhr.send(options.data)
 }
-const http = {
+export default {
     get() { },
     post(url, options) {
         return core('post', url, options)
@@ -18,4 +18,3 @@ const http = {
     delete() { },
     patch() { }
 }
-export default http
