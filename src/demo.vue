@@ -1,16 +1,21 @@
 <template>
   <div>
     <g-layout>
-      <g-sider style="border:1px solid black;">
+      <!-- <g-sider style="border:1px solid black;">
         <g-collapse single :selected.sync="selectedcoll" style="margin: 40px">
           <g-collapse-item title="标题1" name="1">内容1</g-collapse-item>
           <g-collapse-item title="标题2" name="2">内容2</g-collapse-item>
           <g-collapse-item title="标题3" name="3">内容3</g-collapse-item>
         </g-collapse>
-      </g-sider>
+      </g-sider> -->
       <g-layout>
         <g-header style="padding: 50px;">header</g-header>
         <g-content style="padding: 50px;">
+          <div style="margin:20px; border:1px solid red;">
+            <g-sticky :distance="100">
+              <div>我是粘纸内容</div>
+            </g-sticky>
+          </div>
           <div>
             <g-button @click="showToast1" :enableHtml="true">Show Toast</g-button>
             <g-button @click="showToast2">Show Toast</g-button>
@@ -223,6 +228,7 @@ import Sider from "./layout/sider";
 import Slides from "./slides/slides";
 import SlidesItem from "./slides/slides-item";
 import SubNav from "./nav/sub-nav";
+import Sticky from "./sticky/sticky";
 import Tabs from "./tabs/tabs";
 import TabsBody from "./tabs/tabs-body";
 import TabsHead from "./tabs/tabs-head";
@@ -419,7 +425,8 @@ export default {
     "g-nav": Nav,
     "g-nav-item": NavItem,
     "g-sub-nav": SubNav,
-    "g-uploader": Uploader
+    "g-uploader": Uploader,
+    "g-sticky": Sticky
   },
   created() {
     // ajax(0, result => {
