@@ -4,7 +4,7 @@
   "main": "dist/litter-vue-ui.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name litter-vue-ui index.js",
     "test:unit": "vue-cli-service test:unit",
     "test": "karma start --single-run",
     "docs:dev": "vuepress dev docs",
