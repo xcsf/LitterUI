@@ -43,8 +43,13 @@
               >
             </td>
             <td v-if="idVisible">{{item.id}}</td>
-            <template v-for="(column,index) in columns">
-              <td :key="index" :style="`width:${column.width}px`">{{item[column.field]}}</td>
+            <template v-for="column in columns">
+              <template v-if="column.render">
+                <vnodes :key="column.field" :vnodes="column.render({value: item[column.field]})"></vnodes>
+              </template>
+              <template v-else>
+                <td :key="column.field" :style="`width:${column.width}px`">{{item[column.field]}}</td>
+              </template>
             </template>
             <td v-if="$scopedSlots.default">
               <div ref="actions" style="display: inline-block;">
@@ -65,13 +70,24 @@ import Icon from "@/icon";
 export default {
   name: "GuluTable",
   components: {
-    "g-icon": Icon
+    "g-icon": Icon,
+    vnodes: {
+      functional: true,
+      render: (h, context) => {
+        return context.props.vnodes;
+      }
+    }
+  },
+  data() {
+    return {
+      columns: []
+    };
   },
   props: {
-    columns: {
-      type: Array,
-      required: true
-    },
+    // columns: {
+    //   type: Array,
+    //   required: true
+    // },
     orderBy: {
       type: Object,
       default: () => ({})
@@ -130,16 +146,32 @@ export default {
     this.onWindowResize = () => this.updateHeaderWidth();
     window.addEventListener("resize", this.onWindowResize);
 
-    let div = this.$refs.actions[0];
-    let { width } = div.getBoundingClientRect();
-    let parent = div.parentNode;
-    let styles = getComputedStyle(parent);
-    let paddingLeft = styles.getPropertyValue("padding-left");
-    let paddingRight = styles.getPropertyValue("padding-right");
-    let borderLeft = styles.getPropertyValue("border-left-width");
-    let borderRight = styles.getPropertyValue("border-right-width");
-    let width2 = width + parseInt(paddingRight) + parseInt(paddingRight) + parseInt(borderLeft) + parseInt(borderRight) + "px";
-    this.$refs.actionsHeader.style.width = width2;
+    this.columns = this.$slots.default.map(node => {
+      let { text, field, width } = node.componentOptions.propsData;
+      let render = node.data.scopedSlots && node.data.scopedSlots.default;
+      return { text, field, width, render };
+    });
+    console.log(this.$slots.default);
+    console.log(this);
+
+    if (this.$refs.actions) {
+      let div = this.$refs.actions[0];
+      let { width } = div.getBoundingClientRect();
+      let parent = div.parentNode;
+      let styles = getComputedStyle(parent);
+      let paddingLeft = styles.getPropertyValue("padding-left");
+      let paddingRight = styles.getPropertyValue("padding-right");
+      let borderLeft = styles.getPropertyValue("border-left-width");
+      let borderRight = styles.getPropertyValue("border-right-width");
+      let width2 =
+        width +
+        parseInt(paddingRight) +
+        parseInt(paddingRight) +
+        parseInt(borderLeft) +
+        parseInt(borderRight) +
+        "px";
+      this.$refs.actionsHeader.style.width = width2;
+    }
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.onWindowResize);

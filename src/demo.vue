@@ -7,7 +7,7 @@
           <g-collapse-item title="标题2" name="2">内容2</g-collapse-item>
           <g-collapse-item title="标题3" name="3">内容3</g-collapse-item>
         </g-collapse>
-      </g-sider> -->
+      </g-sider>-->
       <g-layout>
         <g-header style="padding: 50px;">header</g-header>
         <g-content style="padding: 50px;">
@@ -145,7 +145,6 @@
             <g-table
               :selected-items.sync="tableselected"
               striped
-              :columns="columns"
               :dataSource="tabledataSource"
               :order-by.sync="orderBy"
               @update:orderBy="orderFun"
@@ -153,6 +152,11 @@
               height="400px"
               bordered
             >
+              <g-table-column text="姓名" field="name" width="200">
+                <template v-slot="xxx">
+                  <a href="#">{{xxx.value}}</a>
+                </template>
+              </g-table-column>
               <template v-slot="prop">
                 <button @click="tableEdit(prop)">编辑</button>
                 <button @click="tableSave(prop)">保存</button>
@@ -235,6 +239,7 @@ import TabsHead from "./tabs/tabs-head";
 import TabsItem from "./tabs/tabs-item";
 import TabsPane from "./tabs/tabs-pane";
 import Table from "./table/table";
+import TableColumn from "./table/table-column";
 import Uploader from "./upload/uploader";
 import Vue from "vue";
 import db from "./../tests/fixture/db";
@@ -305,14 +310,14 @@ export default {
         { id: 4, name: "李四", score: 99 },
         {
           id: 5,
-          name: "超人超人超超人超人超超人超人超超人超人超超人超人超人超",
+          name: "超人超人超超人超人超超人超人超超人超人超超人超",
           score: 100
         },
         { id: 6, name: "蝙蝠侠", score: 99 },
         { id: 7, name: "蜘蛛侠", score: 100 },
         { id: 8, name: "钢铁侠", score: 99 },
         { id: 9, name: "方方", score: 100 },
-        { id: 10, name: "圆圆", score: 99 },
+        { id: 10, name: "圆圆", score: 88 },
         { id: 11, name: "张三", score: 100 },
         { id: 12, name: "李四", score: 99 },
         { id: 13, name: "超人", score: 100 },
@@ -418,6 +423,7 @@ export default {
     "g-tabs-head": TabsHead,
     "g-tabs-body": TabsBody,
     "g-table": Table,
+    "g-table-column": TableColumn,
     "g-collapse": Collapse,
     "g-collapse-item": CollapseItem,
     "g-header": Header,
