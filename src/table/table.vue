@@ -44,12 +44,12 @@
             </td>
             <td v-if="idVisible">{{item.id}}</td>
             <template v-for="column in columns">
-              <template v-if="column.render">
-                <vnodes :key="column.field" :vnodes="column.render({value: item[column.field]})"></vnodes>
-              </template>
-              <template v-else>
-                <td :key="column.field" :style="`width:${column.width}px`">{{item[column.field]}}</td>
-              </template>
+              <td :key="column.field" :style="`width:${column.width}px`">
+                <template v-if="column.render">
+                  <vnodes :key="column.field" :vnodes="column.render({value: item[column.field]})"></vnodes>
+                </template>
+                <template v-else>{{item[column.field]}}</template>
+              </td>
             </template>
             <td v-if="$scopedSlots.default">
               <div ref="actions" style="display: inline-block;">
