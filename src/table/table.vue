@@ -151,8 +151,8 @@ export default {
       let render = node.data.scopedSlots && node.data.scopedSlots.default;
       return { text, field, width, render };
     });
-    console.log(this.$slots.default);
-    console.log(this);
+    // console.log(this.$slots.default);
+    // console.log(this);
 
     if (this.$refs.actions) {
       let div = this.$refs.actions[0];

@@ -181,6 +181,9 @@
             </g-uploader>
             <button>Save</button>
           </div>
+          <div style="margin-top:20px">
+            <g-datepicker></g-datepicker>
+          </div>
         </g-content>
         <g-footer style="padding: 50px;">footer</g-footer>
       </g-layout>
@@ -190,7 +193,7 @@
       <p>{{message}}</p>
       <g-input value="梵蒂冈" disabled></g-input>
       <g-input value="梵蒂冈" readonly></g-input>
-      <g-input value="梵蒂冈" error="亲人两行泪" @change="inputchange"></g-input>
+      <g-input value="梵蒂冈" error="亲人两行泪" @focus="inputchange"></g-input>
     </div>
     <div>
       <g-button :loading="loading1" @click="loading1 = !loading1">按钮</g-button>
@@ -217,6 +220,7 @@ import Col from "./grid/col";
 import Collapse from "./collapse/collapse";
 import CollapseItem from "./collapse/collapse-item";
 import Content from "./layout/content";
+import Datepicker from "./datepicker/datepicker";
 import Footer from "./layout/footer";
 import Header from "./layout/header";
 import Icon from "./icon";
@@ -408,6 +412,7 @@ export default {
     "g-button": Button,
     "g-icon": Icon,
     "g-button-group": ButtonGroup,
+    "g-datepicker": Datepicker,
     "g-cascader": Cascader,
     "g-col": Col,
     "g-row": Row,
@@ -476,7 +481,9 @@ export default {
         callback(result);
       });
     },
-    inputchange() {},
+    inputchange(e) {
+      console.log('inputchange',e)
+    },
     showToast1() {
       this.showToast("top");
     },
