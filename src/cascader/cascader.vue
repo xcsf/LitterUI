@@ -131,7 +131,6 @@ export default {
     background-color: $button-bg;
   }
   .popover-wapper {
-    @extend .box-shadow;
     position: absolute;
     z-index: 1;
     background-color: white;

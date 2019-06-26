@@ -94,7 +94,9 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
   .left {
+    @extend .box-shadow;
     height: 100%;
+    background-color: white;
     padding-top: 0.4em;
     overflow: auto;
     .lable {
