@@ -37,6 +37,7 @@ module.exports = {
           '/components/collapse',
           '/components/slides',
           '/components/nav',
+          '/components/pager',
         ]
       },
     ]
