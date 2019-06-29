@@ -30,7 +30,8 @@ export default {
   props: {
     fileList: {
       type: Array,
-      default: () => []
+      default: () => [],
+      required: true
     },
     name: {
       type: String,

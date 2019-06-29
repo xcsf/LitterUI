@@ -38,6 +38,7 @@ module.exports = {
           '/components/slides',
           '/components/nav',
           '/components/pager',
+          '/components/upload',
         ]
       },
     ]

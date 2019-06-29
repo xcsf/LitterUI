@@ -169,7 +169,6 @@
           <div style="margin-top:20px">
             {{uplodefilelist}}
             <g-uploader
-              accept="image/*"
               action="http://localhost:3000/upload"
               name="filename"
               :fileList.sync="uplodefilelist"
