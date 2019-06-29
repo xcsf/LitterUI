@@ -50,7 +50,7 @@ export default {
       let { span, offset, ipad, narrowPc, pc, widePc } = this;
       let createClasses = this.createClasses;
       return [
-        "col",
+        "g-col",
         ...createClasses({ span, offset }),
         ...createClasses(ipad, "ipad-"),
         ...createClasses(narrowPc, "narrow-pc-"),
@@ -73,7 +73,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.col {
+.g-col {
   //col-n
   $class: col-;
   @for $n from 1 through 24 {

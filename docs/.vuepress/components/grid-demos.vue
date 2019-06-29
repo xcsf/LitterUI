@@ -234,8 +234,8 @@ export default {
 </script>
 <style lang="scss">
 .s-component {
-  > .row {
-    > .col {
+  > .g-row {
+    > .g-col {
       box-sizing: border-box;
       > .demo {
         height: 50px;
